@@ -30,7 +30,8 @@
             }
 
             // Create tab le headers
-            let headers = Object.keys(data[0]);
+            // Define the exact column order
+            let headers = ["Gene", "Transcript", "Variant", "Contact Person", "Institution", "Contact Information (email)", "Status", "Approach", "Indication", "Publication Link if Available", "Cell Line Available"];
             let headerRow = "<tr>";
             headers.forEach(header => {
                 headerRow += `<th>${header}</th>`;
