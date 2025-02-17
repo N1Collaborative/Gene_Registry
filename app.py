@@ -14,6 +14,11 @@ def load_data():
 
 data = load_data()
 
+@app.route('/api/data')
+def get_data():
+    return jsonify(data)  # Returns the full Excel table as JSON
+
+
 # API endpoint for searching
 @app.route('/api/search')
 def search():
