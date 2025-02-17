@@ -11,6 +11,7 @@ FILE_PATH = "data.xlsx"
 def load_data():
     if os.path.exists(FILE_PATH):
         df = pd.read_excel(FILE_PATH)
+        df = df.fillna("")  # ✅ Replace NaN with empty strings
         return df.to_dict(orient='records')
     return []
 
