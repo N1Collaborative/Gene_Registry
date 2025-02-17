@@ -13,14 +13,17 @@ def load_data():
         df = pd.read_excel(FILE_PATH)
         df = df.fillna("")  # Replace NaN with empty strings
 
-        # ✅ Keep column order unchanged
+        # ✅ Print column names to verify "Gene" exists
+        print("Column Names in Excel:", df.columns.tolist())
+
+        # ✅ Ensure correct column order
         df = df[list(df.columns)]  
 
         # ✅ Sort by "Gene" column if it exists
         if "Gene" in df.columns:
             df = df.sort_values(by="Gene", ascending=True)
         else:
-            print("Warning: 'Gene' column not found!")
+            print("⚠️ Warning: 'Gene' column not found!")
 
         return df.to_dict(orient='records')
     return []
