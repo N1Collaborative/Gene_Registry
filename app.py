@@ -27,3 +27,52 @@ def entry(entry_id):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+# Create templates directory and add index.html and entry.html
+if not os.path.exists('templates'):
+    os.makedirs('templates')
+
+with open('templates/index.html', 'w') as f:
+    f.write("""
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Search Database</title>
+    </head>
+    <body>
+        <h1>Search Database</h1>
+        <form method="get" action="/">
+            <input type="text" name="q" value="{{ query }}">
+            <button type="submit">Search</button>
+        </form>
+        <ul>
+            {% for item in data %}
+                <li><a href="/entry/{{ loop.index0 }}">{{ item }}</a></li>
+            {% endfor %}
+        </ul>
+    </body>
+    </html>
+    """)
+
+with open('templates/entry.html', 'w') as f:
+    f.write("""
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Entry Details</title>
+    </head>
+    <body>
+        <h1>Entry Details</h1>
+        {% if entry %}
+            <ul>
+                {% for key, value in entry.items() %}
+                    <li><strong>{{ key }}:</strong> {{ value }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Entry not found.</p>
+        {% endif %}
+        <a href="/">Back to Search</a>
+    </body>
+    </html>
+    """)
