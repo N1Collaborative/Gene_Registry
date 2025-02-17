@@ -1,9 +1,10 @@
-from flask import Flask, jsonify, request, render_template
-from flask_cors import CORS
+from flask import Flask, jsonify, request
+from flask_cors import CORS  # ✅ Import CORS
 import pandas as pd
 import os
 
 app = Flask(__name__)
+CORS(app)  # ✅ Enable CORS for all routes
 
 # Load Excel file
 FILE_PATH = "data.xlsx"
@@ -19,14 +20,12 @@ data = load_data()
 def get_data():
     return jsonify(data)  # Returns the full Excel table as JSON
 
-
 # API endpoint for searching
 @app.route('/api/search')
 def search():
     query = request.args.get('q', '').lower()
     results = [row for row in data if query in " ".join(str(v).lower() for v in row.values())]
     return jsonify(results)
-
 
 # API endpoint for fetching an entry by ID
 @app.route('/api/entry/<int:entry_id>')
