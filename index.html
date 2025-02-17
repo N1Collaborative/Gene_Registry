@@ -5,47 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Excel Table Display</title>
     <script>
+        let tableData = []; // Store fetched data globally
+
         async function loadTable() {
             try {
                 const response = await fetch("https://gene-registry.onrender.com/api/data");
-                const data = await response.json();
+                tableData = await response.json(); // Store data globally
 
-                let table = document.getElementById("data-table");
-
-                // Check if data is empty
-                if (data.length === 0) {
-                    table.innerHTML = "<p>No data found.</p>";
-                    return;
-                }
-
-                // Create table headers
-                let headers = Object.keys(data[0]);
-                let headerRow = "<tr>";
-                headers.forEach(header => {
-                    headerRow += `<th>${header}</th>`;
-                });
-                headerRow += "</tr>";
-                table.innerHTML = headerRow;
-
-                // Populate table rows
-                data.forEach((item) => {
-                    let row = "<tr>";
-                    headers.forEach(header => {
-                        row += `<td>${item[header] || 'N/A'}</td>`;
-                    });
-                    row += "</tr>";
-                    table.innerHTML += row;
-                });
+                displayTable(tableData); // Show all data initially
 
             } catch (error) {
                 console.error("Error loading data:", error);
                 document.getElementById("data-table").innerHTML = "<p>Error loading data.</p>";
             }
         }
+
+        function displayTable(data) {
+            let table = document.getElementById("data-table");
+            table.innerHTML = ""; // Clear the table
+
+            if (data.length === 0) {
+                table.innerHTML = "<p>No data found.</p>";
+                return;
+            }
+
+            // Create table headers
+            let headers = Object.keys(data[0]);
+            let headerRow = "<tr>";
+            headers.forEach(header => {
+                headerRow += `<th>${header}</th>`;
+            });
+            headerRow += "</tr>";
+            table.innerHTML = headerRow;
+
+            // Populate table rows with clickable links
+            data.forEach((item, index) => {
+                let row = `<tr onclick="viewEntry(${index})" style="cursor: pointer;">`;
+                headers.forEach(header => {
+                    row += `<td>${item[header] || 'N/A'}</td>`;
+                });
+                row += "</tr>";
+                table.innerHTML += row;
+            });
+        }
+
+        function searchTable() {
+            let query = document.getElementById("search").value.toLowerCase();
+            let filteredData = tableData.filter(row =>
+                Object.values(row).some(value =>
+                    String(value).toLowerCase().includes(query)
+                )
+            );
+            displayTable(filteredData);
+        }
+
+        function viewEntry(index) {
+            window.location.href = `entry.html?id=${index}`;
+        }
     </script>
 </head>
 <body onload="loadTable()">
     <h1>Excel Table Display</h1>
+
+    <input type="text" id="search" onkeyup="searchTable()" placeholder="Search...">
     <table border="1" id="data-table"></table>
 </body>
 </html>
