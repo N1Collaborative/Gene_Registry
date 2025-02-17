@@ -11,15 +11,18 @@ FILE_PATH = "data.xlsx"
 def load_data():
     if os.path.exists(FILE_PATH):
         df = pd.read_excel(FILE_PATH)
-        df = df.fillna("")  # Replace NaN with empty strings
+        df = df.fillna("")  
 
-        # ✅ Print column names to verify "Gene" exists
-        print("Column Names in Excel:", df.columns.tolist())
+        # ✅ Remove leading/trailing spaces from column names
+        df.columns = df.columns.str.strip()
 
-        # ✅ Ensure correct column order
+        # ✅ Print columns again to confirm fix
+        print("Cleaned Column Names:", df.columns.tolist())
+
+        # ✅ Ensure column order remains correct
         df = df[list(df.columns)]  
 
-        # ✅ Sort by "Gene" column if it exists
+        # ✅ Sort rows by "Gene" if it exists
         if "Gene" in df.columns:
             df = df.sort_values(by="Gene", ascending=True)
         else:
@@ -27,6 +30,7 @@ def load_data():
 
         return df.to_dict(orient='records')
     return []
+
 
 
 data = load_data()
