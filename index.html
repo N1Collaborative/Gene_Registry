@@ -25,30 +25,31 @@
             table.innerHTML = ""; // Clear the table
 
             if (data.length === 0) {
-                table.innerHTML = "<p>No data found.</p>";
-                return;
+            table.innerHTML = "<p>No data found.</p>";
+            return;
             }
 
-            // Create tab le headers
-            // Define the exact column order
-            let headers = ["Gene", "Transcript", "Variant", "Contact Person", "Institution", "Contact Information (email)", "Status", "Approach", "Indication", "Publication Link if Available", "Cell Line Available"];
+            // Define which columns to show in the overview table
+            let headers = ["Gene", "Transcript", "Variant"];
+    
+            // Create table headers
             let headerRow = "<tr>";
             headers.forEach(header => {
                 headerRow += `<th>${header}</th>`;
             });
             headerRow += "</tr>";
-            table.innerHTML = headerRow;
+                table.innerHTML = headerRow;
 
-            // Populate table rows with clickable links
-            data.forEach((item, index) => {
+                // Populate table rows with clickable links
+                data.forEach((item, index) => {
                 let row = `<tr onclick="viewEntry(${index})" style="cursor: pointer;">`;
                 headers.forEach(header => {
-                    row += `<td>${item[header] || 'N/A'}</td>`;
+                row += `<td>${item[header] || 'N/A'}</td>`;
                 });
                 row += "</tr>";
                 table.innerHTML += row;
-            });
-        }
+         });
+    }
 
         function searchTable() {
             let query = document.getElementById("search").value.toLowerCase();
