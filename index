@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Table Display</title>
+    <script>
+        async function loadTable() {
+            const response = await fetch("https://gene-registry.onrender.com/api/data");
+            const data = await response.json();
+
+            let table = document.getElementById("data-table");
+            table.innerHTML = "<tr><th>ID</th><th>Name</th><th>Details</th></tr>";
+
+            data.forEach((item, index) => {
+                table.innerHTML += `
+                    <tr>
+                        <td>${index}</td>
+                        <td>${item.name}</td>
+                        <td>${item.details}</td>
+                    </tr>`;
+            });
+        }
+    </script>
+</head>
+<body onload="loadTable()">
+    <h1>Excel Table Display</h1>
+    <table border="1" id="data-table"></table>
+</body>
+</html>
