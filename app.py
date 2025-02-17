@@ -34,14 +34,5 @@ def entry(entry_id):
         return jsonify(data[entry_id])
     return jsonify({"error": "Entry not found"}), 404
 
-# Serve static HTML for GitHub Pages compatibility
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-@app.route('/entry.html')
-def entry_page():
-    return render_template('entry.html')
-
 if __name__ == '__main__':
     app.run(debug=True)
