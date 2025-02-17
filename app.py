@@ -21,6 +21,7 @@ def search():
     results = [row for row in data if query in str(row).lower()]
     return jsonify(results)
 
+
 # API endpoint for fetching an entry by ID
 @app.route('/api/entry/<int:entry_id>')
 def entry(entry_id):
