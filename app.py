@@ -18,7 +18,7 @@ data = load_data()
 @app.route('/api/search')
 def search():
     query = request.args.get('q', '').lower()
-    results = [row for row in data if query in str(row).lower()]
+    results = [row for row in data if query in " ".join(str(v).lower() for v in row.values())]
     return jsonify(results)
 
 
