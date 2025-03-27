@@ -73,7 +73,7 @@
 
         if (entry && !entry.error) {
             // Define the exact column order for the detailed view
-            let headers = ["Gene", "Transcript", "Variant", "Contact Person", "Institution", "Contact Information (email)", "Status", "Approach", "Indication", "Publication Link if Availabile", "Cell Line Available"];
+            let headers = ["Gene", "Transcript", "Coding change (c.)", "Protein or RNA change (p. or r.)", "Therapeutic Modality", "Approach", "IND available?", "Publication", "Cell Line or Animal Model Availability", "Contact Person", "Status", "Indication",  "Institution", "Contact Information (email)"];
 
             headers.forEach(header => {
                 if (entry[header]) {
