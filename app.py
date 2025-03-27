@@ -20,11 +20,8 @@ if os.path.exists(FILE_PATH):
 
 @app.route('/api/data')
 def get_data():
-    return app.response_class(
-        response=json_data,
-        status=200,
-        mimetype='application/json'
-    )
+    return jsonify(data)
+    
 
 @app.route('/api/search')
 def search():
