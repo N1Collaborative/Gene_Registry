@@ -16,7 +16,7 @@ if os.path.exists(FILE_PATH):
     df = pd.read_excel(FILE_PATH)
     df = df.sort_values(by="Gene", key=lambda col: col.str.lower() if col.dtype == "object" else col)
     data = df.to_dict(orient="records")
-    json_data = json.dumps(data)  # 💡 convert to JSON once
+    json_data = json.dumps(data, allow_nan=False)
 
 @app.route('/api/data')
 def get_data():
