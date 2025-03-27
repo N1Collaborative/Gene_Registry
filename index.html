@@ -87,6 +87,9 @@
 
         async function loadTable() {
             try {
+                   // Show loading message
+                document.getElementById("loading").style.display = "block";
+
                 const response = await fetch("https://gene-registry.onrender.com/api/data");
                 tableData = await response.json(); // Store data globally
 
@@ -95,6 +98,9 @@
             } catch (error) {
                 console.error("Error loading data:", error);
                 document.getElementById("data-table").innerHTML = "<p>Error loading data.</p>";
+            } finally {
+                // Hide loading message after attempt
+                document.getElementById("loading").style.display = "none";
             }
         }
 
@@ -151,9 +157,10 @@
         <input type="text" id="search" onkeyup="searchTable()" placeholder="Search...">
         <a href="https://forms.gle/9UBkdLkdGDEeC5cn7" target="_blank" class="submit-btn">Submit Your Project</a>
     </div>
-   
-    <table border="1" id="data-table"></table>
+  
     <p id="loading">Loading table...</p>
+    <table border="1" id="data-table"></table>
+    
     
 </body>
 </html>
