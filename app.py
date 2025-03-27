@@ -21,7 +21,7 @@ if os.path.exists(FILE_PATH):
 @app.route('/api/data')
 def get_data():
     return jsonify(data)
-    
+    # Trigger redeploy
 
 @app.route('/api/search')
 def search():
