@@ -33,31 +33,28 @@
         font-size: 16px;
     }
 
-    .search-container {
+  .search-wrapper {
       display: flex;
       justify-content: center;
-      margin: 20px 0;
-    }
-
-    .search-bar {
-      display: flex;
       align-items: center;
+      margin: 20px auto;
     }
 
-    .search-bar input[type="text"] {
-      height: 40px;
-      font-size: 16px;
+    .search-wrapper input[type="text"] {
+      height: 42px;
       padding: 0 12px;
+      font-size: 16px;
       border: none;
       border-top-left-radius: 4px;
       border-bottom-left-radius: 4px;
       outline: none;
+      box-sizing: border-box;
     }
 
-    .search-bar button {
-      height: 40px;
-      font-size: 16px;
+    .search-button {
+      height: 42px;
       padding: 0 16px;
+      font-size: 16px;
       background-color: #de3b38;
       color: white;
       border: none;
@@ -65,6 +62,7 @@
       border-bottom-right-radius: 4px;
       font-weight: bold;
       cursor: pointer;
+      box-sizing: border-box;
     }
 
         
@@ -100,14 +98,6 @@
         cursor: pointer;
     }
 
-        
-    .search-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 20px;
-    }
 
     button,
     .submit-button {
@@ -243,12 +233,10 @@ function displayTable(data) {
       <a class="submit-button" href="https://forms.gle/9UBkdLkdGDEeC5cn7" target="_blank">Submit Your Project</a>
     </div>
 
-   <div class="search-container">
-      <div class="search-bar">
-        <input type="text" id="search" placeholder="Search..." />
-        <button onclick="searchTable()">Search</button>
-      </div>
-  </div>
+  <div class="search-wrapper">
+      <input type="text" id="search" placeholder="Search..." />
+      <button class="search-button" onclick="searchTable()">Search</button>
+ </div>
 
 
     <p id="loading">Loading table...</p>
