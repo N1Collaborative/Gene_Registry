@@ -14,18 +14,21 @@ json_data = "[]"
 
 if os.path.exists(FILE_PATH):
     df = pd.read_excel(FILE_PATH)
-    # Clean up column names just in case
-    df.columns = df.columns.str.strip()
+    df.columns = df.columns.str.strip()  # Strip whitespace from column headers
+    df = df.fillna("")  # ✅ Replace NaN with empty strings
     if "Gene" in df.columns:
-     df = df.sort_values(by="Gene", key=lambda col: col.str.lower() if col.dtype == "object" else col)
-
+        df = df.sort_values(by="Gene", key=lambda col: col.str.lower() if col.dtype == "object" else col)
     data = df.to_dict(orient="records")
-    json_data = json.dumps(data, allow_nan=False)
+    json_data = json.dumps(data)  # ✅ Now it's safe — no NaN
+
 
 @app.route('/api/data')
 def get_data():
-    return jsonify(data)
-    # Trigger redeploy
+    return app.response_class(
+        response=json_data,
+        status=200,
+        mimetype='application/json'
+    )
 
 @app.route('/api/search')
 def search():
