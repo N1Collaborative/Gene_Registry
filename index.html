@@ -33,34 +33,36 @@
         font-size: 16px;
     }
 
-    .top-bar {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      margin: 20px auto;
-      flex-wrap: wrap;
+     .search-bar {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: 20px auto;
     }
 
-    .top-bar input[type="text"] {
-      padding: 10px;
+    .search-bar input[type="text"] {
+        height: 42px;
+        padding: 0 12px;
       font-size: 16px;
-      border-radius: 4px;
       border: none;
-      height: 42px;              /* <-- Match button height */
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      outline: none;
       box-sizing: border-box;
     }
 
-    .top-bar button {
-      height: 42px;              /* <-- Match input height */
+    .search-bar button {
+      height: 42px;
       padding: 0 16px;
       font-size: 16px;
       background-color: #D8443D;
       color: white;
       border: none;
-      border-radius: 4px;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
       font-weight: bold;
       cursor: pointer;
+      box-sizing: border-box;
     }
 
         
@@ -239,10 +241,11 @@ function displayTable(data) {
       <a class="submit-button" href="https://forms.gle/9UBkdLkdGDEeC5cn7" target="_blank">Submit Your Project</a>
     </div>
 
-    <div class="top-bar">
+    <div class="search-bar">
       <input type="text" id="search" placeholder="Search..." />
       <button onclick="searchTable()">Search</button>
     </div>
+
 
     <p id="loading">Loading table...</p>
     <table border="1" id="data-table"></table>
