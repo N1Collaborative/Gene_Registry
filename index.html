@@ -8,7 +8,7 @@
     <style>
     body {
         font-family: Arial, sans-serif;
-        background-color: #1A3E5C;
+        background-color: #D8443D;
         color: #000
         text-align: center;
         margin: 0;
@@ -17,11 +17,11 @@
 
    
     h1 {
-       text-align: center;
-      color: #D8443D;
-      font-size: 40px;
+      text-align: center;
+      color: white;
+      font-size: 48px;
       font-weight: bold;
-      margin: 10px 0 10px 0
+      margin: 5px 0 10px 0
     }
     
 
@@ -38,30 +38,31 @@
       justify-content: center;
       align-items: center;
       gap: 10px;
-      margin-top: 20px;
+      margin: 20px auto;
       flex-wrap: wrap;
     }
 
     .top-bar input[type="text"] {
-      padding: 8px 12px;
+      padding: 10px;
       font-size: 16px;
-      height: 40px;
       border-radius: 4px;
       border: none;
+      height: 42px;              /* <-- Match button height */
+      box-sizing: border-box;
     }
 
     .top-bar button {
-      height: 40px;
+      height: 42px;              /* <-- Match input height */
+      padding: 0 16px;
+      font-size: 16px;
+      background-color: #D8443D;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
     }
 
-
-    input[type="text"] {
-        padding: 8px;
-        font-size: 16px;
-        width: 250px;
-        border: none;
-        border-radius: 4px;
-      }
         
     table {
         width: 90%;
@@ -91,7 +92,7 @@
     }
 
     tr:hover {
-        background: #f1f1f1;
+        background: #b9312c;
         cursor: pointer;
     }
 
