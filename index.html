@@ -200,15 +200,28 @@ function displayTable(data) {
     
 </head>
 <body onload="loadTable()">
+
+    <div style="text-align: center; margin-top: 30px;">
+      <img src="N1C_logo.jpg" alt="N1C Logo" style="max-width: 180px; height: auto;">
+    </div>
+    
     <h1>N1C Gene Registry</h1>
 
-    <div class="top-bar">
-        <input type="text" id="search" onkeyup="searchTable()" placeholder="Search..." />
-        <button onclick="searchTable()">Search</button>
-        <a href="https://forms.gle/9UBkdLkdGDEeC5cn7" target="_blank" class="submit-btn">Submit Your Project</a>
+    <div style="max-width: 800px; margin: 40px auto 20px; padding: 20px; background-color: white; border-radius: 8px; text-align: center;">
+      <h2 style="color: #D8443D;">Submit Your Project</h2>
+      <p style="font-size: 16px; color: #333;">
+        Are you developing a therapeutic approach for a specific genetic variant?
+        Share your work with the N1C Gene Registry to increase visibility and collaboration.
+        Submit your project below or follow this <a href="https://docs.google.com/spreadsheets/d/1qGRdGJEPuP-SudLncSE7Dp7AEnEz-Js_ed1JPzorwOU/edit?usp=sharing" target="_blank" style="color: #D8443D; text-decoration: underline;">LINK</a> for bulk entry. Please reach out to generegistry@n1collaborative.org for any questions related to the Gene Registry.  
+      </p>
+      <a class="submit-button" href="https://forms.gle/9UBkdLkdGDEeC5cn7" target="_blank">Submit Your Project</a>
     </div>
 
-  
+    <div class="top-bar">
+      <input type="text" id="search" onkeyup="searchTable()" placeholder="Search..." />
+      <button onclick="searchTable()">Search</button>
+    </div>
+
     <p id="loading">Loading table...</p>
     <table border="1" id="data-table"></table>
 
