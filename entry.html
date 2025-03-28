@@ -78,13 +78,23 @@
     const entry = await response.json();
 
     const variantFields = [
-      "Gene", "Transcript", "Coding change (c.)", 
-      "Protein or RNA change (p. or r.)", "Therapeutic Modality", "Approach", "Status", "Indication",
-      "IND available?", "Publication", "Cell Line or Animal Model Availability"
+      "Gene", 
+      "Transcript", 
+      "Coding change (c.)", 
+      "Protein or RNA change (p. or r.)", 
+      "Therapeutic Modality", 
+      "Approach", 
+      "Status", 
+      "Indication",
+      "IND available?", 
+      "Publication", 
+      "Cell Line or Animal Model Availability"
     ];
 
     const contactFields = [
-      "Contact Person", "Institution", "Contact Information (email)", 
+      "Contact Person", 
+      "Institution", 
+      "Contact Information (email)", 
       
     ];
 
@@ -92,8 +102,17 @@
     const contactList = document.getElementById("contact-details");
 
     variantList.innerHTML = "";
-    contactList.innerHTML = "";
+    variantFields.forEach((key) => {
+      const value = entry[key] || "N/A";
+        variantList.innerHTML += `<li><strong>${key}:</strong> ${value}</li>`;
+    });
 
+    contactList.innerHTML = "";
+    contactFields.forEach((key) => {
+      const value = entry[key] || "N/A";
+      contactList.innerHTML += `<li><strong>${key}:</strong> ${value}</li>`;
+    });
+      
     for (const [key, value] of Object.entries(entry)) {
       const cleanValue = value || "N/A";
       const li = `<li><strong>${key}:</strong> ${cleanValue}</li>`;
