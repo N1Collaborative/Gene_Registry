@@ -17,11 +17,13 @@
 
    
     h1 {
-        text-align: center;
-        font-size: 36px;
-        margin-bottom: 20px;
-        color: white
+       text-align: center;
+      color: #D8443D;
+      font-size: 40px;
+      font-weight: bold;
+      margin: 10px 0 10px 0
     }
+    
 
      
     input {
@@ -32,13 +34,26 @@
     }
 
     .top-bar {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        margin: 20px auto;
-        text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+      flex-wrap: wrap;
     }
+
+    .top-bar input[type="text"] {
+      padding: 8px 12px;
+      font-size: 16px;
+      height: 40px;
+      border-radius: 4px;
+      border: none;
+    }
+
+    .top-bar button {
+      height: 40px;
+    }
+
 
     input[type="text"] {
         padding: 8px;
@@ -206,7 +221,7 @@ function displayTable(data) {
 <body onload="loadTable()">
     <header style="display: flex; align-items: center; background-color: #1A3E5C; padding: 10px 20px;">
       <a href="https://www.n1collaborative.org/" target="_blank">
-        <img src="N1C_logo.jpg" alt="N1C Logo" style="height: 50px;">
+        <img src="N1C_logo.jpg" alt="N1C Logo" style="height: 50px; border-radius: 50%;">
       </a>
     </header>
 
@@ -224,7 +239,7 @@ function displayTable(data) {
     </div>
 
     <div class="top-bar">
-      <input type="text" id="search" onkeyup="searchTable()" placeholder="Search..." />
+      <input type="text" id="search" placeholder="Search..." />
       <button onclick="searchTable()">Search</button>
     </div>
 
