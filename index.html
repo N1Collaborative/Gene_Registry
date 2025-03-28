@@ -113,36 +113,43 @@
                 }
         }
        
-        function displayTable(data) {
-            let table = document.getElementById("data-table");
-            table.innerHTML = ""; // Clear the table
+function displayTable(data) {
+    let table = document.getElementById("data-table");
+    table.innerHTML = ""; // Clear the table
 
-            if (data.length === 0) {
-            table.innerHTML = "<p>No data found.</p>";
-            return;
-            }
-
-            // Define which columns to show in the overview table
-            let headers = ["Gene", "Transcript", "Coding change (c.)", "Protein or RNA change (p. or r.)", "Therapeutic Modality", "Status"];
-    
-            // Create table headers
-            let headerRow = "<tr>";
-            headers.forEach(header => {
-                headerRow += `<th>${header}</th>`;
-            });
-            headerRow += "</tr>";
-                table.innerHTML = headerRow;
-
-                // Populate table rows with clickable links
-                data.forEach((item, index) => {
-                let row = `<tr onclick="viewEntry(${index})" style="cursor: pointer;">`;
-                headers.forEach(header => {
-                row += `<td>${item[header] !== undefined ? item[header] : 'N/A'}</td>`;
-                });
-                row += "</tr>";
-                table.innerHTML += row;
-         });
+    if (data.length === 0) {
+        table.innerHTML = "<p>No data found.</p>";
+        return;
     }
+
+    // 🔍 Debug the data
+    console.log("First row keys:", Object.keys(data[0]));
+
+    // Define which columns to show in the overview table
+    let headers = ["Gene", "Transcript", "Coding change (c.)", "Protein or RNA change (p. or r.)", "Therapeutic Modality", "Status"];
+
+    // 🔍 Debug the headers you're trying to use
+    console.log("Headers being used:", headers);
+
+    // Create table headers
+    let headerRow = "<tr>";
+    headers.forEach(header => {
+        headerRow += `<th>${header}</th>`;
+    });
+    headerRow += "</tr>";
+    table.innerHTML = headerRow;
+
+    // Populate table rows
+    data.forEach((item, index) => {
+        let row = `<tr onclick="viewEntry(${index})" style="cursor: pointer;">`;
+        headers.forEach(header => {
+            row += `<td>${item[header] !== undefined ? item[header] : 'N/A'}</td>`;
+        });
+        row += "</tr>";
+        table.innerHTML += row;
+    });
+}
+
 
         function searchTable() {
             let query = document.getElementById("search").value.toLowerCase();
