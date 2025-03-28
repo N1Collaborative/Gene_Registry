@@ -20,7 +20,7 @@
         text-align: center;
         font-size: 28px;
         margin-bottom: 20px;
-        color: #D8443D;
+        color: #000;
     }
 
         
@@ -49,15 +49,18 @@
         border-bottom: none;
     }
 
-    a {
-        display: inline-block;
-        margin-top: 20px;
-        text-decoration: none;
-        background-color: #D8443D;
-        color: white;
-        background: #007bff;
-        padding: 10px 15px;
-        border-radius: 5px;
+    .back-button {
+      display: block;
+      text-align: center;
+      margin: 20px auto;
+      background-color: #D8443D;
+      color: white !important;
+      padding: 10px 20px;
+      text-decoration: none !important;
+      border-radius: 4px;
+      width: fit-content;
+      font-size: 14px;
+      font-weight: bold;
     }
 
     a:hover {
@@ -66,36 +69,61 @@
 </style>
 
     
-    <script>
-       async function loadEntry() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const id = urlParams.get("id");
+<script>
+  async function loadEntry() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get("id");
 
-        const response = await fetch(`https://gene-registry.onrender.com/api/entry/${id}`);
-        const entry = await response.json();
+    const response = await fetch(`https://gene-registry.onrender.com/api/entry/${id}`);
+    const entry = await response.json();
 
-        let details = document.getElementById("details");
-        details.innerHTML = "";
+    const variantFields = [
+      "Gene", "Transcript", "Coding change (c.)", 
+      "Protein or RNA change (p. or r.)", "Therapeutic Modality", "Approach", "Status", "Indication",
+      "IND available?", "Publication", "Cell Line or Animal Model Availability"
+    ];
 
-        if (entry && !entry.error) {
-            // Define the exact column order for the detailed view
-            let headers = ["Gene", "Transcript", "Coding change (c.)", "Protein or RNA change (p. or r.)", "Therapeutic Modality", "Approach", "IND available?", "Publication", "Cell Line or Animal Model Availability", "Contact Person", "Status", "Indication",  "Institution", "Contact Information (email)"];
+    const contactFields = [
+      "Contact Person", "Institution", "Contact Information (email)", 
+      
+    ];
 
-            headers.forEach(header => {
-                if (entry[header]) {
-                    details.innerHTML += `<li><strong>${header}:</strong> ${entry[header]}</li>`;
-                }
-            });
-        } else {
-            details.innerHTML = "<p>Entry not found.</p>";
-            }
-       }
-    </script>
+    const variantList = document.getElementById("variant-details");
+    const contactList = document.getElementById("contact-details");
+
+    variantList.innerHTML = "";
+    contactList.innerHTML = "";
+
+    for (const [key, value] of Object.entries(entry)) {
+      const cleanValue = value || "N/A";
+      const li = `<li><strong>${key}:</strong> ${cleanValue}</li>`;
+      if (variantFields.includes(key)) {
+        variantList.innerHTML += li;
+      } else if (contactFields.includes(key)) {
+        contactList.innerHTML += li;
+      }
+    }
+  }
+</script>
+
+
+    
 </head>
 <body onload="loadEntry()">
     <h1>Entry Details</h1>
     <div class="entry-container">
-    <ul id="details"></ul>
+
+    <div class="entry-box" id="variant-info">
+      <h2>Variant Information</h2>
+      <ul id="variant-details"></ul>
+    </div>
+
+    <div class="entry-box" id="contact-info">
+      <h2>Contact Information</h2>
+      <ul id="contact-details"></ul>
+    </div>
+
+        
 </div>
     <a href="index.html">Back to Search</a>
 </body>
