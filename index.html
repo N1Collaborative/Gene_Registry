@@ -179,7 +179,7 @@ function displayTable(data) {
 
     // Populate table rows
     data.forEach((item, index) => {
-        let row = `<tr onclick="viewEntry(${index})" style="cursor: pointer;">`;
+        let row = `<tr onclick="viewEntry('${item["ID"]}')" style="cursor: pointer;">`;
         headers.forEach(header => {
             row += `<td>${item[header] !== undefined ? item[header] : 'N/A'}</td>`;
         });
@@ -199,8 +199,8 @@ function displayTable(data) {
             displayTable(filteredData);
         }
 
-        function viewEntry(index) {
-            window.location.href = `entry.html?id=${index}`;
+        function viewEntry(id) {
+          window.location.href = `entry.html?id=${id}`;
         }
     </script>
     
