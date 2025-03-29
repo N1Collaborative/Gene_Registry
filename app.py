@@ -36,12 +36,6 @@ def search():
     results = [row for row in data if query in " ".join(str(v).lower() for v in row.values())]
     return jsonify(results)
 
-@app.route('/api/entry/<int:entry_id>')
-def entry(entry_id):
-    if 0 <= entry_id < len(data):
-        return jsonify(data[entry_id])
-    return jsonify({"error": "Entry not found"}), 404
-
 @app.route('/')
 def index():
     return render_template('index.html')
