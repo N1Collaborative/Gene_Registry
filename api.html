@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>N1C Gene Registry API</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #042c5c;
+      color: white;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      color: black;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      color: #D8443D;
+      font-size: 36px;
+      margin-top: 0;
+    }
+
+    h2 {
+      color: #D8443D;
+    }
+
+    code {
+      background-color: #eee;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+
+    pre {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+
+    a {
+      color: #D8443D;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>N1C Gene Registry API</h1>
+
+    <p>This API provides programmatic access to the N1C Gene Registry. All data is freely accessible for non-commercial and academic use.</p>
+
+    <h2>Endpoints</h2>
+    <ul>
+      <li>
+        <strong>GET</strong> <code>/api/data</code><br />
+        Returns the full registry dataset in JSON format.<br />
+        <a href="https://gene-registry.onrender.com/api/data" target="_blank">Try it</a>
+      </li>
+      <li>
+        <strong>GET</strong> <code>/api/search?q=ATM</code><br />
+        Returns all entries containing the search term.<br />
+        <a href="https://gene-registry.onrender.com/api/search?q=ATM" target="_blank">Try it</a>
+      </li>
+    </ul>
+
+    <h2>Example Usage (JavaScript)</h2>
+    <pre>
+fetch("https://gene-registry.onrender.com/api/search?q=ATM")
+  .then(res => res.json())
+  .then(data => console.log(data));
+    </pre>
+
+    <h2>Linking to Entries</h2>
+    <p>Each entry has an <code>ID</code>. You can link directly to an entry like this:</p>
+    <pre>https://n1collaborative.github.io/Gene_Registry/entry.html?id=123</pre>
+
+    <h2>Terms of Use</h2>
+    <p>This API is available for research and nonprofit purposes. Please cite the N1C Gene Registry if using this data in a publication or project.</p>
+  </div>
+</body>
+</html>
