@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>N1C Gene Registry</title>
 
+    <!-- General Description -->
+    <meta name="description" content="The N1C Gene Registry is a searchable database of therapeutic approaches for rare genetic variants, curated by the N=1 Collaborative." />
+
+    <!-- Social Sharing: Open Graph (used by Facebook, LinkedIn, etc.) -->
+    <meta property="og:title" content="N1C Gene Registry" />
+    <meta property="og:description" content="Explore therapeutic projects for rare genetic conditions. Curated by the N=1 Collaborative." />
+    <meta property="og:image" content="https://n1collaborative.github.io/Gene_Registry/N1C_logo.jpg" />
+    <meta property="og:url" content="https://n1collaborative.github.io/Gene_Registry/" />
+    <meta property="og:type" content="website" />
+
+
     <style>
     body {
         font-family: Arial, sans-serif;
@@ -79,6 +90,10 @@
         background-color: #de3b38;
         color: white;
         font-size: 18px;
+
+        position: sticky;
+        top: 0;
+      z-index: 1;
     }
 
     tr:nth-child(even) {
@@ -108,13 +123,33 @@
     .submit-button:hover {
       background-color: #b9312c;
     }
+
+
+    .scroll-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #de3b38;
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+      z-index: 999;
+    }
+
+    .scroll-top:hover {
+      background-color: #b9312c;
+    }
         
      footer {
         margin-top: 40px;
         text-align: center;
         color: white;
         font-size: 0.9em;
-      }
+      }        
 
 </style>
 
@@ -233,6 +268,8 @@ function displayTable(data) {
 
     <p id="loading">Loading table...</p>
     <table border="1" id="data-table"></table>
+
+    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="scroll-top">↑ Top</button>
 
     <footer style="text-align: center; margin-top: 40px; font-size: 0.9em; color: #777;">
       <p>© N=1 Collaborative</p>
