@@ -204,23 +204,20 @@ function displayTable(data) {
     // 🔍 Debug the headers you're trying to use
     console.log("Headers being used:", headers);
 
-    // Create table headers
-    let headerRow = "<tr>";
-    headers.forEach(header => {
-        headerRow += `<th>${header}</th>`;
+   // ✅ Step 1: Group data by first letter of Gene
+    const grouped = {};
+    data.forEach((item) => {
+        const gene = item["Gene"] || "";
+        const letter = gene.charAt(0).toUpperCase();
+        if (!grouped[letter]) {
+            grouped[letter] = [];
+        }
+        grouped[letter].push(item);
     });
-    headerRow += "</tr>";
-    table.innerHTML = headerRow;
 
-    // Populate table rows
-    data.forEach((item, index) => {
-        let row = `<tr onclick="viewEntry('${item["ID"]}')" style="cursor: pointer;">`;
-        headers.forEach(header => {
-            row += `<td>${item[header] !== undefined ? item[header] : 'N/A'}</td>`;
-        });
-        row += "</tr>";
-        table.innerHTML += row;
-    });
+    console.log("Grouped by gene letter:", grouped);
+
+    // ❗️Rendering grouped sections comes in Step 2
 }
 
 
