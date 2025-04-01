@@ -217,8 +217,45 @@ function displayTable(data) {
 
     console.log("Grouped by gene letter:", grouped);
 
-    // ❗️Rendering grouped sections comes in Step 2
-}
+    for (const letter of Object.keys(grouped).sort()) {
+        const section = document.createElement("details");
+        section.style.marginBottom = "20px";
+
+        const summary = document.createElement("summary");
+        summary.textContent = `Gene: ${letter}`;
+        summary.style.fontSize = "20px";
+        summary.style.cursor = "pointer";
+        summary.style.fontWeight = "bold";
+        summary.style.color = "#D8443D";
+        section.appendChild(summary);
+
+        // Create table
+        const tableElement = document.createElement("table");
+        tableElement.style.width = "100%";
+        tableElement.style.marginTop = "10px";
+        tableElement.style.borderCollapse = "collapse";
+
+        // Header row
+        let headerRow = "<tr>";
+        headers.forEach(header => {
+            headerRow += `<th>${header}</th>`;
+        });
+        headerRow += "</tr>";
+        tableElement.innerHTML = headerRow;
+
+        // Data rows
+        grouped[letter].forEach((item) => {
+            let row = `<tr onclick="viewEntry('${item["ID"]}')" style="cursor: pointer;">`;
+            headers.forEach(header => {
+                row += `<td>${item[header] !== undefined ? item[header] : 'N/A'}</td>`;
+            });
+            row += "</tr>";
+            tableElement.innerHTML += row;
+        });
+
+        section.appendChild(tableElement);
+        table.appendChild(section);
+    }
 
 
         function searchTable() {
