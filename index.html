@@ -264,7 +264,7 @@
                 }
         }
        
-function displayTable(data) {
+function displayTable(data, expandAll = false) {
     let table = document.getElementById("data-table");
     table.innerHTML = ""; // Clear the table
 
@@ -298,6 +298,9 @@ function displayTable(data) {
     for (const letter of Object.keys(grouped).sort()) {
         const section = document.createElement("details");
         section.style.marginBottom = "20px";
+        if (expandAll) {
+        section.open = true;
+        }
 
         const summary = document.createElement("summary");
         summary.textContent = letter;
@@ -345,7 +348,7 @@ function displayTable(data) {
                     String(value).toLowerCase().includes(query)
                 )
             );
-            displayTable(filteredData);
+            displayTable(filteredData, true);
         }
 
         function viewEntry(id) {
