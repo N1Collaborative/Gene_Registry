@@ -168,15 +168,13 @@
       display: none;             /* Remove arrow in WebKit browsers */
     }
 
-    /* Highlight gene name cell on hover */
-    details td:first-child {
-      font-weight: bold;
-      transition: color 0.2s, text-decoration 0.2s;
+    /* Make all table rows clickable and highlight on hover */
+    details tr {
+      transition: background-color 0.2s;
     }
 
-    details tr:hover td:first-child {
-      color: #de3b38; /* N1C red */
-      text-decoration: underline;
+    details tr:hover {
+      background-color: #fde4e2; /* Light red background on hover */
       cursor: pointer;
     }
         
