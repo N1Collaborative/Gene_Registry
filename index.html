@@ -305,6 +305,14 @@ function displayTable(data) {
         function viewEntry(id) {
           window.location.href = `entry.html?id=${id}`;
         }
+
+    function expandAll(expand) {
+      const sections = document.querySelectorAll("details");
+      sections.forEach(section => {
+        section.open = expand;
+      });
+    }
+        
     </script>
     
 </head>
@@ -333,6 +341,10 @@ function displayTable(data) {
       <button class="search-button" onclick="searchTable()">Search</button>
     </div>
 
+    <div style="text-align: center; margin-bottom: 20px;">
+      <button class="submit-button" onclick="expandAll(true)">Expand All</button>
+      <button class="submit-button" onclick="expandAll(false)">Collapse All</button>
+    </div>
 
     <p id="loading">Loading table...</p>
     <table border="1" id="data-table"></table>
