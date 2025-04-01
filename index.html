@@ -229,7 +229,7 @@ function displayTable(data) {
         summary.style.color = "#D8443D";
         section.appendChild(summary);
 
-        // Create table
+          // Create table
         const tableElement = document.createElement("table");
         tableElement.style.width = "100%";
         tableElement.style.marginTop = "10px";
@@ -241,20 +241,22 @@ function displayTable(data) {
             headerRow += `<th>${header}</th>`;
         });
         headerRow += "</tr>";
-        tableElement.innerHTML = headerRow;
 
         // Data rows
+        let bodyRows = "";
         grouped[letter].forEach((item) => {
             let row = `<tr onclick="viewEntry('${item["ID"]}')" style="cursor: pointer;">`;
             headers.forEach(header => {
                 row += `<td>${item[header] !== undefined ? item[header] : 'N/A'}</td>`;
             });
             row += "</tr>";
-            tableElement.innerHTML += row;
+            bodyRows += row;
         });
 
+        tableElement.innerHTML = headerRow + bodyRows;
         section.appendChild(tableElement);
         table.appendChild(section);
+        }
     }
 
 
