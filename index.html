@@ -228,6 +228,31 @@
       width: 10%;  /* Status */
     }
 
+        .registry-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 30px auto;
+  flex-wrap: wrap;
+}
+
+.registry-button {
+  background-color: #de3b38;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 16px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  width: 280px;
+  text-align: center;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.registry-button:hover {
+  background-color: #b9312c;
+  transform: scale(1.05);
+}
         
 </style>
 
@@ -394,19 +419,16 @@ function displayTable(data, expandAll = false) {
     </div>
 
     <div class="search-wrapper">
-      <h2 style="color: #D8443D;">Explore Our Gene Registry</h2>
-      
       <input type="text" id="search" placeholder="Search both registries..." />
       <button class="search-button" onclick="searchBothRegistries()">Search</button>
     </div>
 
 <div id="search-results"></div>
   
-    <div style="max-width: 800px; margin: 40px auto;">
-      <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 30px;">
-        <a href="N1_projects.html" class="submit-button" style="font-size: 20px; padding: 20px 30px;">N=1+ projects</a>
-        <a href="marketed_drugs.html" class="submit-button" style="font-size: 20px; padding: 20px 30px;">Marketed genetic therapies</a>
-      </div>
+    <div class="registry-buttons">
+          <a class="registry-button" href="N1C_projects.html">N1C Projects</a>
+          <a class="registry-button" href="Marketed_drugs.html">Marketed Genetic Therapies</a>
+    </div>
 
       <div style="margin-top: 30px;">
         <a href="info.html" class="submit-button">Info</a>
