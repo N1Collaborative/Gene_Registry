@@ -341,33 +341,32 @@
     <script>
         let tableData = []; // Store fetched data globally
 
-        async function loadTable(retry = false) {
+        async function loadTable(tableName, retry = false) {
             try {
                 document.getElementById("loading").style.display = "block";
 
-                const response = await fetch("https://gene-registry.onrender.com/api/N1C_projects");
+                const response = await fetch(`https://gene-registry.onrender.com/api/${tableName}`);
                 if (!response.ok) throw new Error("Network response was not ok");
 
                 tableData = await response.json();
                 displayTable(tableData);
 
-                } catch (error) {
-                console.error("Error loading data:", error);
+        } catch (error) {
+            console.error("Error loading data:", error);
 
-                // If it's the first failure, try once more after waiting 3 seconds
-                if (!retry) {
-                    console.log("Retrying in 3 seconds...");
-                    setTimeout(() => loadTable(true), 3000);
+            if (!retry) {
+                console.log("Retrying in 3 seconds...");
+                setTimeout(() => loadTable(tableName, true), 3000);
                 return;
-                }
+            }
 
-                    // If retry also fails, show error message
-                document.getElementById("data-table").innerHTML = "<p>Error loading data.</p>";
+            document.getElementById("data-table").innerHTML = "<p>Error loading data.</p>";
 
-                } finally {
-                    document.getElementById("loading").style.display = "none";
-                }
+        } finally {
+            document.getElementById("loading").style.display = "none";
         }
+    }
+
        
 function displayTable(data, expandAll = false) {
     let table = document.getElementById("data-table");
