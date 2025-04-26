@@ -339,21 +339,21 @@
 
 
     
-    <script>
+<script>
         let n1cProjectsData = [];
         let marketedDrugsData = [];
 
         // Load both registries
-    async function loadRegistries() {
-      try {
-        const [n1cResponse, marketedResponse] = await Promise.all([
-          fetch('https://gene-registry.onrender.com/api/n1c_projects'),
-          fetch('https://gene-registry.onrender.com/api/marketed_drugs')
-        ]);
+        async function loadRegistries() {
+              try {
+                const [n1cResponse, marketedResponse] = await Promise.all([
+                fetch('https://gene-registry.onrender.com/api/n1c_projects'),
+                fetch('https://gene-registry.onrender.com/api/marketed_drugs')
+                ]);
 
         n1cProjectsData = await n1cResponse.json();
         marketedDrugsData = await marketedResponse.json();
-      } catch (error) {
+        } catch (error) {
         console.error('Error loading registries:', error);
       }
     }
