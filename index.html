@@ -491,6 +491,20 @@ function displayTable(data, expandAll = false) {
     
     <h1>N1C Gene Registry</h1>
 
+    
+    <div class="registry-buttons">
+          <a class="registry-button" href="N1C_projects.html">N1C Projects</a>
+          <a class="registry-button" href="Marketed_drugs.html">Marketed Genetic Therapies</a>
+    </div>
+
+     <div class="search-wrapper">
+      <input type="text" id="search" placeholder="Search both registries..." />
+      <button class="search-button" onclick="searchBothRegistries()">Search</button>
+    </div>
+
+    <div id="search-results"></div>
+  
+    
     <div style="max-width: 800px; margin: 40px auto 20px; padding: 20px; background-color: white; border-radius: 8px; text-align: center;">
       <h2 style="color: #D8443D;">Submit Your Project</h2>
       <p style="font-size: 16px; color: #333;">
@@ -501,21 +515,8 @@ function displayTable(data, expandAll = false) {
       <a class="submit-button" href="https://forms.gle/9UBkdLkdGDEeC5cn7" target="_blank">Submit Your Project</a>
     </div>
 
-    <div class="search-wrapper">
-      <input type="text" id="search" placeholder="Search both registries..." />
-      <button class="search-button" onclick="searchBothRegistries()">Search</button>
-    </div>
-
-<div id="search-results"></div>
-  
-    <div class="registry-buttons">
-          <a class="registry-button" href="N1C_projects.html">N1C Projects</a>
-          <a class="registry-button" href="Marketed_drugs.html">Marketed Genetic Therapies</a>
-    </div>
-
-      <div style="margin-top: 30px;">
+    <div style="margin-top: 30px;">
         <a href="info.html" class="submit-button">Info</a>
-      </div>
     </div>
 
     <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="scroll-top">↑ Top</button>
