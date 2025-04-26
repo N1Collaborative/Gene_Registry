@@ -167,14 +167,17 @@
       display: none;             /* Remove arrow in WebKit browsers */
     }
 
+    /* Highlight the LETTER (summary) on hover */
     details summary:hover {
-      background-color: #fde4e2; /* Light red background on hover */
-      color: #b9312c; /* Slightly darker red on hover */
+      background-color: #fde4e2; /* Light red background */
+      color: #b9312c; /* Darker red */
+      cursor: pointer; /* Still show hand for the letter */
     }
 
-    /* Make all table rows clickable and highlight on hover */
-    details tr {
-      transition: background-color 0.2s;
+    /* For the entries (rows) - NO pointer */
+    details table tr:hover {
+      background-color: #f0f0f0; /* Soft grey */
+      cursor: default; /* Normal arrow, not pointer */
     }
 
     details tr:hover {
