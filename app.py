@@ -3,9 +3,9 @@ import pandas as pd
 
 app = Flask(__name__)
 
-# Load specific sheets
-n1c_projects = excel_file.parse('N1C_projects')
-marketed_drugs = excel_file.parse('marketed_drugs')
+# Load each Excel file separately
+n1c_projects = pd.read_excel('N1C_projects.xlsx')  # <-- Your first file
+marketed_drugs = pd.read_excel('Marketed_drugs.xlsx')  # <-- Your second file
 
 @app.route('/api/N1C_projects')
 def get_n1c_projects():
