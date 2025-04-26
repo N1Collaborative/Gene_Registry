@@ -377,6 +377,10 @@ function displayTable(data, expandAll = false) {
         return;
     }
 
+    // 🔥 NEW: Filter unwanted statuses
+    const excludedStatuses = ["Currently Not Pursued for Development", "In Consideration for Development"]; // Add any more statuses you want to exclude
+    data = data.filter(item => !excludedStatuses.includes(item["Status"]));
+    
     // 🔍 Debug the data
     console.log("First row keys:", Object.keys(data[0]));
 
