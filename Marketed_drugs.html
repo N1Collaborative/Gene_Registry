@@ -376,7 +376,7 @@ function displayTable(data, expandAll = false) {
     console.log("First row keys:", Object.keys(data[0]));
 
     // Define which columns to show in the overview table
-    let headers = ["Gene", "Condition/indication", "Marketed drug", "Modality", "Mechanism", "Company"];
+    let headers = ["Marketed drug", "Condition/indication", "Gene", "Modality", "Mechanism", "Company"];
 
     // 🔍 Debug the headers you're trying to use
     console.log("Headers being used:", headers);
@@ -384,10 +384,10 @@ function displayTable(data, expandAll = false) {
    // ✅ Step 1: Group data by first letter of Gene
     const grouped = {};
     data.forEach((item) => {
-        const gene = item["Gene"] || "";
-        const letter = gene.charAt(0).toUpperCase();
+        const drugName = item["Marketed drug"] || "";
+        const letter = drugName.charAt(0).toUpperCase();
         if (!grouped[letter]) {
-            grouped[letter] = [];
+        grouped[letter] = [];
         }
         grouped[letter].push(item);
     });
