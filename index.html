@@ -442,31 +442,50 @@ function displayTable(data, expandAll = false) {
     }
 
 
-        // Search across both registries
-  	function searchBothRegistries() {
-      let query = document.getElementById('search').value.toLowerCase();
-      const resultsDiv = document.getElementById('search-results');
-      resultsDiv.innerHTML = "";
+    async function searchBothRegistries() {
+  const query = document.getElementById("search").value.toLowerCase();
+  const resultsDiv = document.getElementById("search-results");
+  resultsDiv.innerHTML = "";
 
-      if (!query) {
-      resultsDiv.innerHTML = "<p style='color: white;'>Please enter a search term.</p>";
-      return;
-    }
-
-      const allData = [...n1cProjectsData, ...marketedDrugsData];
-      const matches = allData.filter(row =>
-      Object.values(row).some(value =>
-        String(value).toLowerCase().includes(query)
-      )
-    );
-
-      if (matches.length === 0) {
-      resultsDiv.innerHTML = "<p style='color: white;'>No results found.</p>";
-      return;
-    }
-
-    displayTable(matches, true);
+  if (!query) {
+    resultsDiv.innerHTML = "<p style='color: white;'>Please enter a search term.</p>";
+    return;
   }
+
+  try {
+    const [n1cRes, drugRes] = await Promise.all([
+      fetch("https://gene-registry.onrender.com/api/search?table=N1C_projects&q=" + query),
+      fetch("https://gene-registry.onrender.com/api/search?table=marketed_drugs&q=" + query)
+    ]);
+
+    const n1cData = await n1cRes.json();
+    const drugData = await drugRes.json();
+
+    let html = "";
+
+    if (n1cData.length > 0) {
+      html += "<h3 style='color: #D8443D;'>N1C Projects</h3><ul>";
+      n1cData.forEach(item => {
+        html += `<li><a href="entry.html?id=${item.ID}" style="color:#D8443D;">${item.Gene || "Unnamed Entry"}</a></li>`;
+      });
+      html += "</ul>";
+    }
+
+    if (drugData.length > 0) {
+      html += "<h3 style='color: #D8443D;'>Marketed Drugs</h3><ul>";
+      drugData.forEach(item => {
+        html += `<li>${item["Marketed drug"] || "Unnamed Drug"} (${item.Gene || "Unknown Gene"})</li>`;
+      });
+      html += "</ul>";
+    }
+
+    resultsDiv.innerHTML = html || "<p style='color: white;'>No results found.</p>";
+
+  } catch (error) {
+    console.error("Search failed:", error);
+    resultsDiv.innerHTML = "<p style='color: white;'>Error loading results.</p>";
+  }
+}
 
     // Load both registries automatically
     window.onload = loadRegistries;
