@@ -52,71 +52,75 @@
       text-decoration: underline;
     }
 
-.floating-main-button {
-  position: fixed;
-  top: 20px;
-  right: 10px;
-  background-color: #de3b38;
-  color: white;
-  padding: 6px 8px;
-  border-radius: 6px;
-  font-weight: bold;
-  text-decoration: none;
-  font-size: 12px;
-  width: 60px;
-  text-align: center;
-  line-height: 1.2;
-  z-index: 1000;
-  box-shadow: 1px 1px 5px rgba(0,0,0,0.2); /* optional: subtle shadow */
-}
+    .floating-main-button {
+      position: fixed;
+      top: 20px;
+      right: 10px;
+      background-color: #de3b38;
+      color: white;
+      padding: 6px 8px;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 12px;
+      width: 60px;
+      text-align: center;
+      line-height: 1.2;
+      z-index: 1000;
+      box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+    }
 
-
-.floating-main-button:hover {
-  background-color: #b9312c;
-}
-
-    
+    .floating-main-button:hover {
+      background-color: #b9312c;
+    }
   </style>
 </head>
 
-  <body>
-  <div class="container">
-   
-    <a href="https://generegistry.n1collaborative.org/" class="floating-main-button">
-      Main<br>Registry
-    </a>
+<body>
+  <a href="https://generegistry.n1collaborative.org/" class="floating-main-button">Main<br>Registry</a>
 
+  <div class="container">
     <h1>N1C Gene Registry API</h1>
 
-    <p>This API provides programmatic access to the N1C Gene Registry. All data is freely accessible for non-commercial and academic use.</p>
+    <p>This API provides programmatic access to both N1C registries. Data is freely available for non-commercial and academic use.</p>
 
-    <h2>Endpoints</h2>
+    <h2>Available Endpoints</h2>
+
     <ul>
       <li>
         <strong>GET</strong> <code>/api/data?table=N1C_projects</code><br />
-        Returns the full dataset of N1C-submitted projects.<br />
+        Returns all data from the <strong>N1C Projects</strong> table.<br />
         <a href="https://gene-registry.onrender.com/api/data?table=N1C_projects" target="_blank">Try it</a>
       </li>
       <li>
         <strong>GET</strong> <code>/api/data?table=marketed_drugs</code><br />
-        Returns the full dataset of marketed drugs.<br />
+        Returns all data from the <strong>Marketed Drugs</strong> table.<br />
         <a href="https://gene-registry.onrender.com/api/data?table=marketed_drugs" target="_blank">Try it</a>
       </li>
-  </ul>
+      <li>
+        <strong>GET</strong> <code>/api/search?q=ATM</code><br />
+        Searches both registries for entries that match <code>ATM</code>.<br />
+        <a href="https://gene-registry.onrender.com/api/search?q=ATM" target="_blank">Try it</a>
+      </li>
+    </ul>
 
     <h2>Example Usage (JavaScript)</h2>
     <pre>
+fetch("https://gene-registry.onrender.com/api/data?table=N1C_projects")
+  .then(res => res.json())
+  .then(data => console.log(data));
+
 fetch("https://gene-registry.onrender.com/api/search?q=ATM")
   .then(res => res.json())
   .then(data => console.log(data));
     </pre>
 
     <h2>Linking to Entries</h2>
-    <p>Each entry has an <code>ID</code>. You can link directly to an entry like this:</p>
-    <pre>https://n1collaborative.github.io/Gene_Registry/entry.html?id=123</pre>
+    <p>To link to a specific entry from the N1C Projects registry (only this table has individual entry pages):</p>
+    <pre>https://generegistry.n1collaborative.org/entry.html?id=123</pre>
 
     <h2>Terms of Use</h2>
-    <p>This API is available for research and nonprofit purposes. Please cite the N1C Gene Registry if using this data in a publication or project.</p>
+    <p>This API is free for nonprofit, academic, and research purposes. Please cite the N1C Gene Registry if using the data.</p>
   </div>
 </body>
 </html>
