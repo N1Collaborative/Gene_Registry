@@ -51,10 +51,41 @@
       color: #D8443D;
       text-decoration: underline;
     }
+
+.floating-main-button {
+  position: fixed;
+  top: 20px;
+  right: 10px;
+  background-color: #de3b38;
+  color: white;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 12px;
+  width: 60px;
+  text-align: center;
+  line-height: 1.2;
+  z-index: 1000;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.2); /* optional: subtle shadow */
+}
+
+
+.floating-main-button:hover {
+  background-color: #b9312c;
+}
+
+    
   </style>
 </head>
-<body>
+
+  <body>
   <div class="container">
+   
+    <a href="https://generegistry.n1collaborative.org/" class="floating-main-button">
+      Main<br>Registry
+    </a>
+
     <h1>N1C Gene Registry API</h1>
 
     <p>This API provides programmatic access to the N1C Gene Registry. All data is freely accessible for non-commercial and academic use.</p>
