@@ -68,6 +68,32 @@
     a:hover {
         background: #b9312c;
     }
+
+.floating-main-button {
+  position: fixed;
+  top: 20px;
+  right: 10px;
+  background-color: #de3b38;
+  color: white;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 12px;
+  width: 60px;
+  text-align: center;
+  line-height: 1.2;
+  z-index: 1000;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.2); /* optional: subtle shadow */
+}
+
+
+.floating-main-button:hover {
+  background-color: #b9312c;
+}
+
+
+        
 </style>
 
     
@@ -145,6 +171,10 @@
       <img src="N1C_logo.jpg" alt="N1C Logo" style="height: 50px; border-radius: 50%;" />
     </header>
     <h1>Entry Details</h1>
+
+    <a href="https://generegistry.n1collaborative.org/" class="floating-main-button">
+      Main<br>Registry
+    </a>
 
     <div class="entry-box">
       <h2>Variant Information</h2>
