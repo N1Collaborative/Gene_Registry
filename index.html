@@ -349,7 +349,7 @@
     
 </head>
     
-<body onload="loadTable()">
+<body>
     <a href="https://www.n1collaborative.org/" target="_blank" class="floating-logo">
       <img src="N1C_logo.jpg" alt="N1C Logo" style="height: 50px; border-radius: 50%;">
     </a>
@@ -596,7 +596,10 @@ async function searchBothRegistries() {
   }
 }
     // Load both registries automatically
-    window.onload = loadRegistries;
+    window.onload = function () {
+      loadTable();
+      loadRegistries();
+    };
 
     function viewEntry(id) {
           window.location.href = `entry.html?id=${id}`;
