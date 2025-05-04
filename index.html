@@ -566,10 +566,6 @@ async function searchBothRegistries() {
     const n1cData = await n1cRes.json();
     const drugData = await drugRes.json();
 
-    // Clear previous results
-    const table = document.getElementById("data-table");
-    table.innerHTML = "";
-
     if (n1cData.length === 0 && drugData.length === 0) {
       resultsDiv.innerHTML = "<p style='color: white;'>No results found.</p>";
       return;
