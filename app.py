@@ -31,17 +31,23 @@ def get_data():
 
 @app.route('/api/search')
 def search_data():
+    query = request.args.get('q', '').strip()
     table = request.args.get('table')
-    query = request.args.get('q', '').lower()
 
     if not table or table not in TABLE_FILES:
         return jsonify({"error": "Invalid or missing table name."}), 400
 
     try:
-        df = pd.read_excel(TABLE_FILES[table])
-        df = df.fillna("")
-        filtered = df[df.apply(lambda row: row.astype(str).str.lower().str.contains(query).any(), axis=1)]
+        df = pd.read_excel(TABLE_FILES[table]).fillna("")
+        # Create regex with word boundaries, ignore case
+        regex = re.compile(rf'\b{re.escape(query)}\b', re.IGNORECASE)
+
+        def match_row(row):
+            return any(regex.search(str(value)) for value in row)
+
+        filtered = df[df.apply(match_row, axis=1)]
         return jsonify(filtered.to_dict(orient='records'))
+
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
