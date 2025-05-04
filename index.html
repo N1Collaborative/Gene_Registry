@@ -345,7 +345,67 @@
 
 
     
-<script>
+
+    
+</head>
+    
+<body onload="loadTable()">
+    <a href="https://www.n1collaborative.org/" target="_blank" class="floating-logo">
+      <img src="N1C_logo.jpg" alt="N1C Logo" style="height: 50px; border-radius: 50%;">
+    </a>
+    
+    <a href="https://generegistry.n1collaborative.org/" class="floating-main-button">
+      Main<br>Registry
+    </a>
+    
+    <h1>N1C Gene Registry</h1>
+
+    
+    <div class="registry-buttons">
+          <a class="registry-button" href="N1C_projects.html">N1C Projects</a>
+          <a class="registry-button" href="Marketed_drugs.html">Marketed Genetic Therapies</a>
+    </div>
+
+     <div class="search-wrapper">
+      <input type="text" id="search" placeholder="Search both registries..." />
+      <button class="search-button" onclick="searchBothRegistries()">Search</button>
+    </div>
+
+    <div id="search-results"></div>
+  
+    
+    <div style="max-width: 800px; margin: 40px auto 20px; padding: 20px; background-color: white; border-radius: 8px; text-align: center;">
+      <h2 style="color: #D8443D;">Submit Your Project</h2>
+      <p style="font-size: 16px; color: #333;">
+        Are you developing a therapeutic approach for a specific genetic variant?
+        Share your work with the N1C Gene Registry to increase visibility and collaboration.
+        Submit your project below or follow this <a href="Submission_Template.xlsx" download style="color: #D8443D; font-weight: bold; text-decoration: underline;">LINK</a> for bulk entry. Please reach out to generegistry@n1collaborative.org for any questions related to the Gene Registry.  
+      </p>
+      <a class="submit-button" href="https://forms.gle/9UBkdLkdGDEeC5cn7" target="_blank">Submit Your Project</a>
+    </div>
+
+    <div style="margin-top: 30px;">
+        <a href="info.html" class="submit-button">Info</a>
+    </div>
+
+    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="scroll-top">↑ Top</button>
+
+    <p style="color: white; font-size: 16px;">
+      Looking to integrate or access our data? Visit the 
+      <a href="api.html" style="color: #D8443D; font-weight: bold;">N1C API documentation</a>.
+    </p>
+
+    <footer style="text-align: center; margin-top: 40px; font-size: 0.9em; color: #777;">
+      <p>© N=1 Collaborative</p>
+      <p id="last-updated">Last updated: ...</p>
+    </footer>
+
+    <script>
+        const now = new Date();
+        document.getElementById("last-updated").textContent = "Last updated: " + now.toLocaleString();
+    </script>
+
+    <script>
         let n1cProjectsData = [];
         let marketedDrugsData = [];
 
@@ -549,64 +609,6 @@ async function searchBothRegistries() {
       });
     }
         
-    </script>
-    
-</head>
-    
-<body onload="loadTable()">
-    <a href="https://www.n1collaborative.org/" target="_blank" class="floating-logo">
-      <img src="N1C_logo.jpg" alt="N1C Logo" style="height: 50px; border-radius: 50%;">
-    </a>
-    
-    <a href="https://generegistry.n1collaborative.org/" class="floating-main-button">
-      Main<br>Registry
-    </a>
-    
-    <h1>N1C Gene Registry</h1>
-
-    
-    <div class="registry-buttons">
-          <a class="registry-button" href="N1C_projects.html">N1C Projects</a>
-          <a class="registry-button" href="Marketed_drugs.html">Marketed Genetic Therapies</a>
-    </div>
-
-     <div class="search-wrapper">
-      <input type="text" id="search" placeholder="Search both registries..." />
-      <button class="search-button" onclick="searchBothRegistries()">Search</button>
-    </div>
-
-    <div id="search-results"></div>
-  
-    
-    <div style="max-width: 800px; margin: 40px auto 20px; padding: 20px; background-color: white; border-radius: 8px; text-align: center;">
-      <h2 style="color: #D8443D;">Submit Your Project</h2>
-      <p style="font-size: 16px; color: #333;">
-        Are you developing a therapeutic approach for a specific genetic variant?
-        Share your work with the N1C Gene Registry to increase visibility and collaboration.
-        Submit your project below or follow this <a href="Submission_Template.xlsx" download style="color: #D8443D; font-weight: bold; text-decoration: underline;">LINK</a> for bulk entry. Please reach out to generegistry@n1collaborative.org for any questions related to the Gene Registry.  
-      </p>
-      <a class="submit-button" href="https://forms.gle/9UBkdLkdGDEeC5cn7" target="_blank">Submit Your Project</a>
-    </div>
-
-    <div style="margin-top: 30px;">
-        <a href="info.html" class="submit-button">Info</a>
-    </div>
-
-    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="scroll-top">↑ Top</button>
-
-    <p style="color: white; font-size: 16px;">
-      Looking to integrate or access our data? Visit the 
-      <a href="api.html" style="color: #D8443D; font-weight: bold;">N1C API documentation</a>.
-    </p>
-
-    <footer style="text-align: center; margin-top: 40px; font-size: 0.9em; color: #777;">
-      <p>© N=1 Collaborative</p>
-      <p id="last-updated">Last updated: ...</p>
-    </footer>
-
-    <script>
-        const now = new Date();
-        document.getElementById("last-updated").textContent = "Last updated: " + now.toLocaleString();
     </script>
     
 </body>
