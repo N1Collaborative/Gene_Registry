@@ -6,7 +6,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-# Mapping table names to file paths
+# Mapping table names to file pathsign
 TABLE_FILES = {
     "N1C_projects": "N1C_projects.xlsx",
     "marketed_drugs": "Marketed_drugs.xlsx"
@@ -41,7 +41,7 @@ def search_data():
     try:
         df = pd.read_excel(TABLE_FILES[table]).fillna("")
         # Create regex with word boundaries, ignore case
-        regex = re.compile(rf'\b{re.escape(query)}\b', re.IGNORECASE)
+        regex = re.compile(re.escape(query), re.IGNORECASE)
 
         def match_row(row):
             return any(regex.search(str(value)) for value in row)
