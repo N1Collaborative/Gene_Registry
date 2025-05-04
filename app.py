@@ -40,11 +40,12 @@ def search_data():
 
     try:
         df = pd.read_excel(TABLE_FILES[table]).fillna("")
-        # Create regex with word boundaries, ignore case
-        regex = re.compile(re.escape(query), re.IGNORECASE)
+
+        # ✅ Use regex with word boundaries and case-insensitive matching
+        pattern = re.compile(rf'\b{re.escape(query)}\b', re.IGNORECASE)
 
         def match_row(row):
-            return any(regex.search(str(value)) for value in row)
+            return any(pattern.search(str(value)) for value in row)
 
         filtered = df[df.apply(match_row, axis=1)]
         return jsonify(filtered.to_dict(orient='records'))
