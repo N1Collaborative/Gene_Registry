@@ -364,6 +364,48 @@
       }
     }
 
+function displayGroupedTable(data, source) {
+  const container = document.createElement("div");
+
+  // Group by first letter of the sorting column
+  const grouped = {};
+  const sortKey = source === "N1C_projects" ? "Gene" : "Marketed drug";
+
+  data.forEach(item => {
+    const letter = (item[sortKey] || "").charAt(0).toUpperCase();
+    if (!grouped[letter]) grouped[letter] = [];
+    grouped[letter].push(item);
+  });
+
+  const headers = source === "N1C_projects"
+    ? ["Gene", "Transcript", "Coding change (c.)", "Protein or RNA change (p. or r.)", "Therapeutic Modality", "Status"]
+    : ["Gene", "Condition/indication", "Marketed drug", "Modality", "Mechanism", "Company"];
+
+  Object.keys(grouped).sort().forEach(letter => {
+    const details = document.createElement("details");
+    details.open = true;
+    const summary = document.createElement("summary");
+    summary.textContent = letter;
+    details.appendChild(summary);
+
+    const table = document.createElement("table");
+    let headerHTML = "<tr>" + headers.map(h => `<th>${h}</th>`).join("") + "</tr>";
+    let rowsHTML = grouped[letter].map(item => {
+      const row = headers.map(h => `<td>${item[h] || "N/A"}</td>`).join("");
+      if (source === "N1C_projects") {
+        return `<tr onclick="viewEntry('${item.ID}')" style="cursor: pointer;">${row}</tr>`;
+      } else {
+        return `<tr>${row}</tr>`;
+      }
+    }).join("");
+
+    table.innerHTML = headerHTML + rowsHTML;
+    details.appendChild(table);
+    container.appendChild(details);
+  });
+
+  document.getElementById("search-results").appendChild(container);
+}
        
 function displayTable(data, expandAll = false) {
     let table = document.getElementById("data-table");
@@ -443,7 +485,7 @@ function displayTable(data, expandAll = false) {
 
 
 async function searchBothRegistries() {
-  const query = document.getElementById("search").value.toLowerCase();
+  const query = document.getElementById("search").value.trim().toLowerCase();
   const resultsDiv = document.getElementById("search-results");
   resultsDiv.innerHTML = "";
 
@@ -454,39 +496,44 @@ async function searchBothRegistries() {
 
   try {
     const [n1cRes, drugRes] = await Promise.all([
-      fetch("https://gene-registry.onrender.com/api/search?table=N1C_projects&q=" + query),
-      fetch("https://gene-registry.onrender.com/api/search?table=marketed_drugs&q=" + query)
+      fetch("https://gene-registry.onrender.com/api/search?table=N1C_projects&q=" + encodeURIComponent(query)),
+      fetch("https://gene-registry.onrender.com/api/search?table=marketed_drugs&q=" + encodeURIComponent(query))
     ]);
 
     const n1cData = await n1cRes.json();
     const drugData = await drugRes.json();
 
-    let html = "";
+    // Clear previous results
+    const table = document.getElementById("data-table");
+    table.innerHTML = "";
 
+    if (n1cData.length === 0 && drugData.length === 0) {
+      resultsDiv.innerHTML = "<p style='color: white;'>No results found.</p>";
+      return;
+    }
+
+    // If you already have a displayTable function for each, reuse it
     if (n1cData.length > 0) {
-      html += "<h3 style='color: #D8443D;'>N1C Projects</h3><ul>";
-      n1cData.forEach(item => {
-        html += `<li><a href="entry.html?id=${item.ID}" style="color:#D8443D;">${item.Gene || "Unnamed Entry"}</a></li>`;
-      });
-      html += "</ul>";
+      const n1cHeader = document.createElement("h2");
+      n1cHeader.textContent = "N1C Projects";
+      n1cHeader.style.color = "#D8443D";
+      resultsDiv.appendChild(n1cHeader);
+      displayGroupedTable(n1cData, "N1C_projects");
     }
 
     if (drugData.length > 0) {
-      html += "<h3 style='color: #D8443D;'>Marketed Drugs</h3><ul>";
-      drugData.forEach(item => {
-        html += `<li>${item["Marketed drug"] || "Unnamed Drug"} (${item.Gene || "Unknown Gene"})</li>`;
-      });
-      html += "</ul>";
+      const drugHeader = document.createElement("h2");
+      drugHeader.textContent = "Marketed Drugs";
+      drugHeader.style.color = "#D8443D";
+      resultsDiv.appendChild(drugHeader);
+      displayGroupedTable(drugData, "marketed_drugs");
     }
 
-    resultsDiv.innerHTML = html || "<p style='color: white;'>No results found.</p>";
-
-  } catch (error) {
-    console.error("Search failed:", error);
+  } catch (err) {
+    console.error("Error searching:", err);
     resultsDiv.innerHTML = "<p style='color: white;'>Error loading results.</p>";
   }
 }
-
     // Load both registries automatically
     window.onload = loadRegistries;
 
