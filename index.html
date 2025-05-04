@@ -353,9 +353,10 @@
         async function loadRegistries() {
               try {
                 const [n1cResponse, marketedResponse] = await Promise.all([
-                fetch('https://gene-registry.onrender.com/api/n1c_projects'),
-                fetch('https://gene-registry.onrender.com/api/marketed_drugs')
+                  fetch('https://gene-registry.onrender.com/api/data?table=N1C_projects'),
+                  fetch('https://gene-registry.onrender.com/api/data?table=marketed_drugs')
                 ]);
+
 
         n1cProjectsData = await n1cResponse.json();
         marketedDrugsData = await marketedResponse.json();
