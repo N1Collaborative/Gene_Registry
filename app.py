@@ -4,7 +4,7 @@ import re
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 # Mapping table names to file pathsign
 TABLE_FILES = {
