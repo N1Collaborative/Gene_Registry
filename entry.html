@@ -118,16 +118,20 @@
         // Define the desired field order
         const variantFields = [
             "Gene", 
-            "Transcript", 
-            "Coding change (c.)", 
-            "Protein or RNA change (p. or r.)", 
+            "RefSeq Transcript", 
+            "Coding DNA change (c.)", 
+            "Predicted protein change (p.)",
+            "Confirmed protein or RNA change (for splicing variants)",
+            "Variant Publication",
             "Therapeutic Modality", 
             "Approach", 
             "Status", 
             "Indication",
-            "IND available?", 
-            "Publication", 
-            "Cell Line or Animal Model Availability"
+            "Therapy Publication", 
+            "IND available?",
+            "Information on IND",
+            "Cell Line or Animal Model Availability",
+            "Comment"
         ];
 
         const contactFields = [
@@ -142,16 +146,20 @@
         variantList.innerHTML = "";
         contactList.innerHTML = "";
 
-        // Render variant fields
+        // Render only non-empty variant fields
         variantFields.forEach((key) => {
-            const value = entry[key] || "N/A";
-            variantList.innerHTML += `<li><strong>${key}:</strong> ${value}</li>`;
+            const value = entry[key];
+            if (value && value.trim() !== "") {
+                variantList.innerHTML += `<li><strong>${key}:</strong> ${value}</li>`;
+            }
         });
 
-        // Render contact fields
+        // Render only non-empty contact fields
         contactFields.forEach((key) => {
-            const value = entry[key] || "N/A";
-            contactList.innerHTML += `<li><strong>${key}:</strong> ${value}</li>`;
+            const value = entry[key];
+            if (value && value.trim() !== "") {
+                contactList.innerHTML += `<li><strong>${key}:</strong> ${value}</li>`;
+                }
         });
 
     } catch (error) {
