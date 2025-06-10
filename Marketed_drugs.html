@@ -68,14 +68,13 @@
     }
 
         
-    table {
-        width: 90%;
-        margin: 20px auto;
-        border-collapse: collapse;
-        background: white;
-        color: black;
-        font-size: 14px;
-        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+   table, th, td {
+      font-size: 12px;          /* smaller font */
+      padding: 6px 8px;         /* reduced padding */
+      white-space: nowrap;      /* prevent wrapping */
+      overflow: hidden;
+      text-overflow: ellipsis;  /* add '...' to cut-off text */
+      max-width: 160px;         /* restrict width */
     }
 
 
@@ -377,7 +376,7 @@ function displayTable(data, expandAll = false) {
     console.log("First row keys:", Object.keys(data[0]));
 
     // Define which columns to show in the overview table
-    let headers = ["Marketed drug", "Marketed drug", "Condition/indication", "Gene", "Modality", "Mechanism", "Company", "DrugBank"];
+    let headers = ["Marketed drug", "Condition/indication", "Gene", "Modality", "Mechanism", "Company", "DrugBank"];
 
     // 🔍 Debug the headers you're trying to use
     console.log("Headers being used:", headers);
@@ -498,7 +497,10 @@ function displayTable(data, expandAll = false) {
     </div>
 
     <p id="loading">Loading table...</p>
-    <table border="1" id="data-table"></table>
+   
+    <div style="overflow-x: auto; max-width: 100%;">
+      <table id="data-table"></table>
+    </div>
 
     <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="scroll-top">↑ Top</button>
 
