@@ -79,7 +79,7 @@
 
 
     th, td {
-        padding: 12px;
+        padding: 6px 8px;
         border: 1px solid #ddd;
         text-align: center;
     }
@@ -330,6 +330,16 @@
 .floating-main-button:hover {
   background-color: #b9312c;
 }
+
+th:nth-child(1), td:nth-child(1) { width: 120px; }  /* Marketed drug */
+th:nth-child(2), td:nth-child(2) { width: 180px; }  /* Condition/indication */
+th:nth-child(3), td:nth-child(3) { width: 80px; }   /* Gene */
+th:nth-child(4), td:nth-child(4) { width: 100px; }  /* Modality */
+th:nth-child(5), td:nth-child(5) { width: 160px; }  /* Mechanism */
+th:nth-child(6), td:nth-child(6) { width: 120px; }  /* Company */
+th:nth-child(7), td:nth-child(7) { width: 100px; }  /* DrugBank */
+
+        
 </style>
 
 
@@ -427,7 +437,7 @@ function displayTable(data, expandAll = false) {
         grouped[letter].forEach((item) => {
             let row = `<tr>`;
             headers.forEach(header => {
-                row += `<td>${item[header] !== undefined ? item[header] : 'N/A'}</td>`;
+                row += `<td title="${item[header] || ''}">${item[header] !== undefined ? item[header] : 'N/A'}</td>`;
             });
             row += "</tr>";
             bodyRows += row;
