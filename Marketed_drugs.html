@@ -16,326 +16,288 @@
     <meta property="og:type" content="website" />
 
 
-    <style>
-         body {
-        font-family: Arial, sans-serif;
-        background-color: #042c5c;
-        color: white;
-        text-align: center;
-        margin: 0;
-        padding: 20px;
-    }
+<style>
+     
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #042c5c;
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+  }
 
-   
-    h1 {
-      text-align: center;
-      color: white;
-      font-size: 48px;
-      font-weight: bold;
-      margin: 5px 0 10px 0
-    }
-
+  h1 {
+    text-align: center;
+    color: white;
+    font-size: 48px;
+    font-weight: bold;
+    margin: 5px 0 10px 0;
+  }
 
   .search-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 20px auto;
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+  }
 
-    .search-wrapper input[type="text"] {
-      height: 42px;
-      padding: 0 12px;
-      font-size: 16px;
-      border: none;
-      border-top-left-radius: 4px;
-      border-bottom-left-radius: 4px;
-      outline: none;
-      box-sizing: border-box;
-    }
+  .search-wrapper input[type="text"] {
+    height: 42px;
+    padding: 0 12px;
+    font-size: 16px;
+    border: none;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    outline: none;
+    box-sizing: border-box;
+  }
 
-    .search-button {
-      height: 42px;
-      padding: 0 16px;
-      font-size: 16px;
-      background-color: #de3b38;
-      color: white;
-      border: none;
-      border-top-right-radius: 4px;
-      border-bottom-right-radius: 4px;
-      font-weight: bold;
-      box-sizing: border-box;
-    }
+  .search-button {
+    height: 42px;
+    padding: 0 16px;
+    font-size: 16px;
+    background-color: #de3b38;
+    color: white;
+    border: none;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    font-weight: bold;
+    box-sizing: border-box;
+  }
 
-        
   table, th, td {
-      font-size: 12px;
-      border: 1px solid #ddd;
-      text-align: center;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      padding: 6px 8px;
-        }        
-    
+    font-size: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 6px 8px;
+  }
 
-    th {
-        background-color: #de3b38;
-        color: white;
-        font-size: 18px;
+  table {
+    background-color: white;
+    color: black;
+    border-collapse: collapse;
+    width: 100%;
+  }
 
-        position: sticky;
-        top: 0;
-      z-index: 1;
-    }
+  th {
+    background-color: #de3b38;
+    color: white;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    font-size: 18px;
+  }
 
-    tr:nth-child(even) {
-        background: #f9f9f9;
-    }
+  td {
+    background-color: white;
+    color: black;
+  }
 
-    details table tr:hover {
-      background: inherit !important;
-      cursor: default !important;
-    }
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
 
-    button,
-    .submit-button {
-      background-color: #de3b38;  /* N1C red */
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: bold;
-      text-decoration: none;
-    }
+  tr:hover {
+    background-color: #f1f1f1;
+  }
 
-    button:hover,
-    .submit-button:hover {
-      background-color: #b9312c;
-    }
+  details table tr:hover {
+    background: inherit !important;
+    cursor: default !important;
+  }
 
+  button,
+  .submit-button {
+    background-color: #de3b38;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+  }
 
-    .scroll-top {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #de3b38;
-      color: white;
-      border: none;
-      padding: 10px 14px;
-      border-radius: 50%;
-      font-size: 18px;
-      cursor: pointer;
-      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-      z-index: 999;
-    }
+  button:hover,
+  .submit-button:hover {
+    background-color: #b9312c;
+  }
 
-    .scroll-top:hover {
-      background-color: #b9312c;
-    }
-        
-     footer {
-        margin-top: 40px;
-        text-align: center;
-        color: white;
-        font-size: 0.9em;
-      }        
+  .scroll-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #de3b38;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+  }
 
-    details summary {
-      font-size: 28px;           /* Bigger font size */
-      font-weight: bold;
-      color: #de3b38;
-      background-color: white;
-      padding: 10px 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      list-style: none;          /* Remove default bullet/arrow */
-    }
+  .scroll-top:hover {
+    background-color: #b9312c;
+  }
 
-    details summary::-webkit-details-marker {
-      display: none;             /* Remove arrow in WebKit browsers */
-    }
+  footer {
+    margin-top: 40px;
+    text-align: center;
+    color: white;
+    font-size: 0.9em;
+  }
 
-    /* Highlight the LETTER (summary) on hover */
-    details summary:hover {
-      background-color: #fde4e2; /* Light red background */
-      color: #b9312c; /* Darker red */
-      cursor: pointer; /* Still show hand for the letter */
-    }
+  details summary {
+    font-size: 28px;
+    font-weight: bold;
+    color: #de3b38;
+    background-color: white;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 10px auto;
+    border: 1px solid #ccc;
+    list-style: none;
+    text-align: center; /* ✅ Center the letter */
+  }
 
+  details summary::-webkit-details-marker {
+    display: none;
+  }
 
-    
+  details summary:hover {
+    background-color: #fde4e2;
+    color: #b9312c;
+    cursor: pointer;
+  }
 
-    details table {
-      table-layout: fixed;      /* Force consistent column width */
-      width: 100%;
-      border-collapse: collapse;
-    }
+  details table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+  }
 
-    details th,
-    details td {
-      padding: 10px;
-      border: 1px solid #ddd;
-      text-align: center;
-      word-wrap: break-word;    /* Allows long text to wrap */
-    }
+  details th, details td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+    word-wrap: break-word;
+  }
 
-    /* Optional: Set exact column widths */
-    details th:nth-child(1),
-    details td:nth-child(1) {
-      width: 15%;  /* Gene */
-    }
+  /* Column widths for marketed drug table */
+  th:nth-child(1), td:nth-child(1) { width: 120px; }
+  th:nth-child(2), td:nth-child(2) { width: 180px; }
+  th:nth-child(3), td:nth-child(3) { width: 80px; }
+  th:nth-child(4), td:nth-child(4) { width: 100px; }
+  th:nth-child(5), td:nth-child(5) { width: 160px; }
+  th:nth-child(6), td:nth-child(6) { width: 120px; }
+  th:nth-child(7), td:nth-child(7) { width: 100px; }
 
-    details th:nth-child(2),
-    details td:nth-child(2) {
-      width: 15%;  /* Transcript */
-    }
+  .registry-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 30px auto;
+    flex-wrap: wrap;
+  }
 
-    details th:nth-child(3),
-    details td:nth-child(3) {
-      width: 20%;  /* Coding change */
-    }
+  .registry-button {
+    background-color: #de3b38;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 16px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    width: 280px;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.2s;
+  }
 
-    details th:nth-child(4),
-    details td:nth-child(4) {
-      width: 20%;  /* Protein/RNA change */
-    }
+  .registry-button:hover {
+    background-color: #b9312c;
+    transform: scale(1.05);
+  }
 
-    details th:nth-child(5),
-    details td:nth-child(5) {
-      width: 20%;  /* Therapeutic Modality */
-    }
+  .top-right-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
 
-    details th:nth-child(6),
-    details td:nth-child(6) {
-      width: 10%;  /* Status */
-    }
+  .back-to-main {
+    background-color: #de3b38;
+    color: white;
+    font-weight: bold;
+    padding: 10px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
 
-        .registry-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin: 30px auto;
-  flex-wrap: wrap;
-}
+  .back-to-main:hover {
+    background-color: #b9312c;
+  }
 
-.registry-button {
-  background-color: #de3b38;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  padding: 16px 32px;
-  border-radius: 8px;
-  text-decoration: none;
-  width: 280px;
-  text-align: center;
-  transition: background-color 0.3s, transform 0.2s;
-}
+  .main-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(4, 44, 92, 0.8);
+    padding: 8px 16px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid #ccc;
+  }
 
-.registry-button:hover {
-  background-color: #b9312c;
-  transform: scale(1.05);
-}
+  .logo {
+    height: 50px;
+    border-radius: 50%;
+  }
 
-.top-right-button {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
+  .floating-logo {
+    position: fixed;
+    top: 10px;
+    left: 20px;
+    z-index: 1000;
+  }
 
-.back-to-main {
-  background-color: #de3b38;
-  color: white;
-  font-weight: bold;
-  padding: 10px 18px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-size: 16px;
-  transition: background-color 0.3s;
-}
+  .floating-main-button {
+    position: fixed;
+    top: 20px;
+    right: 10px;
+    background-color: #de3b38;
+    color: white;
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 12px;
+    width: 60px;
+    text-align: center;
+    line-height: 1.2;
+    z-index: 1000;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+  }
 
-.back-to-main:hover {
-  background-color: #b9312c;
-}
-
-.main-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: rgba(4, 44, 92, 0.8); /* Slightly transparent dark blue */
-  padding: 8px 16px;
-  backdrop-filter: blur(6px); /* Optional: adds nice blurry glass effect */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  border-bottom: 1px solid #ccc; /* Very subtle separation */
-}
-
-.logo {
-  height: 50px;
-  border-radius: 50%;
-}
-
-.back-to-main {
-  background-color: #de3b38;
-  color: white;
-  font-weight: bold;
-  padding: 10px 18px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-size: 16px;
-  transition: background-color 0.3s;
-}
-
-.back-to-main:hover {
-  background-color: #b9312c;
-}
-
-.floating-logo {
-  position: fixed;
-  top: 10px;
-  left: 20px;
-  z-index: 1000;
-}
-
-.floating-main-button {
-  position: fixed;
-  top: 20px;
-  right: 10px;
-  background-color: #de3b38;
-  color: white;
-  padding: 6px 8px;
-  border-radius: 6px;
-  font-weight: bold;
-  text-decoration: none;
-  font-size: 12px;
-  width: 60px;
-  text-align: center;
-  line-height: 1.2;
-  z-index: 1000;
-  box-shadow: 1px 1px 5px rgba(0,0,0,0.2); /* optional: subtle shadow */
-}
-
-
-.floating-main-button:hover {
-  background-color: #b9312c;
-}
-
-th:nth-child(1), td:nth-child(1) { width: 120px; }  /* Marketed drug */
-th:nth-child(2), td:nth-child(2) { width: 180px; }  /* Condition/indication */
-th:nth-child(3), td:nth-child(3) { width: 80px; }   /* Gene */
-th:nth-child(4), td:nth-child(4) { width: 100px; }  /* Modality */
-th:nth-child(5), td:nth-child(5) { width: 160px; }  /* Mechanism */
-th:nth-child(6), td:nth-child(6) { width: 120px; }  /* Company */
-th:nth-child(7), td:nth-child(7) { width: 100px; }  /* DrugBank */
-
-        
+  .floating-main-button:hover {
+    background-color: #b9312c;
+  }
 </style>
+
+
 
 
     
@@ -381,7 +343,7 @@ function displayTable(data, expandAll = false) {
     console.log("First row keys:", Object.keys(data[0]));
 
     // Define which columns to show in the overview table
-    let headers = ["Marketed drug", "Condition/indication", "Gene", "Modality", "Mechanism", "Company", "DrugBank"];
+    let headers = ["Marketed drug", "Condition/indication", "Gene", "Modality", "Mechanism", "Company", "DrugBank ID"];
 
     // 🔍 Debug the headers you're trying to use
     console.log("Headers being used:", headers);
