@@ -10,6 +10,7 @@ CORS(app, resources={r"/api/*": {"origins": "*"}})
 TABLE_FILES = {
     "N1C_projects": "N1C_projects.xlsx",
     "marketed_drugs": "Marketed_drugs.xlsx"
+    "assessed_variants": "assessed_variants.xlsx"
 }
 
 @app.route('/api/data')
