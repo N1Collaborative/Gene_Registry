@@ -228,31 +228,34 @@
       width: 10%;  /* Status */
     }
 
-        .registry-buttons {
+ .registry-buttons {
   display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin: 30px auto;
-  flex-wrap: wrap;
+  flex-direction: column;   /* stack vertically */
+  align-items: center;      /* center horizontally */
+  gap: 25px;                /* spacing between buttons */
+  margin: 40px auto;
 }
 
 .registry-button {
   background-color: #de3b38;
   color: white;
   font-weight: bold;
-  font-size: 18px;
-  padding: 16px 32px;
-  border-radius: 8px;
+  font-size: 20px;
+  padding: 16px 0;
+  border-radius: 10px;
   text-decoration: none;
-  width: 280px;
+  width: 320px;             /* ✅ consistent width for all buttons */
   text-align: center;
-  transition: background-color 0.3s, transform 0.2s;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* subtle shadow */
 }
 
 .registry-button:hover {
   background-color: #b9312c;
-  transform: scale(1.05);
+  transform: translateY(-3px);  /* slight lift on hover */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
 }
+
 
 .top-right-button {
   position: absolute;
@@ -362,9 +365,11 @@
 
     
     <div class="registry-buttons">
-          <a class="registry-button" href="N1C_projects.html">N-of-1 Projects</a>
-          <a class="registry-button" href="Marketed_drugs.html">Marketed Genetic Therapies</a>
+      <a class="registry-button" href="N1C_projects.html">N-of-1 Projects</a>
+      <a class="registry-button" href="Marketed_drugs.html">Marketed Genetic Therapies</a>
+      <a class="registry-button" href="variants.html">Assessed Variants</a> <!-- ✅ New button -->
     </div>
+
 
     <div class="search-wrapper">
       <input type="text" id="search" placeholder="Search both registries..." />
