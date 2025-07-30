@@ -361,11 +361,20 @@ function displayTable(data, expandAll = false) {
     console.log("Grouped by gene letter:", grouped);
 
     for (const letter of Object.keys(grouped).sort()) {
+
+        // ✅ Sort within each group alphabetically by Marketed drug
+        grouped[letter].sort((a, b) => {
+            const drugA = a["Marketed drug"] || "";
+            const drugB = b["Marketed drug"] || "";
+            return drugA.localeCompare(drugB);
+        });
+
         const section = document.createElement("details");
         section.style.marginBottom = "20px";
         if (expandAll) {
-        section.open = true;
+            section.open = true;
         }
+
 
         const summary = document.createElement("summary");
         summary.textContent = letter;
@@ -463,10 +472,8 @@ function displayTable(data, expandAll = false) {
     </div>
 
     <p id="loading">Loading table...</p>
-   
-    <div style="max-height: 600px; overflow: auto; max-width: 100%;">
-      <table id="data-table"></table>
-    </div>
+
+    <table id="data-table" border="1"></table>
 
     <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="scroll-top">↑ Top</button>
 
