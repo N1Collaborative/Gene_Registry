@@ -96,28 +96,53 @@
         <strong>GET</strong> <code>/api/data?table=marketed_drugs</code><br />
         Returns all data from the <strong>Marketed Drugs</strong> table.<br />
         <a href="https://gene-registry.onrender.com/api/data?table=marketed_drugs" target="_blank">Try it</a>
-      </li>
-      <li>
-        <strong>GET</strong> <code>/api/search?q=ATM</code><br />
-        Searches both registries for entries that match <code>ATM</code>.<br />
-        <a href="https://gene-registry.onrender.com/api/search?q=ATM" target="_blank">Try it</a>
-      </li>
-    </ul>
+    </li>
+    <li>
+      <strong>GET</strong> <code>/api/data?table=assessed_variants</code><br />
+      Returns all data from the <strong>Assessed Variants</strong> table.<br />
+      <a href="https://gene-registry.onrender.com/api/data?table=assessed_variants" target="_blank">Try it</a>
+    </li>
+    <li>
+      <strong>GET</strong> <code>/api/search?q=ATM</code><br />
+      Searches all registries for entries that match <code>ATM</code>.<br />
+      <a href="https://gene-registry.onrender.com/api/search?q=ATM" target="_blank">Try it</a>
+    </li>
+</ul>
+
 
     <h2>Example Usage (JavaScript)</h2>
     <pre>
-fetch("https://gene-registry.onrender.com/api/data?table=N1C_projects")
-  .then(res => res.json())
-  .then(data => console.log(data));
+    fetch("https://gene-registry.onrender.com/api/data?table=N1C_projects")
+      .then(res => res.json())
+      .then(data => console.log("N1C Projects:", data));
 
-fetch("https://gene-registry.onrender.com/api/search?q=ATM")
-  .then(res => res.json())
-  .then(data => console.log(data));
-    </pre>
+  fetch("https://gene-registry.onrender.com/api/data?table=marketed_drugs")
+    .then(res => res.json())
+    .then(data => console.log("Marketed Drugs:", data));
+
+  fetch("https://gene-registry.onrender.com/api/data?table=assessed_variants")
+    .then(res => res.json())
+    .then(data => console.log("Assessed Variants:", data));
+
+  fetch("https://gene-registry.onrender.com/api/search?q=ATM")
+    .then(res => res.json())
+    .then(data => console.log("Search Results:", data));
+</pre>
+
 
     <h2>Linking to Entries</h2>
-    <p>To link to a specific entry from the N1C Projects registry (only this table has individual entry pages):</p>
-    <pre>https://generegistry.n1collaborative.org/entry.html?id=123</pre>
+    <p>You can link directly to specific entries in:</p>
+    <ul>
+      <li>
+      <strong>N1C Projects:</strong><br>
+      <code>https://generegistry.n1collaborative.org/entry.html?id=123</code>
+    </li>
+    <li>
+      <strong>Assessed Variants:</strong><br>
+      <code>https://generegistry.n1collaborative.org/variant_entry.html?id=123</code>
+    </li>
+  </ul>
+
 
     <h2>Terms of Use</h2>
     <p>This API is free for nonprofit, academic, and research purposes. Please cite the N1C Gene Registry if using the data.</p>
