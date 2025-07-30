@@ -220,6 +220,12 @@
     function viewEntry(id) {
       window.location.href = `variant_entry.html?id=${id}`;
     }
+
+    document.getElementById("search").addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        searchTable();
+      }
+    });
   </script>
 </head>
   
