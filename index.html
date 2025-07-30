@@ -561,7 +561,7 @@ function displayTable(data, expandAll = false) {
     console.log("First row keys:", Object.keys(data[0]));
 
     // Define which columns to show in the overview table
-    let headers = ["Gene", "Transcript", "Coding change (c.)", "Protein or RNA change (p. or r.)", "Therapeutic Modality", "Status"];
+    let headers = ["Gene", "RefSeq Transcript", "Coding DNA change (c.)", "Predicted protein change (p.)", "Therapeutic Modality", "Status"];
 
     // 🔍 Debug the headers you're trying to use
     console.log("Headers being used:", headers);
