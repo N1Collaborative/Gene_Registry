@@ -228,44 +228,48 @@
       width: 10%;  /* Status */
     }
 
- .registry-buttons {
+.registry-buttons {
   display: flex;
-  flex-direction: column;   /* stack vertically */
+  flex-direction: column;
   align-items: center;
-  gap: 30px;                /* space between each section */
+  gap: 20px;
   margin: 40px auto;
 }
 
-.registry-section {
-  text-align: center;
-  max-width: 500px;
-}
-
-.registry-desc {
-  margin-top: 8px;
-  font-size: 15px;
-  color: white;             /* ✅ white text */
+.registry-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  max-width: 800px;  /* keeps rows aligned neatly */
+  width: 100%;
 }
 
 .registry-button {
   background-color: #de3b38;
   color: white;
   font-weight: bold;
-  font-size: 20px;
-  padding: 16px 0;
-  border-radius: 10px;
+  font-size: 18px;
+  padding: 16px 32px;
+  border-radius: 8px;
   text-decoration: none;
-  width: 320px;             /* ✅ consistent width for all buttons */
+  width: 280px; /* consistent button width */
   text-align: center;
-  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* subtle shadow */
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .registry-button:hover {
   background-color: #b9312c;
-  transform: translateY(-3px);  /* slight lift on hover */
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+  transform: scale(1.05);
 }
+
+.registry-desc {
+  flex: 1;              /* take remaining space */
+  text-align: left;
+  font-size: 16px;
+  color: white;         /* ✅ white text */
+}
+
 
 
 .top-right-button {
