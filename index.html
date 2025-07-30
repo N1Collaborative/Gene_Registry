@@ -461,28 +461,35 @@
 
 function displayGroupedTable(data, source) {
   const container = document.createElement("div");
-
-  let sortKey;
-  let headers;
-
-  if (source === "N1C_projects") {
-    sortKey = "Gene";
-    headers = ["Gene", "RefSeq Transcript", "Coding DNA change (c.)", "Predicted protein change (p.)", "Therapeutic Modality", "Status"];
-  } else if (source === "marketed_drugs") {
-    sortKey = "Marketed drug";
-    headers = ["Marketed drug", "Condition/indication", "Gene", "Modality", "Mechanism", "Company", "DrugBank ID"];
-  } else if (source === "assessed_variants") {
-    sortKey = "Gene";
-    headers = ["Gene", "RefSeq Transcript", "Coding DNA change (c.)", "Predicted protein change (p.)", "Therapeutic Modality", "Approach", "Eligibility"];
-  }
-
-  // Group by first letter of sortKey
   const grouped = {};
+  const sortKey = (source === "N1C_projects" || source === "assessed_variants") ? "Gene" : "Marketed drug";
+
+  // ✅ Sort alphabetically, then by c. notation for Gene-based tables
+  data.sort((a, b) => {
+    const aKey = (a[sortKey] || "").toLowerCase();
+    const bKey = (b[sortKey] || "").toLowerCase();
+    if (aKey < bKey) return -1;
+    if (aKey > bKey) return 1;
+
+    if (source === "N1C_projects" || source === "assessed_variants") {
+      const aC = a["Coding DNA change (c.)"] || "";
+      const bC = b["Coding DNA change (c.)"] || "";
+      return aC.localeCompare(bC, undefined, { numeric: true });
+    }
+    return 0;
+  });
+
   data.forEach(item => {
     const letter = (item[sortKey] || "").charAt(0).toUpperCase();
     if (!grouped[letter]) grouped[letter] = [];
     grouped[letter].push(item);
   });
+
+  const headers = source === "N1C_projects"
+    ? ["Gene", "RefSeq Transcript", "Coding DNA change (c.)", "Predicted protein change (p.)", "Therapeutic Modality", "Status"]
+    : source === "marketed_drugs"
+    ? ["Marketed drug", "Condition/indication", "Gene", "Modality", "Mechanism", "Company", "DrugBank ID"]
+    : ["Gene", "RefSeq Transcript", "Coding DNA change (c.)", "Predicted protein change (p.)", "Therapeutic Modality", "Approach", "Eligibility"];
 
   Object.keys(grouped).sort().forEach(letter => {
     const details = document.createElement("details");
@@ -492,17 +499,47 @@ function displayGroupedTable(data, source) {
     details.appendChild(summary);
 
     const table = document.createElement("table");
+    table.style.tableLayout = "fixed";
+    table.style.width = "100%";
+
+    // set column widths
+    if (source === "N1C_projects") {
+      table.innerHTML = `
+        <colgroup>
+          <col style="width:15%"><col style="width:15%"><col style="width:20%">
+          <col style="width:20%"><col style="width:20%"><col style="width:10%">
+        </colgroup>`;
+    } else if (source === "marketed_drugs") {
+      table.innerHTML = `
+        <colgroup>
+          <col style="width:120px"><col style="width:180px"><col style="width:120px">
+          <col style="width:100px"><col style="width:160px"><col style="width:120px"><col style="width:120px">
+        </colgroup>`;
+    } else if (source === "assessed_variants") {
+      table.innerHTML = `
+        <colgroup>
+          <col style="width:15%"><col style="width:15%"><col style="width:20%">
+          <col style="width:20%"><col style="width:15%"><col style="width:10%"><col style="width:10%">
+        </colgroup>`;
+    }
+
+    // table headers
     let headerHTML = "<tr>" + headers.map(h => `<th>${h}</th>`).join("") + "</tr>";
+
+    // table rows
     let rowsHTML = grouped[letter].map(item => {
       const row = headers.map(h => `<td>${item[h] || "N/A"}</td>`).join("");
-      if (source === "N1C_projects" || source === "assessed_variants") {
-        return `<tr onclick="viewEntry('${item.ID}')" style="cursor: pointer;">${row}</tr>`;
+
+      if (source === "N1C_projects") {
+        return `<tr onclick="window.location.href='entry.html?id=${item.ID}'" style="cursor:pointer;">${row}</tr>`;
+      } else if (source === "assessed_variants") {
+        return `<tr onclick="window.location.href='variant_entry.html?id=${item.ID}'" style="cursor:pointer;">${row}</tr>`;
       } else {
         return `<tr>${row}</tr>`;
       }
     }).join("");
 
-    table.innerHTML = headerHTML + rowsHTML;
+    table.innerHTML += headerHTML + rowsHTML;
     details.appendChild(table);
     container.appendChild(details);
   });
