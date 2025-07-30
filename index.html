@@ -399,7 +399,7 @@
 
 
     <div class="search-wrapper">
-      <input type="text" id="search" placeholder="Search both registries..." />
+      <input type="text" id="search" placeholder="Search all registries..." />
       <button class="search-button" onclick="searchBothRegistries()">Search</button>
     </div>
 
@@ -462,19 +462,27 @@
 function displayGroupedTable(data, source) {
   const container = document.createElement("div");
 
-  // Group by first letter of the sorting column
-  const grouped = {};
-  const sortKey = source === "N1C_projects" ? "Gene" : "Marketed drug";
+  let sortKey;
+  let headers;
 
+  if (source === "N1C_projects") {
+    sortKey = "Gene";
+    headers = ["Gene", "RefSeq Transcript", "Coding DNA change (c.)", "Predicted protein change (p.)", "Therapeutic Modality", "Status"];
+  } else if (source === "marketed_drugs") {
+    sortKey = "Marketed drug";
+    headers = ["Marketed drug", "Condition/indication", "Gene", "Modality", "Mechanism", "Company", "DrugBank ID"];
+  } else if (source === "assessed_variants") {
+    sortKey = "Gene";
+    headers = ["Gene", "RefSeq Transcript", "Coding DNA change (c.)", "Predicted protein change (p.)", "Therapeutic Modality", "Approach", "Eligibility"];
+  }
+
+  // Group by first letter of sortKey
+  const grouped = {};
   data.forEach(item => {
     const letter = (item[sortKey] || "").charAt(0).toUpperCase();
     if (!grouped[letter]) grouped[letter] = [];
     grouped[letter].push(item);
   });
-
-  const headers = source === "N1C_projects"
-    ? ["Gene", "RefSeq Transcript", "Coding DNA change (c.)", "Predicted protein change (p.)", "Therapeutic Modality", "Status"]
-    : ["Gene", "Condition/indication", "Marketed drug", "Modality", "Mechanism", "Company"];
 
   Object.keys(grouped).sort().forEach(letter => {
     const details = document.createElement("details");
@@ -487,7 +495,7 @@ function displayGroupedTable(data, source) {
     let headerHTML = "<tr>" + headers.map(h => `<th>${h}</th>`).join("") + "</tr>";
     let rowsHTML = grouped[letter].map(item => {
       const row = headers.map(h => `<td>${item[h] || "N/A"}</td>`).join("");
-      if (source === "N1C_projects") {
+      if (source === "N1C_projects" || source === "assessed_variants") {
         return `<tr onclick="viewEntry('${item.ID}')" style="cursor: pointer;">${row}</tr>`;
       } else {
         return `<tr>${row}</tr>`;
@@ -501,6 +509,7 @@ function displayGroupedTable(data, source) {
 
   document.getElementById("search-results").appendChild(container);
 }
+
        
 function displayTable(data, expandAll = false) {
     let table = document.getElementById("data-table");
@@ -590,20 +599,21 @@ async function searchBothRegistries() {
   }
 
   try {
-    const [n1cRes, drugRes] = await Promise.all([
+    const [n1cRes, drugRes, variantRes] = await Promise.all([
       fetch("https://gene-registry.onrender.com/api/search?table=N1C_projects&q=" + encodeURIComponent(query)),
-      fetch("https://gene-registry.onrender.com/api/search?table=marketed_drugs&q=" + encodeURIComponent(query))
+      fetch("https://gene-registry.onrender.com/api/search?table=marketed_drugs&q=" + encodeURIComponent(query)),
+      fetch("https://gene-registry.onrender.com/api/search?table=assessed_variants&q=" + encodeURIComponent(query))
     ]);
 
     const n1cData = await n1cRes.json();
     const drugData = await drugRes.json();
+    const variantData = await variantRes.json();
 
-    if (n1cData.length === 0 && drugData.length === 0) {
+    if (n1cData.length === 0 && drugData.length === 0 && variantData.length === 0) {
       resultsDiv.innerHTML = "<p style='color: white;'>No results found.</p>";
       return;
     }
 
-    // If you already have a displayTable function for each, reuse it
     if (n1cData.length > 0) {
       const n1cHeader = document.createElement("h2");
       n1cHeader.textContent = "N1C Projects";
@@ -620,11 +630,20 @@ async function searchBothRegistries() {
       displayGroupedTable(drugData, "marketed_drugs");
     }
 
+    if (variantData.length > 0) {
+      const variantHeader = document.createElement("h2");
+      variantHeader.textContent = "Assessed Variants";
+      variantHeader.style.color = "#D8443D";
+      resultsDiv.appendChild(variantHeader);
+      displayGroupedTable(variantData, "assessed_variants");
+    }
+
   } catch (err) {
     console.error("Error searching:", err);
     resultsDiv.innerHTML = "<p style='color: white;'>Error loading results.</p>";
   }
 }
+
     // Load both registries automatically
     window.onload = function () {
       loadRegistries();
