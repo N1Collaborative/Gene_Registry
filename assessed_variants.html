@@ -197,12 +197,25 @@
     }
 
     function searchTable() {
-      let query = document.getElementById("search").value.toLowerCase();
-      let filteredData = tableData.filter(row =>
-        Object.values(row).some(value => String(value).toLowerCase().includes(query))
-      );
-      displayTable(filteredData);
+      let query = document.getElementById("search").value.toLowerCase().trim();
+
+      if (!query) {
+      displayTable(tableData); // show full table if search is empty
+      return;
     }
+
+    let filteredData = tableData.filter(row =>
+      Object.values(row).some(value => String(value).toLowerCase().includes(query))
+    );
+
+    if (filteredData.length === 0) {
+      document.getElementById("data-table").innerHTML = "<p>No results found.</p>";
+      return;
+    }
+
+    displayTable(filteredData);
+  }
+
 
     function viewEntry(id) {
       window.location.href = `variant_entry.html?id=${id}`;
