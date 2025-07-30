@@ -151,92 +151,77 @@
   </style>
 
   <script>
-    let tableData = [];
+  let tableData = [];
 
-    async function loadTable(retry = false) {
-      try {
-        document.getElementById("loading").style.display = "block";
-        const response = await fetch("https://gene-registry.onrender.com/api/data?table=assessed_variants");
-        if (!response.ok) throw new Error("Network response not ok");
-        tableData = await response.json();
-        displayTable(tableData);
-      } catch (error) {
-        console.error("Error loading data:", error);
-        if (!retry) setTimeout(() => loadTable(true), 3000);
-        else document.getElementById("data-table").innerHTML = "<p>Error loading data.</p>";
-      } finally {
-        document.getElementById("loading").style.display = "none";
-      }
+  async function loadTable(retry = false) {
+    try {
+      document.getElementById("loading").style.display = "block";
+      const response = await fetch("https://gene-registry.onrender.com/api/data?table=assessed_variants");
+      if (!response.ok) throw new Error("Network response not ok");
+      tableData = await response.json();
+      displayTable(tableData);
+    } catch (error) {
+      console.error("Error loading data:", error);
+      if (!retry) setTimeout(() => loadTable(true), 3000);
+      else document.getElementById("data-table").innerHTML = "<p>Error loading data.</p>";
+    } finally {
+      document.getElementById("loading").style.display = "none";
     }
+  }
 
-    function displayTable(data) {
-      let table = document.getElementById("data-table");
-      table.innerHTML = "";
-      if (data.length === 0) {
-        table.innerHTML = "<p>No data found.</p>";
-        return;
-      }
+  function displayTable(data) {
+    let table = document.getElementById("data-table");
+    table.innerHTML = "";
 
-      const headers = ["Gene", "RefSeq Transcript", "Coding DNA change (c.)", "Predicted protein change (p.)", "Therapeutic Modality", "Approach", "Eligibility"];
-
-      let headerRow = "<tr>";
-      headers.forEach(h => { headerRow += `<th>${h}</th>`; });
-      headerRow += "</tr>";
-
-      let bodyRows = "";
-      data.forEach(item => {
-        let row = `<tr onclick="viewEntry('${item["ID"]}')">`;
-        headers.forEach(h => {
-          row += `<td>${item[h] ?? "N/A"}</td>`;
-        });
-        row += "</tr>";
-        bodyRows += row;
-      });
-
-      table.innerHTML = headerRow + bodyRows;
-    }
-
-    function searchTable() {
-      let query = document.getElementById("search").value.toLowerCase().trim();
-
-      if (!query) {
-        displayTable(tableData); // show full table if search is empty
+    if (data.length === 0) {
+      table.innerHTML = "<p>No data found.</p>";
       return;
-      }
-
-      let filteredData = tableData.filter(row =>
-        Object.values(row).some(value => String(value).toLowerCase().includes(query))
-      );
-
-      if (filteredData.length === 0) {
-        document.getElementById("data-table").innerHTML = "<tr><td colspan='7'>No results found.</td></tr>";
-      return;
-      }
-
-      displayTable(filteredData);
     }
 
-    window.addEventListener("DOMContentLoaded", function() {
-      const searchInput = document.getElementById("search");
-      searchInput.addEventListener("keypress", function(event) {
-        if (event.key === "Enter") {
-          event.preventDefault(); // prevent accidental form submission
-          searchTable();
-        }  
-      });
-    });
-    
+    // ✅ Sort alphabetically by Gene, then by c. notation
+    data.sort((a, b) => {
+      const geneA = (a["Gene"] || "").toLowerCase();
+      const geneB = (b["Gene"] || "").toLowerCase();
+      if (geneA < geneB) return -1;
+      if (geneA > geneB) return 1;
 
-    function viewEntry(id) {
-      window.location.href = `variant_entry.html?id=${id}`;
-    }
-
-    document.getElementById("search").addEventListener("keypress", function(event) {
-      if (event.key === "Enter") {
-        searchTable();
-      }
+      const cA = a["Coding DNA change (c.)"] || "";
+      const cB = b["Coding DNA change (c.)"] || "";
+      return cA.localeCompare(cB, undefined, { numeric: true });
     });
-  </script>
+
+    const headers = [
+      "Gene",
+      "RefSeq Transcript",
+      "Coding DNA change (c.)",
+      "Predicted protein change (p.)",
+      "Therapeutic Modality",
+      "Approach",
+      "Eligibility"
+    ];
+
+    let headerRow = "<tr>" + headers.map(h => `<th>${h}</th>`).join("") + "</tr>";
+    let bodyRows = data.map(item => {
+      const row = headers.map(h => `<td>${item[h] ?? "N/A"}</td>`).join("");
+      return `<tr onclick="viewEntry('${item["ID"]}')" style="cursor:pointer;">${row}</tr>`;
+    }).join("");
+
+    table.innerHTML = headerRow + bodyRows;
+  }
+
+  function searchTable() {
+    let query = document.getElementById("search").value.toLowerCase();
+    let filteredData = tableData.filter(row =>
+      Object.values(row).some(value => String(value).toLowerCase().includes(query))
+    );
+    displayTable(filteredData);
+  }
+
+  function viewEntry(id) {
+    window.location.href = `variant_entry.html?id=${id}`;
+  }
+</script>
+
 </head>
   
 <body onload="loadTable()">
