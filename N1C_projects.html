@@ -394,11 +394,32 @@ function displayTable(data, expandAll = false) {
 console.log("Grouped by gene letter:", grouped);
 
     for (const letter of Object.keys(grouped).sort()) {
-        const section = document.createElement("details");
-        section.style.marginBottom = "20px";
-        if (expandAll) {
+
+    // ✅ Sort inside each group
+    grouped[letter].sort((a, b) => {
+        const geneA = a["Gene"] || "";
+        const geneB = b["Gene"] || "";
+
+        // 1. Sort alphabetically by Gene
+        const geneComparison = geneA.localeCompare(geneB);
+        if (geneComparison !== 0) return geneComparison;
+
+        // 2. If same Gene, sort by numeric value in c. classification
+        const cdnaA = a["Coding DNA change (c.)"] || "";
+        const cdnaB = b["Coding DNA change (c.)"] || "";
+
+        const numA = parseInt((cdnaA.match(/c\.(\d+)/) || [])[1] || 0);
+        const numB = parseInt((cdnaB.match(/c\.(\d+)/) || [])[1] || 0);
+
+        return numA - numB;
+    });
+
+    const section = document.createElement("details");
+    section.style.marginBottom = "20px";
+    if (expandAll) {
         section.open = true;
-        }
+    }
+
 
         const summary = document.createElement("summary");
         summary.textContent = letter;
