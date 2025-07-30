@@ -231,9 +231,20 @@
  .registry-buttons {
   display: flex;
   flex-direction: column;   /* stack vertically */
-  align-items: center;      /* center horizontally */
-  gap: 25px;                /* spacing between buttons */
+  align-items: center;
+  gap: 30px;                /* space between each section */
   margin: 40px auto;
+}
+
+.registry-section {
+  text-align: center;
+  max-width: 500px;
+}
+
+.registry-desc {
+  margin-top: 8px;
+  font-size: 15px;
+  color: white;             /* ✅ white text */
 }
 
 .registry-button {
@@ -365,10 +376,22 @@
 
     
     <div class="registry-buttons">
-      <a class="registry-button" href="N1C_projects.html">N-of-1 Projects</a>
-      <a class="registry-button" href="Marketed_drugs.html">Marketed Genetic Therapies</a>
-      <a class="registry-button" href="assessed_variants.html">Assessed Variants</a> <!-- ✅ New button -->
+          <div class="registry-section">
+            <a class="registry-button" href="N1C_projects.html">N-of-1 Projects</a>
+            <p class="registry-desc">Explore available and ongoing N=1 therapy developments.</p>
+          </div>
+
+          <div class="registry-section">
+            <a class="registry-button" href="Marketed_drugs.html">Marketed Genetic Therapies</a>
+            <p class="registry-desc">Browse currently approved and marketed genetic therapies.</p>
+          </div>
+
+          <div class="registry-section">
+            <a class="registry-button" href="assessed_variants.html">Assessed Variants</a>
+            <p class="registry-desc">View curated assessments of variants and their therapeutic eligibility.</p>
+          </div>
     </div>
+
 
 
     <div class="search-wrapper">
