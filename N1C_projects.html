@@ -381,18 +381,17 @@ function displayTable(data, expandAll = false) {
     // 🔍 Debug the headers you're trying to use
     console.log("Headers being used:", headers);
 
-   // ✅ Step 1: Group data by first letter of Gene
-    const grouped = {};
-    data.forEach((item) => {
-        const gene = item["Gene"] || "";
-        const letter = gene.charAt(0).toUpperCase();
-        if (!grouped[letter]) {
-            grouped[letter] = [];
-        }
-        grouped[letter].push(item);
-    });
+  const grouped = {};
+  data.forEach((item) => {
+    const gene = item["Gene"] || "";
+    const letter = gene.charAt(0).toUpperCase();
+    if (!grouped[letter]) {
+        grouped[letter] = [];
+    }
+    grouped[letter].push(item);
+});
 
-    console.log("Grouped by gene letter:", grouped);
+console.log("Grouped by gene letter:", grouped);
 
     for (const letter of Object.keys(grouped).sort()) {
         const section = document.createElement("details");
