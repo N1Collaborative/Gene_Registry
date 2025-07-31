@@ -328,7 +328,6 @@
       if (!response.ok) throw new Error("Network response was not ok");
 
       tableData = await response.json();
-      populateFilters(tableData); // ✅ Populate filter dropdowns
       displayTable(tableData);
     } catch (error) {
       console.error("Error loading data:", error);
