@@ -309,6 +309,20 @@
   border-radius: 4px;
 }
 
+th {
+  background-color: #de3b38;
+  color: white;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  font-size: 18px;
+  cursor: pointer; /* 👈 shows pointer on hover */
+}
+
+th.sortable:hover {
+  background-color: #b9312c; /* darker on hover */
+}
 
     
 </style>
@@ -322,27 +336,30 @@
   let tableData = []; // Store fetched data globally
 
   async function loadTable(retry = false) {
-    try {
-      document.getElementById("loading").style.display = "block";
-      const response = await fetch("https://gene-registry.onrender.com/api/data?table=marketed_drugs");
-      if (!response.ok) throw new Error("Network response was not ok");
+  try {
+    document.getElementById("loading").style.display = "block";
+    const response = await fetch("https://gene-registry.onrender.com/api/data?table=marketed_drugs");
+    if (!response.ok) throw new Error("Network response was not ok");
 
-      tableData = await response.json();
-      displayTable(tableData);
-    } catch (error) {
-      console.error("Error loading data:", error);
+    tableData = await response.json();
+    displayTable(tableData);
+    sortTable("Marketed drug"); // 👈 DEFAULT sort by Marketed drug
 
-      if (!retry) {
-        console.log("Retrying in 3 seconds...");
-        setTimeout(() => loadTable(true), 3000);
-        return;
-      }
+  } catch (error) {
+    console.error("Error loading data:", error);
 
-      document.getElementById("data-table").innerHTML = "<p>Error loading data.</p>";
-    } finally {
-      document.getElementById("loading").style.display = "none";
+    if (!retry) {
+      console.log("Retrying in 3 seconds...");
+      setTimeout(() => loadTable(true), 3000);
+      return;
     }
+
+    document.getElementById("data-table").innerHTML = "<p>Error loading data.</p>";
+  } finally {
+    document.getElementById("loading").style.display = "none";
   }
+}
+
 
 
 
@@ -373,7 +390,7 @@ function displayTable(data) {
   // Header row with clickable sorting
   let headerRow = "<tr>";
   headers.forEach(header => {
-    headerRow += `<th onclick="sortTable('${header}')">${header}</th>`;
+    headerRow += `<th class="sortable" onclick="sortTable('${header}')">${header} <span id="arrow-${header.replace(/\s/g, '')}"></span></th>`;
   });
   headerRow += "</tr>";
 
@@ -401,7 +418,13 @@ function sortTable(column) {
   });
 
   displayTable(tableData);
+
+  // Update arrow indicators
+  document.querySelectorAll("th span").forEach(span => span.textContent = "");
+  const arrow = document.getElementById("arrow-" + column.replace(/\s/g, ""));
+  if (arrow) arrow.textContent = currentSort.ascending ? "▲" : "▼";
 }
+
 
 
   function expandAll(expand) {
@@ -442,13 +465,12 @@ function sortTable(column) {
       <button class="search-button" onclick="searchTable()">Search</button>
     </div>
 
-    <div style="text-align: center; margin-bottom: 20px;">
+   <div style="text-align: center; margin-bottom: 20px;">
       <button class="submit-button" onclick="expandAll(true)">Expand All</button>
       <button class="submit-button" onclick="expandAll(false)">Collapse All</button>
-    </div>
+ </div>
 
-        
-
+    
 <p id="loading">Loading table...</p>
 
 <div>
