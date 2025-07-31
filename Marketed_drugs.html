@@ -300,8 +300,8 @@
 
 
     
-    <script>
-        <script>
+<script>
+        
   let tableData = []; // Store fetched data globally
 
   async function loadTable(retry = false) {
@@ -444,7 +444,7 @@
   }
 </script>
 
-    </script>
+  
     
 </head>
 <body onload="loadTable()">
@@ -481,22 +481,24 @@
 
         
 <div id="filters" style="margin:20px auto; display:flex; flex-wrap:wrap; gap:15px; justify-content:center;">
-  <select id="filterDrug" onchange="applyFilters()">
-    <option value="">All Drugs</option>
+  <select id="MarketeddrugFilter" onchange="applyFilters()">
+    <option value="">Marketed Drug</option>
   </select>
-  <select id="filterIndication" onchange="applyFilters()">
-    <option value="">All Indications</option>
+  <select id="ConditionindicationFilter" onchange="applyFilters()">
+    <option value="">Indication</option>
   </select>
-  <select id="filterGene" onchange="applyFilters()">
-    <option value="">All Genes</option>
+  <select id="GeneFilter" onchange="applyFilters()">
+    <option value="">Gene</option>
   </select>
-  <select id="filterModality" onchange="applyFilters()">
-    <option value="">All Modalities</option>
+  <select id="ModalityFilter" onchange="applyFilters()">
+    <option value="">Modality</option>
   </select>
-  <select id="filterCompany" onchange="applyFilters()">
-    <option value="">All Companies</option>
+  <select id="CompanyFilter" onchange="applyFilters()">
+    <option value="">Company</option>
   </select>
 </div>
+
+
 
 
 <p id="loading">Loading table...</p>
@@ -506,10 +508,6 @@
 </div>
 
 
-    
-    <p id="loading">Loading table...</p>
-
-    <table id="data-table" border="1"></table>
 
     <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="scroll-top">↑ Top</button>
 
