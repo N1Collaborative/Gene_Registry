@@ -345,44 +345,16 @@
     }
   }
 
-function populateFilters(data) {
-  fillDropdown("drugFilter", [...new Set(data.map(d => d["Marketed drug"]).filter(Boolean))].sort());
-  fillDropdown("indicationFilter", [...new Set(data.map(d => d["Condition/indication"]).filter(Boolean))].sort());
-  fillDropdown("geneFilter", [...new Set(data.map(d => d["Gene"]).filter(Boolean))].sort());
-  fillDropdown("modalityFilter", [...new Set(data.map(d => d["Modality"]).filter(Boolean))].sort());
-  fillDropdown("companyFilter", [...new Set(data.map(d => d["Company"]).filter(Boolean))].sort());
-}
-
-function fillDropdown(id, items) {
-  const dropdown = document.getElementById(id);
-  dropdown.innerHTML = '<option value="">All</option>' + items.map(i => `<option value="${i}">${i}</option>`).join('');
-}
 
 
-  // ✅ Apply filters
-  function applyFilters() {
-  let filtered = tableData;
-  const filters = {
-    "Marketed drug": document.getElementById("drugFilter").value,
-    "Condition/indication": document.getElementById("indicationFilter").value,
-    "Gene": document.getElementById("geneFilter").value,
-    "Modality": document.getElementById("modalityFilter").value,
-    "Company": document.getElementById("companyFilter").value
-  };
 
-  Object.keys(filters).forEach(key => {
-    if (filters[key]) {
-      filtered = filtered.filter(item => item[key] === filters[key]);
-    }
-  });
 
-  displayTable(filtered);
-}
 
-  // ✅ Display table, grouped alphabetically and sorted inside
-  function displayTable(data, expandAll = false) {
+  let currentSort = { column: null, ascending: true };
+
+function displayTable(data) {
   let table = document.getElementById("data-table");
-  table.innerHTML = ""; // Clear the table
+  table.innerHTML = "";
 
   if (data.length === 0) {
     table.innerHTML = "<p>No data found.</p>";
@@ -399,62 +371,37 @@ function fillDropdown(id, items) {
     "DrugBank ID"
   ];
 
-  // Group alphabetically
-  const grouped = {};
-  data.forEach((item) => {
-    const drugName = item["Marketed drug"] || "";
-    const letter = drugName.charAt(0).toUpperCase();
-    if (!grouped[letter]) grouped[letter] = [];
-    grouped[letter].push(item);
+  // Header row with clickable sorting
+  let headerRow = "<tr>";
+  headers.forEach(header => {
+    headerRow += `<th onclick="sortTable('${header}')">${header}</th>`;
+  });
+  headerRow += "</tr>";
+
+  // Body rows
+  let bodyRows = data.map(item => {
+    return `<tr>${headers.map(h => `<td>${item[h] || "N/A"}</td>`).join("")}</tr>`;
+  }).join("");
+
+  table.innerHTML = headerRow + bodyRows;
+}
+function sortTable(column) {
+  if (currentSort.column === column) {
+    currentSort.ascending = !currentSort.ascending;
+  } else {
+    currentSort.column = column;
+    currentSort.ascending = true;
+  }
+
+  tableData.sort((a, b) => {
+    const valA = (a[column] || "").toLowerCase();
+    const valB = (b[column] || "").toLowerCase();
+    if (valA < valB) return currentSort.ascending ? -1 : 1;
+    if (valA > valB) return currentSort.ascending ? 1 : -1;
+    return 0;
   });
 
-  // Render groups in alphabetical order
-  for (const letter of Object.keys(grouped).sort()) {
-    // Sort inside group alphabetically by Marketed drug
-    grouped[letter].sort((a, b) => {
-      return (a["Marketed drug"] || "").localeCompare(b["Marketed drug"] || "");
-    });
-
-    const section = document.createElement("details");
-    section.style.marginBottom = "20px";
-    if (expandAll) section.open = true;
-
-    const summary = document.createElement("summary");
-    summary.textContent = letter;
-    summary.style.fontSize = "20px";
-    summary.style.cursor = "pointer";
-    summary.style.fontWeight = "bold";
-    summary.style.color = "#D8443D";
-    section.appendChild(summary);
-
-    const tableElement = document.createElement("table");
-    tableElement.style.width = "100%";
-    tableElement.style.borderCollapse = "collapse";
-
-    // Column widths
-    tableElement.innerHTML = `
-      <colgroup>
-        <col style="width:120px"><col style="width:180px"><col style="width:120px">
-        <col style="width:100px"><col style="width:160px"><col style="width:120px"><col style="width:120px">
-      </colgroup>
-    `;
-
-    // Header row
-    let headerRow = "<tr>";
-    headers.forEach(header => {
-      headerRow += `<th>${header}</th>`;
-    });
-    headerRow += "</tr>";
-
-    // Data rows
-    let bodyRows = grouped[letter].map(item => {
-      return `<tr>${headers.map(h => `<td title="${item[h] || ''}">${item[h] || 'N/A'}</td>`).join("")}</tr>`;
-    }).join("");
-
-    tableElement.innerHTML += headerRow + bodyRows;
-    section.appendChild(tableElement);
-    table.appendChild(section);
-  }
+  displayTable(tableData);
 }
 
 
@@ -502,16 +449,6 @@ function fillDropdown(id, items) {
     </div>
 
         
-<div id="filters" style="margin:20px auto; display:flex; flex-wrap:wrap; gap:15px; justify-content:center;">
-  <select id="drugFilter" onchange="applyFilters()"><option value="">All Drugs</option></select>
-  <select id="indicationFilter" onchange="applyFilters()"><option value="">All Indications</option></select>
-  <select id="geneFilter" onchange="applyFilters()"><option value="">All Genes</option></select>
-  <select id="modalityFilter" onchange="applyFilters()"><option value="">All Modalities</option></select>
-  <select id="companyFilter" onchange="applyFilters()"><option value="">All Companies</option></select>
-</div>
-
-
-
 
 <p id="loading">Loading table...</p>
 
