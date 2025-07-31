@@ -381,70 +381,80 @@ function fillDropdown(id, items) {
 
   // ✅ Display table, grouped alphabetically and sorted inside
   function displayTable(data, expandAll = false) {
-    let table = document.getElementById("data-table");
-    table.innerHTML = ""; // Clear the table
+  let table = document.getElementById("data-table");
+  table.innerHTML = ""; // Clear the table
 
-    if (data.length === 0) {
-      table.innerHTML = "<p>No data found.</p>";
-      return;
-    }
+  if (data.length === 0) {
+    table.innerHTML = "<p>No data found.</p>";
+    return;
+  }
 
-    const headers = ["Marketed drug", "Condition/indication", "Gene", "Modality", "Mechanism", "Company", "DrugBank ID"];
+  const headers = [
+    "Marketed drug",
+    "Condition/indication",
+    "Gene",
+    "Modality",
+    "Mechanism",
+    "Company",
+    "DrugBank ID"
+  ];
 
-    // Group alphabetically
-    const grouped = {};
-    data.forEach((item) => {
-      const drugName = item["Marketed drug"] || "";
-      const letter = drugName.charAt(0).toUpperCase();
-      if (!grouped[letter]) grouped[letter] = [];
-      grouped[letter].push(item);
+  // Group alphabetically
+  const grouped = {};
+  data.forEach((item) => {
+    const drugName = item["Marketed drug"] || "";
+    const letter = drugName.charAt(0).toUpperCase();
+    if (!grouped[letter]) grouped[letter] = [];
+    grouped[letter].push(item);
+  });
+
+  // Render groups in alphabetical order
+  for (const letter of Object.keys(grouped).sort()) {
+    // Sort inside group alphabetically by Marketed drug
+    grouped[letter].sort((a, b) => {
+      return (a["Marketed drug"] || "").localeCompare(b["Marketed drug"] || "");
     });
 
-    for (const letter of Object.keys(grouped).sort()) {
-  // Sort inside each group alphabetically by Marketed drug
-  grouped[letter].sort((a, b) => {
-    return (a["Marketed drug"] || "").localeCompare(b["Marketed drug"] || "");
-  });
+    const section = document.createElement("details");
+    section.style.marginBottom = "20px";
+    if (expandAll) section.open = true;
 
-  const section = document.createElement("details");
-  section.style.marginBottom = "20px";
-  if (expandAll) section.open = true;
+    const summary = document.createElement("summary");
+    summary.textContent = letter;
+    summary.style.fontSize = "20px";
+    summary.style.cursor = "pointer";
+    summary.style.fontWeight = "bold";
+    summary.style.color = "#D8443D";
+    section.appendChild(summary);
 
-  const summary = document.createElement("summary");
-  summary.textContent = letter;
-  summary.style.fontSize = "20px";
-  summary.style.cursor = "pointer";
-  summary.style.fontWeight = "bold";
-  summary.style.color = "#D8443D";
-  section.appendChild(summary);
+    const tableElement = document.createElement("table");
+    tableElement.style.width = "100%";
+    tableElement.style.borderCollapse = "collapse";
 
-  const tableElement = document.createElement("table");
-  tableElement.style.width = "100%";
-  tableElement.style.borderCollapse = "collapse";
+    // Column widths
+    tableElement.innerHTML = `
+      <colgroup>
+        <col style="width:120px"><col style="width:180px"><col style="width:120px">
+        <col style="width:100px"><col style="width:160px"><col style="width:120px"><col style="width:120px">
+      </colgroup>
+    `;
 
-  // Column widths
-  tableElement.innerHTML = `
-    <colgroup>
-      <col style="width:120px"><col style="width:180px"><col style="width:120px">
-      <col style="width:100px"><col style="width:160px"><col style="width:120px"><col style="width:120px">
-    </colgroup>
-  `;
+    // Header row
+    let headerRow = "<tr>";
+    headers.forEach(header => {
+      headerRow += `<th>${header}</th>`;
+    });
+    headerRow += "</tr>";
 
-  // Header row
-  let headerRow = "<tr>";
-  headers.forEach(header => {
-    headerRow += `<th>${header}</th>`;
-  });
-  headerRow += "</tr>";
+    // Data rows
+    let bodyRows = grouped[letter].map(item => {
+      return `<tr>${headers.map(h => `<td title="${item[h] || ''}">${item[h] || 'N/A'}</td>`).join("")}</tr>`;
+    }).join("");
 
-  // Data rows
-  let bodyRows = grouped[letter].map(item => {
-    return `<tr>${headers.map(h => `<td title="${item[h] || ''}">${item[h] || 'N/A'}</td>`).join("")}</tr>`;
-  }).join("");
-
-  tableElement.innerHTML += headerRow + bodyRows;
-  section.appendChild(tableElement);
-  table.appendChild(section);
+    tableElement.innerHTML += headerRow + bodyRows;
+    section.appendChild(tableElement);
+    table.appendChild(section);
+  }
 }
 
 
