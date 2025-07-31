@@ -328,38 +328,39 @@
     }
   }
 
-  // ✅ Populate filter dropdowns
-  function populateFilters(data) {
-    const fields = ["Marketed drug", "Condition/indication", "Gene", "Modality", "Company"];
-    fields.forEach(field => {
-      const select = document.getElementById(field.replace(/[^a-zA-Z]/g, "") + "Filter");
-      const uniqueValues = [...new Set(data.map(item => item[field]).filter(Boolean))].sort();
-      select.innerHTML = '<option value="">All</option>' + uniqueValues.map(val => `<option value="${val}">${val}</option>`).join("");
-    });
-  }
+function populateFilters(data) {
+  fillDropdown("drugFilter", [...new Set(data.map(d => d["Marketed drug"]).filter(Boolean))].sort());
+  fillDropdown("indicationFilter", [...new Set(data.map(d => d["Condition/indication"]).filter(Boolean))].sort());
+  fillDropdown("geneFilter", [...new Set(data.map(d => d["Gene"]).filter(Boolean))].sort());
+  fillDropdown("modalityFilter", [...new Set(data.map(d => d["Modality"]).filter(Boolean))].sort());
+  fillDropdown("companyFilter", [...new Set(data.map(d => d["Company"]).filter(Boolean))].sort());
+}
+
+function fillDropdown(id, items) {
+  const dropdown = document.getElementById(id);
+  dropdown.innerHTML = '<option value="">All</option>' + items.map(i => `<option value="${i}">${i}</option>`).join('');
+}
+
 
   // ✅ Apply filters
   function applyFilters() {
-    let filteredData = tableData;
+  let filtered = tableData;
+  const filters = {
+    "Marketed drug": document.getElementById("drugFilter").value,
+    "Condition/indication": document.getElementById("indicationFilter").value,
+    "Gene": document.getElementById("geneFilter").value,
+    "Modality": document.getElementById("modalityFilter").value,
+    "Company": document.getElementById("companyFilter").value
+  };
 
-    const filters = {
-      Marketeddrug: document.getElementById("MarketeddrugFilter").value,
-      Conditionindication: document.getElementById("ConditionindicationFilter").value,
-      Gene: document.getElementById("GeneFilter").value,
-      Modality: document.getElementById("ModalityFilter").value,
-      Company: document.getElementById("CompanyFilter").value,
-    };
+  Object.keys(filters).forEach(key => {
+    if (filters[key]) {
+      filtered = filtered.filter(item => item[key] === filters[key]);
+    }
+  });
 
-    Object.keys(filters).forEach(key => {
-      if (filters[key]) {
-        const originalField = key === "Marketeddrug" ? "Marketed drug" :
-                              key === "Conditionindication" ? "Condition/indication" : key;
-        filteredData = filteredData.filter(item => item[originalField] === filters[key]);
-      }
-    });
-
-    displayTable(filteredData);
-  }
+  displayTable(filtered);
+}
 
   // ✅ Display table, grouped alphabetically and sorted inside
   function displayTable(data, expandAll = false) {
@@ -481,21 +482,11 @@
 
         
 <div id="filters" style="margin:20px auto; display:flex; flex-wrap:wrap; gap:15px; justify-content:center;">
-  <select id="MarketeddrugFilter" onchange="applyFilters()">
-    <option value="">Marketed Drug</option>
-  </select>
-  <select id="ConditionindicationFilter" onchange="applyFilters()">
-    <option value="">Indication</option>
-  </select>
-  <select id="GeneFilter" onchange="applyFilters()">
-    <option value="">Gene</option>
-  </select>
-  <select id="ModalityFilter" onchange="applyFilters()">
-    <option value="">Modality</option>
-  </select>
-  <select id="CompanyFilter" onchange="applyFilters()">
-    <option value="">Company</option>
-  </select>
+  <select id="drugFilter" onchange="applyFilters()"><option value="">All Drugs</option></select>
+  <select id="indicationFilter" onchange="applyFilters()"><option value="">All Indications</option></select>
+  <select id="geneFilter" onchange="applyFilters()"><option value="">All Genes</option></select>
+  <select id="modalityFilter" onchange="applyFilters()"><option value="">All Modalities</option></select>
+  <select id="companyFilter" onchange="applyFilters()"><option value="">All Companies</option></select>
 </div>
 
 
