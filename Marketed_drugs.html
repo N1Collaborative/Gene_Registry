@@ -294,6 +294,23 @@
   .floating-main-button:hover {
     background-color: #b9312c;
   }
+
+#filters {
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+#filters select {
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+
+    
 </style>
 
 
@@ -384,58 +401,52 @@ function fillDropdown(id, items) {
     });
 
     for (const letter of Object.keys(grouped).sort()) {
-      // Sort inside each group alphabetically by drug name
-      grouped[letter].sort((a, b) => {
-        const drugA = a["Marketed drug"] || "";
-        const drugB = b["Marketed drug"] || "";
-        return drugA.localeCompare(drugB);
-      });
+  // Sort inside each group alphabetically by Marketed drug
+  grouped[letter].sort((a, b) => {
+    return (a["Marketed drug"] || "").localeCompare(b["Marketed drug"] || "");
+  });
 
-      const section = document.createElement("details");
-      section.style.marginBottom = "20px";
-      if (expandAll) section.open = true;
+  const section = document.createElement("details");
+  section.style.marginBottom = "20px";
+  if (expandAll) section.open = true;
 
-      const summary = document.createElement("summary");
-      summary.textContent = letter;
-      summary.style.fontSize = "20px";
-      summary.style.cursor = "pointer";
-      summary.style.fontWeight = "bold";
-      summary.style.color = "#D8443D";
-      section.appendChild(summary);
+  const summary = document.createElement("summary");
+  summary.textContent = letter;
+  summary.style.fontSize = "20px";
+  summary.style.cursor = "pointer";
+  summary.style.fontWeight = "bold";
+  summary.style.color = "#D8443D";
+  section.appendChild(summary);
 
-      const tableElement = document.createElement("table");
-      tableElement.style.tableLayout = "fixed";
-      tableElement.style.width = "100%";
-      tableElement.innerHTML = `
-        <colgroup>
-          <col style="width:120px"><col style="width:180px"><col style="width:120px">
-          <col style="width:100px"><col style="width:160px"><col style="width:120px"><col style="width:120px">
-        </colgroup>
-      `;
+  const tableElement = document.createElement("table");
+  tableElement.style.width = "100%";
+  tableElement.style.borderCollapse = "collapse";
 
-      // Header row
-      let headerRow = "<tr>";
-      headers.forEach(header => {
-        headerRow += `<th>${header}</th>`;
-      });
-      headerRow += "</tr>";
+  // Column widths
+  tableElement.innerHTML = `
+    <colgroup>
+      <col style="width:120px"><col style="width:180px"><col style="width:120px">
+      <col style="width:100px"><col style="width:160px"><col style="width:120px"><col style="width:120px">
+    </colgroup>
+  `;
 
-      // Data rows
-      let bodyRows = "";
-      grouped[letter].forEach((item) => {
-        let row = "<tr>";
-        headers.forEach(header => {
-          row += `<td title="${item[header] || ''}">${item[header] || 'N/A'}</td>`;
-        });
-        row += "</tr>";
-        bodyRows += row;
-      });
+  // Header row
+  let headerRow = "<tr>";
+  headers.forEach(header => {
+    headerRow += `<th>${header}</th>`;
+  });
+  headerRow += "</tr>";
 
-      tableElement.innerHTML += headerRow + bodyRows;
-      section.appendChild(tableElement);
-      table.appendChild(section);
-    }
-  }
+  // Data rows
+  let bodyRows = grouped[letter].map(item => {
+    return `<tr>${headers.map(h => `<td title="${item[h] || ''}">${item[h] || 'N/A'}</td>`).join("")}</tr>`;
+  }).join("");
+
+  tableElement.innerHTML += headerRow + bodyRows;
+  section.appendChild(tableElement);
+  table.appendChild(section);
+}
+
 
   function expandAll(expand) {
     const sections = document.querySelectorAll("details");
@@ -494,9 +505,10 @@ function fillDropdown(id, items) {
 
 <p id="loading">Loading table...</p>
 
-<div style="max-height: 600px; overflow: auto; max-width: 100%;">
+<div>
   <table id="data-table"></table>
 </div>
+
 
 
 
