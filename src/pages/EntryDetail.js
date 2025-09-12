@@ -12,11 +12,11 @@ const EntryDetail = () => {
   const loadEntry = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await fetch(`/api/data?table=N1C_projects`);
+      const response = await fetch('/n1c-projects.json');
       if (!response.ok) throw new Error('Failed to load data');
       
       const data = await response.json();
-      const foundEntry = data.find(item => item.ID === id);
+      const foundEntry = data.find(item => item.ID === parseInt(id));
       
       if (foundEntry) {
         setEntry(foundEntry);

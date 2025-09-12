@@ -9,6 +9,8 @@ const N1CProjects = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [activeTab, setActiveTab] = useState('');
+  const [groupedData, setGroupedData] = useState({});
 
   useEffect(() => {
     loadData();
@@ -29,6 +31,29 @@ const N1CProjects = () => {
       
       setData(filtered);
       setFilteredData(filtered);
+      
+      // Group data by first letter of Gene name
+      const grouped = {};
+      filtered.forEach(item => {
+        const firstLetter = (item.Gene || '').charAt(0).toUpperCase();
+        if (!grouped[firstLetter]) {
+          grouped[firstLetter] = [];
+        }
+        grouped[firstLetter].push(item);
+      });
+      
+      // Sort groups alphabetically
+      Object.keys(grouped).forEach(letter => {
+        grouped[letter].sort((a, b) => (a.Gene || '').localeCompare(b.Gene || ''));
+      });
+      
+      setGroupedData(grouped);
+      
+      // Set first tab as active
+      const sortedLetters = Object.keys(grouped).sort();
+      if (sortedLetters.length > 0) {
+        setActiveTab(sortedLetters[0]);
+      }
     } catch (err) {
       setError(err.message);
     } finally {
@@ -49,6 +74,28 @@ const N1CProjects = () => {
       )
     );
     setFilteredData(filtered);
+    
+    // Update grouped data for search results
+    const grouped = {};
+    filtered.forEach(item => {
+      const firstLetter = (item.Gene || '').charAt(0).toUpperCase();
+      if (!grouped[firstLetter]) {
+        grouped[firstLetter] = [];
+      }
+      grouped[firstLetter].push(item);
+    });
+    
+    Object.keys(grouped).forEach(letter => {
+      grouped[letter].sort((a, b) => (a.Gene || '').localeCompare(b.Gene || ''));
+    });
+    
+    setGroupedData(grouped);
+    
+    // Set first available tab as active
+    const sortedLetters = Object.keys(grouped).sort();
+    if (sortedLetters.length > 0) {
+      setActiveTab(sortedLetters[0]);
+    }
   };
 
   const handleKeyPress = (e) => {
@@ -208,14 +255,41 @@ const N1CProjects = () => {
           </div>
         </motion.div>
 
-        {/* Data Table */}
+        {/* Alphabetical Tabs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
+          className="max-w-7xl mx-auto mb-8"
+        >
+          <div className="bg-white rounded-lg shadow-lg p-6">
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">Browse by Gene (A-Z)</h3>
+            <div className="flex flex-wrap gap-2">
+              {Object.keys(groupedData).sort().map(letter => (
+                <button
+                  key={letter}
+                  onClick={() => setActiveTab(letter)}
+                  className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 ${
+                    activeTab === letter
+                      ? 'bg-primary-500 text-white shadow-lg'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  {letter} ({groupedData[letter].length})
+                </button>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Data Table */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.0 }}
         >
           <DataTable 
-            data={filteredData} 
+            data={activeTab ? groupedData[activeTab] || [] : filteredData} 
             type="n1c" 
             headers={headers}
           />

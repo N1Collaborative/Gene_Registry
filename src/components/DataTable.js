@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const DataTable = ({ data, type, headers }) => {
   const navigate = useNavigate();
 
-  // Sort data by c. notation position
+  // Sort data alphabetically
   const sortedData = useMemo(() => {
     if (type === 'marketed') {
       // For marketed drugs, sort alphabetically
@@ -16,20 +16,11 @@ const DataTable = ({ data, type, headers }) => {
       });
     }
 
-    // For gene-based tables, sort by c. notation position
-    const extractPosition = (cNotation) => {
-      const match = cNotation.match(/c\.(\d+)/);
-      return match ? parseInt(match[1], 10) : 0;
-    };
-
+    // For gene-based tables, sort alphabetically by Gene
     return [...data].sort((a, b) => {
-      const aC = a["Coding DNA change (c.)"] || "";
-      const bC = b["Coding DNA change (c.)"] || "";
-      
-      const aPos = extractPosition(aC);
-      const bPos = extractPosition(bC);
-      
-      return aPos - bPos;
+      const aKey = (a.Gene || "").toLowerCase();
+      const bKey = (b.Gene || "").toLowerCase();
+      return aKey.localeCompare(bKey);
     });
   }, [data, type]);
 

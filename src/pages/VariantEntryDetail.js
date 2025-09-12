@@ -12,11 +12,11 @@ const VariantEntryDetail = () => {
   const loadEntry = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await fetch(`/api/data?table=assessed_variants`);
+      const response = await fetch('/assessed-variants.json');
       if (!response.ok) throw new Error('Failed to load data');
       
       const data = await response.json();
-      const foundEntry = data.find(item => item.ID === id);
+      const foundEntry = data.find(item => item.ID === parseInt(id));
       
       if (foundEntry) {
         setEntry(foundEntry);

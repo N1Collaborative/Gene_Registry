@@ -7,7 +7,7 @@
     "RefSeq Transcript": "NM_000051.4",
     "Coding DNA change (c.)": "c.7865C>T",
     "Predicted protein change (p.)": "p.Ala2622Val",
-    "Confirmed protein or RNA change (for splicing variants)": "Partial exon deletion;\n\nr.7864_7929del, p.Ala2622Lysfs*3",
+    "Confirmed protein or RNA change (for splicing variants)": "Partial exon deletion;\r\n\r\nr.7864_7929del, p.Ala2622Lysfs*3",
     "Variant published?": "Yes",
     "Contact Person": "Yu Lab",
     "Institution": "BCH",
@@ -17,14 +17,8 @@
     "Approach": "Splice correction",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "Yes",
-    "Therapy Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/37438524/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/37438524/"
-    },
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/10330348/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/10330348/"
-    },
+    "Therapy Publication": "https://pubmed.ncbi.nlm.nih.gov/37438524/",
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/10330348/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
@@ -35,7 +29,7 @@
     "RefSeq Transcript": "NM_000051.4",
     "Coding DNA change (c.)": "c.5763-1050A>G",
     "Predicted protein change (p.)": "p.?",
-    "Confirmed protein or RNA change (for splicing variants)": "Pseudoexon activation;\n\nr.5762_5763ins[137]",
+    "Confirmed protein or RNA change (for splicing variants)": "Pseudoexon activation;\r\n\r\nr.5762_5763ins[137]",
     "Variant published?": "Yes",
     "Contact Person": "Yu Lab",
     "Institution": "BCH",
@@ -45,17 +39,11 @@
     "Approach": "Splice correction",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/8755918/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/8755918/"
-    },
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/8755918/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A3+1",
-      "result": 4
-    },
+    "ID": 4,
     "Current Date": "06.02.2025",
     "Display in Registry": "Yes",
     "Gene": "USH2A",
@@ -72,17 +60,11 @@
     "Approach": "Splice correction",
     "Indication ": "Eye",
     "IND available?": "No",
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/34948090/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/34948090/"
-    },
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/34948090/",
     "Cell Line or Animal Model Availability": "No"
   },
   {
-    "ID": {
-      "formula": "A4+1",
-      "result": 5
-    },
+    "ID": 5,
     "Current Date": "06.02.2025",
     "Display in Registry": "Yes",
     "Gene": "ATP1A3",
@@ -98,24 +80,18 @@
     "Approach": "Knockdown",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/22842232/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/22842232/"
-    },
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/22842232/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A5+1",
-      "result": 6
-    },
+    "ID": 6,
     "Current Date": "06.02.2025",
     "Display in Registry": "Yes",
     "Gene": "USH2A",
     "RefSeq Transcript": "NM_206933.4",
     "Coding DNA change (c.)": "c.7595-2144A>G",
     "Predicted protein change (p.)": "p.?",
-    "Confirmed protein or RNA change (for splicing variants)": "Pseudoexon activation;\n\nr.7594_7595ins[7595-2296_7595-2143]",
+    "Confirmed protein or RNA change (for splicing variants)": "Pseudoexon activation;\r\n\r\nr.7594_7595ins[7595-2296_7595-2143]",
     "Variant published?": "Yes",
     "Contact Person": "Yu Lab",
     "Institution": "BCH",
@@ -125,17 +101,11 @@
     "Approach": "Splice correction",
     "Indication ": "Eye",
     "IND available?": "No",
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/22009552/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/22009552/"
-    },
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/22009552/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A6+1",
-      "result": 7
-    },
+    "ID": 7,
     "Current Date": "06.02.2025",
     "Display in Registry": "Yes",
     "Gene": "KCNQ2",
@@ -151,17 +121,11 @@
     "Approach": "Knockdown",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/31951342/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/31951342/"
-    },
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/31951342/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A7+1",
-      "result": 8
-    },
+    "ID": 8,
     "Current Date": "06.02.2025",
     "Display in Registry": "Yes",
     "Gene": "MFSD8",
@@ -177,17 +141,11 @@
     "Approach": "Splice correction",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/28794409/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/28794409/"
-    },
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/28794409/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A8+1",
-      "result": 9
-    },
+    "ID": 9,
     "Current Date": "06.02.2025",
     "Display in Registry": "Yes",
     "Gene": "KCNT1",
@@ -203,25 +161,19 @@
     "Approach": "Knockdown",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/23086397/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/23086397/"
-    },
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/23086397/",
     "Cell Line or Animal Model Availability": "Yes, cell line",
     "Comment": "ASO has shown adverse events in clinical application. Please reach out to the developers for more information."
   },
   {
-    "ID": {
-      "formula": "A9+1",
-      "result": 10
-    },
+    "ID": 10,
     "Current Date": "06.02.2025",
     "Display in Registry": "Yes",
     "Gene": "MECP2",
     "RefSeq Transcript": "NM_004992.4",
     "Coding DNA change (c.)": "c.378-3C>G",
     "Predicted protein change (p.)": "p.?",
-    "Confirmed protein or RNA change (for splicing variants)": "Intron 3; strengthens new acceptor site 1bp upstream of the variant; weakens canonical splice site 3bp upstream of the variant\n\nr.?",
+    "Confirmed protein or RNA change (for splicing variants)": "Intron 3; strengthens new acceptor site 1bp upstream of the variant; weakens canonical splice site 3bp upstream of the variant\r\n\r\nr.?",
     "Variant published?": "Yes",
     "Contact Person": "Yu Lab",
     "Institution": "BCH",
@@ -231,24 +183,18 @@
     "Approach": "Splice correction",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/15737703/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/15737703/"
-    },
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/15737703/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A10+1",
-      "result": 11
-    },
+    "ID": 11,
     "Current Date": "04.03.2024",
     "Display in Registry": "Yes",
     "Gene": "ATM",
     "RefSeq Transcript": "NM_000051.4",
     "Coding DNA change (c.)": "c.2839-579_2839-576del",
     "Predicted protein change (p.)": "p.?",
-    "Confirmed protein or RNA change (for splicing variants)": "Pseudoexon activation;\n\nr.2839-579_2839-576delins2839-593_2839-525",
+    "Confirmed protein or RNA change (for splicing variants)": "Pseudoexon activation;\r\n\r\nr.2839-579_2839-576delins2839-593_2839-525",
     "Variant published?": "Yes",
     "Contact Person": "Synofzik Lab",
     "Institution": "Tuebingen",
@@ -258,24 +204,18 @@
     "Approach": "Splice correction",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/11889466/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/11889466/"
-    },
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/11889466/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A11+1",
-      "result": 12
-    },
+    "ID": 12,
     "Current Date": "04.03.2024",
     "Display in Registry": "Yes",
     "Gene": "ATM",
     "RefSeq Transcript": "NM_000051.4",
     "Coding DNA change (c.)": "c.2639-384A>G",
     "Predicted protein change (p.)": "p.?",
-    "Confirmed protein or RNA change (for splicing variants)": "Pseudoexon activation;\n\nr.2638_2639ins[2639-442_2639-385], p.Gly880Glufs*14",
+    "Confirmed protein or RNA change (for splicing variants)": "Pseudoexon activation;\r\n\r\nr.2638_2639ins[2639-442_2639-385], p.Gly880Glufs*14",
     "Variant published?": "Yes",
     "Contact Person": "Synofzik Lab",
     "Institution": "Tuebingen",
@@ -285,24 +225,18 @@
     "Approach": "Splice correction",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/34453918/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/34453918/"
-    },
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/34453918/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A12+1",
-      "result": 13
-    },
+    "ID": 13,
     "Current Date": "04.03.2024",
     "Display in Registry": "Yes",
     "Gene": "ATM",
     "RefSeq Transcript": "NM_000051.4",
     "Coding DNA change (c.)": "c.967A>G",
     "Predicted protein change (p.)": "p.Ile323Val",
-    "Confirmed protein or RNA change (for splicing variants)": "Partial and partial + full exon deletions;\n\nr.967_1235del, p.Ile323Alafs*17\nr.967_1065del, p.Ile323_Gln355del",
+    "Confirmed protein or RNA change (for splicing variants)": "Partial and partial + full exon deletions;\r\n\r\nr.967_1235del, p.Ile323Alafs*17\r\nr.967_1065del, p.Ile323_Gln355del",
     "Variant published?": "Yes",
     "Contact Person": "Synofzik Lab",
     "Institution": "Tuebingen",
@@ -312,22 +246,16 @@
     "Approach": "Splice correction",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/31050087/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/31050087/"
-    },
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/31050087/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A13+1",
-      "result": 14
-    },
+    "ID": 14,
     "Current Date": "04.03.2024",
     "Display in Registry": "Yes",
     "Gene": "ATM",
     "RefSeq Transcript": "NM_000051.4",
-    "Coding DNA change (c.)": "c.743G>T\n",
+    "Coding DNA change (c.)": "c.743G>T\r\n",
     "Predicted protein change (p.)": "p.Arg248Leu",
     "Confirmed protein or RNA change (for splicing variants)": "r.?",
     "Variant published?": "Yes",
@@ -339,17 +267,11 @@
     "Approach": "Splice correction",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/24120321/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/24120321/"
-    },
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/24120321/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A14+1",
-      "result": 15
-    },
+    "ID": 15,
     "Current Date": "04.03.2024",
     "Display in Registry": "Yes",
     "Gene": "ATM",
@@ -369,15 +291,12 @@
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A15+1",
-      "result": 16
-    },
+    "ID": 16,
     "Current Date": "04.03.2024",
     "Display in Registry": "Yes",
     "Gene": "ATM",
     "RefSeq Transcript": "NM_000051.4",
-    "Coding DNA change (c.)": "c.2250G>A\n",
+    "Coding DNA change (c.)": "c.2250G>A\r\n",
     "Predicted protein change (p.)": "p.Lys750=",
     "Confirmed protein or RNA change (for splicing variants)": "r.2125_2250del, p.Ile709_Lys750del",
     "Variant published?": "Yes",
@@ -389,18 +308,12 @@
     "Approach": "Exon inclusion",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/9887333/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/9887333/"
-    },
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/9887333/",
     "Cell Line or Animal Model Availability": "Yes, cell line",
     "Comment": "Note: the Yu lab also has some work and cell lines for this variant"
   },
   {
-    "ID": {
-      "formula": "A16+1",
-      "result": 17
-    },
+    "ID": 17,
     "Current Date": "04.03.2024",
     "Display in Registry": "Yes",
     "Gene": "ATM",
@@ -417,22 +330,16 @@
     "Approach": "Exon inclusion",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/9792409/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/9792409/"
-    },
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/9792409/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A17+1",
-      "result": 18
-    },
+    "ID": 18,
     "Current Date": "04.03.2024",
     "Display in Registry": "Yes",
     "Gene": "ATM",
     "RefSeq Transcript": "NM_000051.4",
-    "Coding DNA change (c.)": "c.3576G>A\n",
+    "Coding DNA change (c.)": "c.3576G>A\r\n",
     "Predicted protein change (p.)": "p.Lys1192=",
     "Confirmed protein or RNA change (for splicing variants)": "r.3403_3576del, p.Ser1135_Lys1192del",
     "Variant published?": "Yes",
@@ -444,22 +351,16 @@
     "Approach": "Exon inclusion",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/9887333/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/9887333/"
-    },
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/9887333/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A18+1",
-      "result": 19
-    },
+    "ID": 19,
     "Current Date": "04.03.2024",
     "Display in Registry": "Yes",
     "Gene": "ATM",
     "RefSeq Transcript": "NM_000051.4",
-    "Coding DNA change (c.)": "c.7788G>A\n",
+    "Coding DNA change (c.)": "c.7788G>A\r\n",
     "Predicted protein change (p.)": "p.Glu2596=",
     "Confirmed protein or RNA change (for splicing variants)": "r.7630_7788del, p.Leu2544_Glu2596del",
     "Variant published?": "Yes",
@@ -471,24 +372,18 @@
     "Approach": "Exon inclusion",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/9792409/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/9792409/"
-    },
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/9792409/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A19+1",
-      "result": 20
-    },
+    "ID": 20,
     "Current Date": "04.22.2024",
     "Display in Registry": "Yes",
     "Gene": "ABCA4",
     "RefSeq Transcript": "NM_000350.3",
     "Coding DNA change (c.)": "c.859-506G>C",
     "Predicted protein change (p.)": "p.?",
-    "Confirmed protein or RNA change (for splicing variants)": "Pseudoexon activation;\n\nr.858_859ins[56], p.Phe287Thrfs*32",
+    "Confirmed protein or RNA change (for splicing variants)": "Pseudoexon activation;\r\n\r\nr.858_859ins[56], p.Phe287Thrfs*32",
     "Variant published?": "Yes",
     "Contact Person": "DCRT - Collin Lab",
     "Institution": "Nijmegen",
@@ -498,27 +393,18 @@
     "Approach": "Splice correction",
     "Indication ": "Eye",
     "IND available?": "No",
-    "Therapy Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/30643219/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/30643219/"
-    },
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/30643219/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/30643219/"
-    }
+    "Therapy Publication": "https://pubmed.ncbi.nlm.nih.gov/30643219/",
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/30643219/"
   },
   {
-    "ID": {
-      "formula": "A20+1",
-      "result": 21
-    },
+    "ID": 21,
     "Current Date": "04.22.2024",
     "Display in Registry": "Yes",
     "Gene": "ABCA4",
     "RefSeq Transcript": "NM_000350.3",
     "Coding DNA change (c.)": "c.6817-713A>G",
     "Predicted protein change (p.)": "p.?",
-    "Confirmed protein or RNA change (for splicing variants)": "Pseudoexon activation;\n\nr.6730_6816ins[6817-835_6817-714], p.Gln2272_Asp2273ins*11",
+    "Confirmed protein or RNA change (for splicing variants)": "Pseudoexon activation;\r\n\r\nr.6730_6816ins[6817-835_6817-714], p.Gln2272_Asp2273ins*11",
     "Variant published?": "Yes",
     "Contact Person": "DCRT - Collin Lab",
     "Institution": "Nijmegen",
@@ -528,20 +414,11 @@
     "Approach": "Splice correction",
     "Indication ": "Eye",
     "IND available?": "No",
-    "Therapy Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/38607040/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/38607040/"
-    },
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/38607040/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/38607040/"
-    }
+    "Therapy Publication": "https://pubmed.ncbi.nlm.nih.gov/38607040/",
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/38607040/"
   },
   {
-    "ID": {
-      "formula": "A21+1",
-      "result": 22
-    },
+    "ID": 22,
     "Current Date": "04.15.2024",
     "Display in Registry": "Yes",
     "Gene": "ACTL6B",
@@ -557,16 +434,10 @@
     "Approach": "Knockdown",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/31031012/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/31031012/"
-    }
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/31031012/"
   },
   {
-    "ID": {
-      "formula": "A22+1",
-      "result": 23
-    },
+    "ID": 23,
     "Current Date": "04.15.2024",
     "Display in Registry": "Yes",
     "Gene": "NDUFAF6",
@@ -583,17 +454,11 @@
     "Approach": "Splice correction",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/29531337/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/29531337/"
-    },
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/29531337/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A23+1",
-      "result": 24
-    },
+    "ID": 24,
     "Current Date": "04.15.2024",
     "Display in Registry": "Yes",
     "Gene": "ANKRD17",
@@ -610,10 +475,7 @@
     "Cell Line or Animal Model Availability": "No"
   },
   {
-    "ID": {
-      "formula": "A24+1",
-      "result": 25
-    },
+    "ID": 25,
     "Current Date": "04.15.2024",
     "Display in Registry": "Yes",
     "Gene": "ANKRD17",
@@ -630,10 +492,7 @@
     "Cell Line or Animal Model Availability": "No"
   },
   {
-    "ID": {
-      "formula": "A25+1",
-      "result": 26
-    },
+    "ID": 26,
     "Current Date": "04.15.2024",
     "Display in Registry": "Yes",
     "Gene": "CHD2",
@@ -651,10 +510,7 @@
     "Cell Line or Animal Model Availability": "No"
   },
   {
-    "ID": {
-      "formula": "A26+1",
-      "result": 27
-    },
+    "ID": 27,
     "Current Date": "04.15.2024",
     "Display in Registry": "Yes",
     "Gene": "PLP1",
@@ -671,21 +527,12 @@
     "Approach": "Exon inclusion",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Therapy Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/30195779/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/30195779/"
-    },
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/26125040/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/26125040/"
-    },
+    "Therapy Publication": "https://pubmed.ncbi.nlm.nih.gov/30195779/",
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/26125040/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A27+1",
-      "result": 28
-    },
+    "ID": 28,
     "Current Date": "04.15.2024",
     "Display in Registry": "Yes",
     "Gene": "PLP1",
@@ -702,21 +549,12 @@
     "Approach": "Exon inclusion",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Therapy Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/30195779/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/30195779/"
-    },
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/26125040/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/26125040/"
-    },
+    "Therapy Publication": "https://pubmed.ncbi.nlm.nih.gov/30195779/",
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/26125040/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A28+1",
-      "result": 29
-    },
+    "ID": 29,
     "Current Date": "12.21.2024",
     "Display in Registry": "Yes",
     "Gene": "PLP1",
@@ -733,21 +571,12 @@
     "Approach": "Exon inclusion",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Therapy Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/30195779/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/30195779/"
-    },
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/26125040/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/26125040/"
-    },
+    "Therapy Publication": "https://pubmed.ncbi.nlm.nih.gov/30195779/",
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/26125040/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A29+1",
-      "result": 30
-    },
+    "ID": 30,
     "Current Date": "12.21.2024",
     "Display in Registry": "Yes",
     "Gene": "PLP1",
@@ -764,21 +593,12 @@
     "Approach": "Exon inclusion",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Therapy Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/30195779/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/30195779/"
-    },
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/12325077/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/12325077/"
-    },
+    "Therapy Publication": "https://pubmed.ncbi.nlm.nih.gov/30195779/",
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/12325077/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A30+1",
-      "result": 31
-    },
+    "ID": 31,
     "Current Date": "12.21.2024",
     "Display in Registry": "Yes",
     "Gene": "PLP1",
@@ -795,21 +615,12 @@
     "Approach": "Exon inclusion",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Therapy Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/30195779/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/30195779/"
-    },
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/30195779/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/30195779/"
-    },
+    "Therapy Publication": "https://pubmed.ncbi.nlm.nih.gov/30195779/",
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/30195779/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A31+1",
-      "result": 32
-    },
+    "ID": 32,
     "Current Date": "12.21.2024",
     "Display in Registry": "Yes",
     "Gene": "PLP1",
@@ -826,21 +637,12 @@
     "Approach": "Exon inclusion",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Therapy Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/30195779/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/30195779/"
-    },
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/26125040/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/26125040/"
-    },
+    "Therapy Publication": "https://pubmed.ncbi.nlm.nih.gov/30195779/",
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/26125040/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A32+1",
-      "result": 33
-    },
+    "ID": 33,
     "Current Date": "12.21.2024",
     "Display in Registry": "Yes",
     "Gene": "FAR1",
@@ -856,17 +658,11 @@
     "Approach": "Knockdown",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/33239752/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/33239752/"
-    },
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/33239752/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A33+1",
-      "result": 34
-    },
+    "ID": 34,
     "Current Date": "12.21.2024",
     "Display in Registry": "Yes",
     "Gene": "FAR1",
@@ -882,24 +678,18 @@
     "Approach": "Knockdown",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/33239752/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/33239752/"
-    },
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/33239752/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A34+1",
-      "result": 35
-    },
+    "ID": 35,
     "Current Date": "07.16.2024",
     "Display in Registry": "Yes",
     "Gene": "COL6A1",
     "RefSeq Transcript": "NM_001848.3",
     "Coding DNA change (c.)": "c.930+189C>T",
     "Predicted protein change (p.)": "p.?",
-    "Confirmed protein or RNA change (for splicing variants)": "Pseudoexon activation;\n\nr.930_931ins[930+116_930+187],\np.Lys310_Gly311insX[24]",
+    "Confirmed protein or RNA change (for splicing variants)": "Pseudoexon activation;\r\n\r\nr.930_931ins[930+116_930+187],\r\np.Lys310_Gly311insX[24]",
     "Variant published?": "Yes",
     "Contact Person": "UPNAT - Zhou Lab",
     "Institution": "UCL",
@@ -909,28 +699,19 @@
     "Approach": "Exon Skipping",
     "Indication ": "Muscular",
     "IND available?": "No",
-    "Therapy Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/32585628/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/32585628/"
-    },
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/30895940/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/30895940/"
-    },
+    "Therapy Publication": "https://pubmed.ncbi.nlm.nih.gov/32585628/",
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/30895940/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A35+1",
-      "result": 36
-    },
+    "ID": 36,
     "Current Date": "07.16.2024",
     "Display in Registry": "Yes",
     "Gene": "COL6A3",
     "RefSeq Transcript": "NM_004369.4",
     "Coding DNA change (c.)": "c.6210+1G>A",
     "Predicted protein change (p.)": "p.?",
-    "Confirmed protein or RNA change (for splicing variants)": "Exon skipping;\n\nr.6157_6210del, p.Ile2054_Gly2071del",
+    "Confirmed protein or RNA change (for splicing variants)": "Exon skipping;\r\n\r\nr.6157_6210del, p.Ile2054_Gly2071del",
     "Variant published?": "Yes",
     "Contact Person": "UPNAT - Zhou Lab",
     "Institution": "UCL",
@@ -940,21 +721,12 @@
     "Approach": "Knockdown",
     "Indication ": "Muscular",
     "IND available?": "No",
-    "Therapy Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/38993932/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/38993932/"
-    },
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/18366090/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/18366090/"
-    },
+    "Therapy Publication": "https://pubmed.ncbi.nlm.nih.gov/38993932/",
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/18366090/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A36+1",
-      "result": 37
-    },
+    "ID": 37,
     "Current Date": "07.16.2024",
     "Display in Registry": "Yes",
     "Gene": "COL6A3",
@@ -970,21 +742,12 @@
     "Approach": "Knockdown",
     "Indication ": "Muscular",
     "IND available?": "No",
-    "Therapy Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/28918041/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/28918041/"
-    },
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/28918041/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/28918041/"
-    },
+    "Therapy Publication": "https://pubmed.ncbi.nlm.nih.gov/28918041/",
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/28918041/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A37+1",
-      "result": 38
-    },
+    "ID": 38,
     "Current Date": "07.16.2024",
     "Display in Registry": "Yes",
     "Gene": "SPTLC1",
@@ -1000,17 +763,11 @@
     "Approach": "Knockdown",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/16210380/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/16210380/"
-    },
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/16210380/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A38+1",
-      "result": 39
-    },
+    "ID": 39,
     "Current Date": "6.2.2025",
     "Display in Registry": "Yes",
     "Gene": "MFSD8",
@@ -1028,17 +785,11 @@
     "Indication ": "Brain/Spinal cord",
     "IND available?": "Yes",
     "Information on IND": "POC and tox study is able to be shared, if the receiving entity has signed the preclinical DSA with N1C",
-    "Therapy Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/31597037/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/31597037/"
-    },
+    "Therapy Publication": "https://pubmed.ncbi.nlm.nih.gov/31597037/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A39+1",
-      "result": 40
-    },
+    "ID": 40,
     "Current Date": "05.25.2025",
     "Display in Registry": "Yes",
     "Gene": "C9orf72",
@@ -1051,17 +802,11 @@
     "Approach": "Knockdown",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "Unknown",
-    "Therapy Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/34949835/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/34949835/"
-    },
+    "Therapy Publication": "https://pubmed.ncbi.nlm.nih.gov/34949835/",
     "Comment": "C9orf72-targeting ASOs have failed in clinical trials to this date (May 2025)."
   },
   {
-    "ID": {
-      "formula": "A40+1",
-      "result": 41
-    },
+    "ID": 41,
     "Current Date": "05.25.2025",
     "Display in Registry": "Yes",
     "Gene": "CLN3",
@@ -1077,16 +822,10 @@
     "Approach": "Exon Skipping",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Therapy Publication": {
-      "text": "https://www.forebatten.org/zebronkysen",
-      "hyperlink": "https://www.forebatten.org/zebronkysen"
-    }
+    "Therapy Publication": "https://www.forebatten.org/zebronkysen"
   },
   {
-    "ID": {
-      "formula": "A41+1",
-      "result": 42
-    },
+    "ID": 42,
     "Current Date": "05.25.2025",
     "Display in Registry": "Yes",
     "Gene": "FUS",
@@ -1102,16 +841,10 @@
     "Approach": "Knockdown",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "Unknown",
-    "Therapy Publication": {
-      "text": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00513-6/fulltext",
-      "hyperlink": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00513-6/fulltext"
-    }
+    "Therapy Publication": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00513-6/fulltext"
   },
   {
-    "ID": {
-      "formula": "A42+1",
-      "result": 43
-    },
+    "ID": 43,
     "Current Date": "05.25.2025",
     "Display in Registry": "Yes",
     "Gene": "TNPO2",
@@ -1121,27 +854,18 @@
     "Variant published?": "Yes",
     "Contact Person": "TNPO2 Foundation",
     "Institution": "TNPO2 Foundation",
-    "Contact Information (email)": {
-      "text": "https://www.tnpo2.org/",
-      "hyperlink": "https://www.tnpo2.org/"
-    },
+    "Contact Information (email)": "https://www.tnpo2.org/",
     "Therapeutic Modality": "Antisense oligonucleotide",
     "Status": "Clinical Application",
     "Approach": "Knockdown (allele-selective)",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "Yes",
-    "Information on IND": {
-      "text": "https://www.tnpo2.org/ind-documents",
-      "hyperlink": "https://www.tnpo2.org/ind-documents"
-    },
+    "Information on IND": "https://www.tnpo2.org/ind-documents",
     "Cell Line or Animal Model Availability": "Yes, cell line",
     "Comment": "ASO targets the variant"
   },
   {
-    "ID": {
-      "formula": "A43+1",
-      "result": 44
-    },
+    "ID": 44,
     "Current Date": "05.25.2025",
     "Display in Registry": "Yes",
     "Gene": "AP4M1 (SPG50)",
@@ -1154,20 +878,11 @@
     "Status": "Clinical Application",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "Yes",
-    "Information on IND": {
-      "text": "https://www.elpidatx.com/documents",
-      "hyperlink": "https://www.elpidatx.com/documents"
-    },
-    "Therapy Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/38942994/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/38942994/"
-    }
+    "Information on IND": "https://www.elpidatx.com/documents",
+    "Therapy Publication": "https://pubmed.ncbi.nlm.nih.gov/38942994/"
   },
   {
-    "ID": {
-      "formula": "A44+1",
-      "result": 45
-    },
+    "ID": 45,
     "Current Date": "05.25.2025",
     "Display in Registry": "Yes",
     "Gene": "CPS1",
@@ -1182,23 +897,17 @@
     "Status": "Clinical Application",
     "Indication ": "Liver",
     "IND available?": "Unknown",
-    "Therapy Publication": {
-      "text": "https://www.nejm.org/doi/full/10.1056/NEJMoa2504747",
-      "hyperlink": "https://www.nejm.org/doi/full/10.1056/NEJMoa2504747"
-    }
+    "Therapy Publication": "https://www.nejm.org/doi/full/10.1056/NEJMoa2504747"
   },
   {
-    "ID": {
-      "formula": "A45+1",
-      "result": 46
-    },
+    "ID": 46,
     "Current Date": "06.02.2025",
     "Display in Registry": "Yes",
     "Gene": "MFSD8",
     "RefSeq Transcript": "NM_152778.4",
     "Coding DNA change (c.)": "c.999G>A",
     "Predicted protein change (p.)": "p.Lys333=",
-    "Confirmed protein or RNA change (for splicing variants)": "Exon skipping;\n\nr.999_1102del, p.Ile334Phefs*4",
+    "Confirmed protein or RNA change (for splicing variants)": "Exon skipping;\r\n\r\nr.999_1102del, p.Ile334Phefs*4",
     "Variant published?": "Yes",
     "Contact Person": "Yu Lab",
     "Institution": "BCH",
@@ -1208,24 +917,18 @@
     "Approach": "Splice correction",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/28794409/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/28794409/"
-    },
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/28794409/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A46+1",
-      "result": 47
-    },
+    "ID": 47,
     "Current Date": "06.02.2025",
     "Display in Registry": "Yes",
     "Gene": "NPC1",
     "RefSeq Transcript": "NM_000271.5",
     "Coding DNA change (c.)": "c.1554-1009G>A",
     "Predicted protein change (p.)": "p.?",
-    "Confirmed protein or RNA change (for splicing variants)": "Pseudoexon activation;\n\nr.?",
+    "Confirmed protein or RNA change (for splicing variants)": "Pseudoexon activation;\r\n\r\nr.?",
     "Variant published?": "Yes",
     "Contact Person": "Yu Lab",
     "Institution": "BCH",
@@ -1235,17 +938,11 @@
     "Approach": "Splice correction",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/20718790/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/20718790/"
-    },
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/20718790/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A47+1",
-      "result": 48
-    },
+    "ID": 48,
     "Current Date": "06.02.2025",
     "Display in Registry": "Yes",
     "Gene": "DNAJC5",
@@ -1261,17 +958,11 @@
     "Approach": "Knockdown (allele-selective)",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/22235333/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/22235333/"
-    },
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/22235333/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A48+1",
-      "result": 49
-    },
+    "ID": 49,
     "Current Date": "06.02.2025",
     "Display in Registry": "Yes",
     "Gene": "NDUFAF8",
@@ -1288,24 +979,18 @@
     "Approach": "Knockdown (allele-selective)",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/31866046/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/31866046/"
-    },
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/31866046/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A49+1",
-      "result": 50
-    },
+    "ID": 50,
     "Current Date": "06.02.2025",
     "Display in Registry": "Yes",
     "Gene": "ABCA4",
     "RefSeq Transcript": "NM_000350.3",
     "Coding DNA change (c.)": "c.5461-10T>C",
     "Predicted protein change (p.)": "p?",
-    "Confirmed protein or RNA change (for splicing variants)": "Exon skipping;\n\nExon 39 (p.Thr1821Aspfs*6);\nExons 39-40 (p.Thr1821Valfs*13)",
+    "Confirmed protein or RNA change (for splicing variants)": "Exon skipping;\r\n\r\nExon 39 (p.Thr1821Aspfs*6);\r\nExons 39-40 (p.Thr1821Valfs*13)",
     "Variant published?": "Yes",
     "Contact Person": "Yu Lab",
     "Institution": "BCH",
@@ -1315,17 +1000,11 @@
     "Approach": "Splice correction",
     "Indication ": "Eye",
     "IND available?": "No",
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/36910710/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/36910710/"
-    },
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/36910710/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
-    "ID": {
-      "formula": "A50+1",
-      "result": 51
-    },
+    "ID": 51,
     "Current Date": "05.25.2025",
     "Display in Registry": "Yes",
     "Gene": "FUS",
@@ -1341,20 +1020,11 @@
     "Approach": "Knockdown",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "Unknown",
-    "Therapy Publication": {
-      "text": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00513-6/fulltext",
-      "hyperlink": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00513-6/fulltext"
-    },
-    "Variant Publication": {
-      "text": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00513-6/fulltext",
-      "hyperlink": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00513-6/fulltext"
-    }
+    "Therapy Publication": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00513-6/fulltext",
+    "Variant Publication": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00513-6/fulltext"
   },
   {
-    "ID": {
-      "formula": "A51+1",
-      "result": 52
-    },
+    "ID": 52,
     "Current Date": "05.25.2025",
     "Display in Registry": "Yes",
     "Gene": "FUS",
@@ -1370,20 +1040,11 @@
     "Approach": "Knockdown",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "Unknown",
-    "Therapy Publication": {
-      "text": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00513-6/fulltext",
-      "hyperlink": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00513-6/fulltext"
-    },
-    "Variant Publication": {
-      "text": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00513-6/fulltext",
-      "hyperlink": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00513-6/fulltext"
-    }
+    "Therapy Publication": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00513-6/fulltext",
+    "Variant Publication": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00513-6/fulltext"
   },
   {
-    "ID": {
-      "formula": "A52+1",
-      "result": 53
-    },
+    "ID": 53,
     "Current Date": "05.25.2025",
     "Display in Registry": "Yes",
     "Gene": "FUS",
@@ -1399,20 +1060,11 @@
     "Approach": "Knockdown",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "Unknown",
-    "Therapy Publication": {
-      "text": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00513-6/fulltext",
-      "hyperlink": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00513-6/fulltext"
-    },
-    "Variant Publication": {
-      "text": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00513-6/fulltext",
-      "hyperlink": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00513-6/fulltext"
-    }
+    "Therapy Publication": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00513-6/fulltext",
+    "Variant Publication": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00513-6/fulltext"
   },
   {
-    "ID": {
-      "formula": "A53+1",
-      "result": 54
-    },
+    "ID": 54,
     "Current Date": "05.25.2025",
     "Display in Registry": "Yes",
     "Gene": "FUS",
@@ -1428,14 +1080,8 @@
     "Approach": "Knockdown",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "Unknown",
-    "Therapy Publication": {
-      "text": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00513-6/fulltext",
-      "hyperlink": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00513-6/fulltext"
-    },
-    "Variant Publication": {
-      "text": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00513-6/fulltext",
-      "hyperlink": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00513-6/fulltext"
-    }
+    "Therapy Publication": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00513-6/fulltext",
+    "Variant Publication": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00513-6/fulltext"
   },
   {
     "ID": 71,
@@ -1454,10 +1100,7 @@
     "Approach": "Exon Skipping",
     "Indication ": "Brain/Spinal cord",
     "IND available?": "No",
-    "Variant Publication": {
-      "text": "https://pubmed.ncbi.nlm.nih.gov/39067332/",
-      "hyperlink": "https://pubmed.ncbi.nlm.nih.gov/39067332/"
-    },
+    "Variant Publication": "https://pubmed.ncbi.nlm.nih.gov/39067332/",
     "Cell Line or Animal Model Availability": "Yes, cell line"
   },
   {
@@ -1468,7 +1111,7 @@
     "RefSeq Transcript": "NM_170707.4",
     "Coding DNA change (c.)": "c.1824C>T",
     "Predicted protein change (p.)": "p.Gly608=",
-    "Confirmed protein or RNA change (for splicing variants)": "Partial exon deletion;\nr.1819_1968del, p.Vall607_Gln656del",
+    "Confirmed protein or RNA change (for splicing variants)": "Partial exon deletion;\r\nr.1819_1968del, p.Vall607_Gln656del",
     "Variant published?": "Yes",
     "Contact Person": "Barbara Natke",
     "Institution": "The Progeria Research Foundation",
