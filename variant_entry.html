@@ -116,20 +116,37 @@
           "Predicted protein change (p.)",
           "Confirmed protein or RNA change (for splicing variants)",
           "ClinVar",
+          "Pathomechanism",
+          "Inheritance",
+          "Splicing effect?",
           "Therapeutic Modality",
           "Approach",
-          "Eligibility"
+          "Eligibility",
+          "Publication",
+          "Date assessment"
         ];
 
         const variantList = document.getElementById("variant-details");
         variantList.innerHTML = "";
 
-        variantFields.forEach((key) => {
-          const value = entry[key];
-          if (value && value.trim() !== "") {
-            variantList.innerHTML += `<li><strong>${key}:</strong> ${value}</li>`;
-          }
-        });
+       variantFields.forEach((key) => {
+        const value = entry[key];
+        if (!value || value.trim() === "") return;
+
+        let displayValue = value;
+
+        // Detect URL OR enforce links for specific fields
+        const linkFields = ["ClinVar", "Publication"];
+
+        if (
+        (typeof value === "string" && value.startsWith("http")) ||
+        linkFields.includes(key)
+        ) {
+        displayValue = `<a href="${value}" target="_blank" rel="noopener noreferrer">${value}</a>`;
+        }
+
+        variantList.innerHTML += `<li><strong>${key}:</strong> ${displayValue}</li>`;
+      });
 
         // Show Assessment separately
         const assessmentBox = document.getElementById("assessment");
