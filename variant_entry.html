@@ -130,23 +130,27 @@
         variantList.innerHTML = "";
 
        variantFields.forEach((key) => {
-        const value = entry[key];
-        if (!value || value.trim() === "") return;
+        const raw = entry[key];
+
+        // Skip if null/undefined
+        if (raw === undefined || raw === null) return;
+
+        // Convert everything to string safely
+        const value = String(raw).trim();
+        if (value === "") return;
 
         let displayValue = value;
 
-        // Detect URL OR enforce links for specific fields
-        const linkFields = ["ClinVar", "Publication"];
-
-        if (
-        (typeof value === "string" && value.startsWith("http")) ||
-        linkFields.includes(key)
-        ) {
+        // Make URLs clickable (ClinVar / Publication etc.)
+        if (/^https?:\/\//i.test(value)) {
         displayValue = `<a href="${value}" target="_blank" rel="noopener noreferrer">${value}</a>`;
-        }
+    }
 
-        variantList.innerHTML += `<li><strong>${key}:</strong> ${displayValue}</li>`;
-      });
+  variantList.insertAdjacentHTML(
+    "beforeend",
+    `<li><strong>${key}:</strong> ${displayValue}</li>`
+  );
+});
 
         // Show Assessment separately
         const assessmentBox = document.getElementById("assessment");
