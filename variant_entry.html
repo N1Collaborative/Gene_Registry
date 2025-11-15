@@ -145,7 +145,13 @@
         // Make URLs clickable (ClinVar / Publication etc.)
         if (/^https?:\/\//i.test(value)) {
         displayValue = `<a href="${value}" target="_blank" rel="noopener noreferrer">${value}</a>`;
-    }
+        }
+        
+        // Format "Date assessment" to show only the date (no time)
+        if (key === "Date assessment") {
+        const dateOnly = new Date(value).toISOString().split("T")[0];
+        displayValue = dateOnly;
+        }
 
   variantList.insertAdjacentHTML(
     "beforeend",
