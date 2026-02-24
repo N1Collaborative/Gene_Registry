@@ -47,13 +47,13 @@
         
         
     h1 {
-      text-align: left;              /* cleaner, more modern */
-      color: white;                  /* keep your brand look */
+      text-align: center;
+      color: white;
       font-size: clamp(32px, 4vw, 48px);
       font-weight: bold;
-      margin: 18px 0 16px 0;
+      margin: 20px 0;
       letter-spacing: -0.02em;
-    }
+    }    
 
 
   .search-wrapper {
@@ -391,56 +391,20 @@
   display: block;
   text-decoration: none;
   color: white;
-  background: rgba(255, 255, 255, 0.08);          /* subtle “glass” on blue */
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  background-color: #0b3d7a;                 /* slightly lighter blue panel */
+  border: 2px solid #de3b38;                 /* red outline around whole tile */
   border-radius: 16px;
-  padding: 18px 18px 16px;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  padding: 24px;
   transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
-  text-align: left;                                /* modern tile style */
-  position: relative;
-  overflow: hidden;
+  text-align: center;
 }
-
 
 .tile:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
-  border-color: rgba(222, 59, 56, 0.45);          /* red accent on hover */
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+  border-color: white;                       /* subtle hover change */
 }
 
-.tile-top {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 10px;
-}
-
-.tile-badge {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 800;
-  font-size: 13px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: rgba(4, 44, 92, 0.85);              /* brand blue panel */
-  border: 2px solid rgba(222, 59, 56, 0.70);      /* brand red outline */
-  color: white;
-}
-
-.tile-arrow {
-  position: relative;
-  font-weight: 900;
-  color: rgba(255,255,255,0.85);
-  transform: translateX(0);
-  transition: transform 0.15s ease;
-}
-
-.tile:hover .tile-arrow { transform: translateX(3px); }
 
 .tile h3 {
   position: relative;
@@ -491,28 +455,16 @@
     
 <div class="tiles">
   <a class="tile" href="N1C_projects.html">
-    <div class="tile-top">
-      <span class="tile-badge">Registry</span>
-      <span class="tile-arrow">→</span>
-    </div>
     <h3>N-of-1 Projects</h3>
     <p>Explore available and ongoing N=1 therapy developments.</p>
   </a>
 
   <a class="tile" href="Marketed_drugs.html">
-    <div class="tile-top">
-      <span class="tile-badge">Registry</span>
-      <span class="tile-arrow">→</span>
-    </div>
     <h3>Marketed Genetic Therapies</h3>
     <p>Browse currently approved and marketed genetic therapies.</p>
   </a>
 
   <a class="tile" href="assessed_variants.html">
-    <div class="tile-top">
-      <span class="tile-badge">Registry</span>
-      <span class="tile-arrow">→</span>
-    </div>
     <h3>Assessed Variants</h3>
     <p>View curated assessments of variants and their therapeutic eligibility.</p>
   </a>
