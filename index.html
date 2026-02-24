@@ -402,14 +402,6 @@
   overflow: hidden;
 }
 
-.tile::before{
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(600px 200px at 20% 0%, rgba(222, 59, 56, 0.22), transparent 60%);
-  opacity: 0.9;
-  pointer-events: none;
-}
 
 .tile:hover {
   transform: translateY(-3px);
@@ -435,8 +427,8 @@
   font-size: 13px;
   padding: 6px 10px;
   border-radius: 999px;
-  background: rgba(222, 59, 56, 0.16);
-  border: 1px solid rgba(222, 59, 56, 0.35);
+  background: rgba(4, 44, 92, 0.85);              /* brand blue panel */
+  border: 2px solid rgba(222, 59, 56, 0.70);      /* brand red outline */
   color: white;
 }
 
@@ -471,7 +463,9 @@
 }
 
 
-
+.page {
+  text-align: center;
+}
         
         
 </style>
