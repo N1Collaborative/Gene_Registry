@@ -15,11 +15,23 @@
     <meta property="og:url" content="https://n1collaborative.github.io/Gene_Registry/" />
     <meta property="og:type" content="website" />
 
+    <script src="https://unpkg.com/lucide@latest"></script>
 
+    
     <style>
+    
+    :root {
+      --n1c-blue: #042c5c;
+      --n1c-red: #de3b38;
+      --n1c-red-dark: #b9312c;
+      --n1c-white-soft: rgba(255,255,255,0.08);
+      --n1c-white-border: rgba(255,255,255,0.18);
+    }
+        
+        
     body{
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background-color: #042c5c;     /* your signature blue */
+      background-color: var(--n1c-blue);    /* your signature blue */
       color: white;
       margin: 0;
       padding: 0;
@@ -35,8 +47,8 @@
     }
 
     .card{
-      background: rgba(255,255,255,0.08);     /* subtle light overlay on blue */
-      border: 1px solid rgba(255,255,255,0.18);
+      background: var(--n1c-white-soft);
+      border: 1px solid var(--n1c-white-border);
       border-radius: 16px;
       padding: 18px;
       margin-top: 16px;
@@ -78,7 +90,7 @@
       height: 42px;
       padding: 0 16px;
       font-size: 16px;
-      background-color: #de3b38;
+      background-color: var(--n1c-red);
       color: white;
       border: none;
       border-top-right-radius: 4px;
@@ -107,7 +119,7 @@
     }
 
     th {
-        background-color: #de3b38;
+        background-color: var(--n1c-red);
         color: white;
         font-size: 18px;
 
@@ -128,7 +140,7 @@
 
     button,
     .submit-button {
-      background-color: #de3b38;  /* N1C red */
+      background-color: var(--n1c-red);  /* N1C red */
       color: white;
       border: none;
       padding: 8px 16px;
@@ -141,7 +153,7 @@
 
     button:hover,
     .submit-button:hover {
-      background-color: #b9312c;
+      background-color: var(--n1c-red-dark);
     }
 
 
@@ -149,7 +161,7 @@
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background-color: #de3b38;
+      background-color: var(--n1c-red);
       color: white;
       border: none;
       padding: 10px 14px;
@@ -161,7 +173,7 @@
     }
 
     .scroll-top:hover {
-      background-color: #b9312c;
+      background-color: var(--n1c-red-dark);
     }
         
      footer {
@@ -174,7 +186,7 @@
     details summary {
       font-size: 28px;           /* Bigger font size */
       font-weight: bold;
-      color: #de3b38;
+      color: var(--n1c-red);
       background-color: white;
       padding: 10px 16px;
       border-radius: 6px;
@@ -190,7 +202,7 @@
 
     details summary:hover {
       background-color: #fde4e2; /* Light red background on hover */
-      color: #b9312c; /* Slightly darker red on hover */
+      color: var(--n1c-red-dark); /* Slightly darker red on hover */
     }
 
     /* Make all table rows clickable and highlight on hover */
@@ -267,7 +279,7 @@
 }
 
 .registry-button {
-  background-color: #de3b38;
+  background-color: var(--n1c-red);
   color: white;
   font-weight: bold;
   font-size: 18px;
@@ -280,7 +292,7 @@
 }
 
 .registry-button:hover {
-  background-color: #b9312c;
+  background-color: var(--n1c-red-dark);
   transform: scale(1.05);
 }
 
@@ -299,7 +311,7 @@
 }
 
 .back-to-main {
-  background-color: #de3b38;
+  background-color: var(--n1c-red);
   color: white;
   font-weight: bold;
   padding: 10px 18px;
@@ -310,7 +322,7 @@
 }
 
 .back-to-main:hover {
-  background-color: #b9312c;
+  background-color: var(--n1c-red-dark);
 }
 
 .main-header {
@@ -333,7 +345,7 @@
 }
 
 .back-to-main {
-  background-color: #de3b38;
+  background-color: var(--n1c-red);
   color: white;
   font-weight: bold;
   padding: 10px 18px;
@@ -344,7 +356,7 @@
 }
 
 .back-to-main:hover {
-  background-color: #b9312c;
+  background-color: var(--n1c-red-dark);
 }
 
 .floating-logo {
@@ -358,7 +370,7 @@
   position: fixed;
   top: 20px;
   right: 10px;
-  background-color: #de3b38;
+  background-color: var(--n1c-red);
   color: white;
   padding: 6px 8px;
   border-radius: 6px;
@@ -374,7 +386,7 @@
 
 
 .floating-main-button:hover {
-  background-color: #b9312c;
+  background-color: var(--n1c-red-dark);
 }
 
 /* ===== 3 tiles section ===== */
@@ -391,8 +403,8 @@
   display: block;
   text-decoration: none;
   color: white;
-  background-color: #0b3d7a;                 /* slightly lighter blue panel */
-  border: 2px solid #de3b38;                 /* red outline around whole tile */
+  background-color: var(--n1c-blue);
+  border: 2px solid var(--n1c-red);                /* red outline around whole tile */
   border-radius: 16px;
   padding: 24px;
   transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
@@ -431,6 +443,13 @@
   text-align: center;
 }
         
+.tile svg {
+  width: 42px;
+  height: 42px;
+  margin-bottom: 10px;
+  color: var(--n1c-red);
+}
+
         
 </style>
 
@@ -455,18 +474,21 @@
     
 <div class="tiles">
   <a class="tile" href="N1C_projects.html">
-    <h3>N-of-1 Projects</h3>
-    <p>Explore available and ongoing N=1 therapy developments.</p>
+      <i data-lucide="dna"></i>
+      <h3>N-of-1 Projects</h3>
+      <p>Explore available and ongoing N=1 therapy developments.</p>
   </a>
 
   <a class="tile" href="Marketed_drugs.html">
-    <h3>Marketed Genetic Therapies</h3>
-    <p>Browse currently approved and marketed genetic therapies.</p>
-  </a>
+      <i data-lucide="pill"></i>
+      <h3>Marketed Genetic Therapies</h3>
+      <p>Browse currently approved and marketed genetic therapies.</p>
+ </a>
 
   <a class="tile" href="assessed_variants.html">
-    <h3>Assessed Variants</h3>
-    <p>View curated assessments of variants and their therapeutic eligibility.</p>
+      <i data-lucide="search-check"></i>
+      <h3>Assessed Variants</h3>
+      <p>View curated assessments of variants and their therapeutic eligibility.</p>
   </a>
 </div>
 
@@ -773,5 +795,10 @@ async function searchBothRegistries() {
         
     </script>
  </div>
+
+ <script>
+   lucide.createIcons();
+ </script>
+    
 </body>
 </html>
