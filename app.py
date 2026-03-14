@@ -64,6 +64,36 @@ def api_data():
         print(f"[ERROR] reading {path}: {e}")
         return jsonify({"error": str(e)}), 500
 
+
+@app.get("/api/search")
+def api_search():
+    table = request.args.get("table")
+    query = request.args.get("q", "").strip().lower()
+
+    path = file_path_for(table)
+    if not path or not os.path.exists(path):
+        return jsonify({"error": "Unknown table or file not found", "table": table, "path": path}), 404
+
+    try:
+        df = pd.read_excel(path, engine="openpyxl").fillna("")
+
+        if not query:
+            return jsonify([])
+
+        # Search across all columns by converting each row to one lowercase string
+        mask = df.astype(str).apply(
+            lambda row: row.str.lower().str.contains(query, regex=False).any(),
+            axis=1
+        )
+
+        results = df[mask].to_dict(orient="records")
+        return jsonify(results)
+
+    except Exception as e:
+        print(f"[ERROR] searching {path}: {e}")
+        return jsonify({"error": str(e)}), 500
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))
 
