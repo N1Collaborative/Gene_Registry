@@ -89,6 +89,63 @@
     .floating-main-button:hover {
       background-color: #b9312c;
     }
+
+
+        .info-tooltip {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .info-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background-color: #de3b38;
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .info-text {
+      visibility: hidden;
+      opacity: 0;
+      width: 280px;
+      background-color: white;
+      color: #333;
+      text-align: left;
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      position: absolute;
+      z-index: 2000;
+      top: 24px;
+      left: 0;
+      transition: opacity 0.2s ease;
+      font-size: 13px;
+      font-weight: normal;
+    }
+
+    .info-tooltip:hover .info-text,
+    .info-tooltip.active .info-text {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .field-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
   </style>
 
   <script>
@@ -132,33 +189,48 @@
 
        variantFields.forEach((key) => {
         const raw = entry[key];
-
+      
         // Skip if null/undefined
         if (raw === undefined || raw === null) return;
-
+      
         // Convert everything to string safely
         const value = String(raw).trim();
         if (value === "") return;
-
+      
         let displayValue = value;
-
-        // Make URLs clickable (ClinVar / Publication etc.)
+      
+        // Make URLs clickable
         if (/^https?:\/\//i.test(value)) {
-        displayValue = `<a href="${value}" target="_blank" rel="noopener noreferrer">${value}</a>`;
+          displayValue = `<a href="${value}" target="_blank" rel="noopener noreferrer">${value}</a>`;
         }
-        
-        // Format "Date assessment" to show only the date (no time)
+      
+        // Format date
         if (key === "Date assessment") {
-        const dateOnly = new Date(value).toISOString().split("T")[0];
-        displayValue = dateOnly;
+          const dateOnly = new Date(value).toISOString().split("T")[0];
+          displayValue = dateOnly;
         }
-
-  variantList.insertAdjacentHTML(
-    "beforeend",
-    `<li><strong>${key}:</strong> ${displayValue}</li>`
-  );
-});
-
+      
+        let labelHTML = `<strong>${key}:</strong>`;
+      
+        if (key === "Splicing effect?") {
+          labelHTML = `
+            <strong class="field-label">
+              ${key}
+              <span class="info-tooltip">
+                <span class="info-icon">i</span>
+                <span class="info-text">
+                  A "yes" indicated that there is functional evidence (RNAseq, cDNA analysis in endogenous background) for a splicing effect.
+                </span>
+              </span>:
+            </strong>
+          `;
+        }
+      
+        variantList.insertAdjacentHTML(
+          "beforeend",
+          `<li>${labelHTML} ${displayValue}</li>`
+        );
+      });
         // Show Assessment separately
         const assessmentBox = document.getElementById("assessment");
         if (entry["Assessment text"] && entry["Assessment text"].trim() !== "") {
@@ -197,6 +269,23 @@
   </div>
 
   <a class="back-button" href="assessed_variants.html">Back to Assessed Variants</a>
+
+    <script>
+    document.addEventListener("click", function (e) {
+      document.querySelectorAll(".info-tooltip").forEach(t => {
+        if (!t.contains(e.target)) {
+          t.classList.remove("active");
+        }
+      });
+  
+      const clickedTooltip = e.target.closest(".info-tooltip");
+      if (clickedTooltip) {
+        clickedTooltip.classList.toggle("active");
+        e.stopPropagation();
+      }
+    });
+  </script>
+  
 </body>
 </html>
 
