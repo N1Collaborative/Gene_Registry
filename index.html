@@ -416,14 +416,24 @@
   background-color: var(--n1c-red-dark);
 }
 
-/* ===== 3 tiles section ===== */
+/* ===== tiles section ===== */
 .tiles {
   width: 90%;
-  max-width: 1100px;
+  max-width: 900px;
   margin: 50px auto 30px;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 28px;
+}
+
+@media (max-width: 900px) {
+  .tiles {
+    grid-template-columns: 1fr;
+  }
+
+  .tile {
+    text-align: left;
+  }
 }
 
 .tile {
@@ -503,22 +513,27 @@
   <a class="tile" href="N1C_projects.html">
       <i data-lucide="dna"></i>
       <h3>N-of-1 Projects</h3>
-      <p>Explore available and ongoing N=1 therapy developments.</p>
+      <p>Explore available and ongoing N-of-1 and N-of-few therapy developments.</p>
   </a>
 
   <a class="tile" href="Marketed_drugs.html">
       <i data-lucide="pill"></i>
       <h3>Marketed Genetic Therapies</h3>
       <p>Browse currently approved and marketed genetic therapies.</p>
- </a>
+  </a>
 
   <a class="tile" href="assessed_variants.html">
       <i data-lucide="search-check"></i>
       <h3>Assessed Variants</h3>
       <p>View curated assessments of variants and their therapeutic eligibility.</p>
   </a>
-</div>
 
+  <a class="tile" href="automated_assessment_tools.html">
+      <i data-lucide="bot"></i>
+      <h3>Automated Assessment Tools</h3>
+      <p>Explore automated tools that support therapeutic assessment and variant interpretation.</p>
+  </a>
+</div>
 
 
     <div class="search-wrapper">
