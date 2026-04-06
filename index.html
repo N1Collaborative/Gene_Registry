@@ -416,14 +416,14 @@
   background-color: var(--n1c-red-dark);
 }
 
-/* ===== 4 tiles in a neat 2x2 grid ===== */
+/* ===== 4 tiles grid ===== */
 .tiles {
   width: 90%;
-  max-width: 860px;
-  margin: 50px auto 30px;
+  max-width: 760px;   /* keeps grid compact */
+  margin: 40px auto 30px;
   display: grid;
-  grid-template-columns: repeat(2, minmax(260px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 
 .tile {
@@ -431,55 +431,53 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  aspect-ratio: 1 / 1;
-  min-height: 240px;
-  padding: 24px;
+
+  padding: 22px;
+  min-height: 180px;   /* smaller tiles */
+
   text-decoration: none;
   color: white;
   background-color: var(--n1c-blue);
   border: 2px solid var(--n1c-red);
   border-radius: 16px;
+
   text-align: center;
   box-sizing: border-box;
+
   transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
 }
 
 .tile:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.35);
   border-color: white;
 }
 
 .tile h3 {
-  margin: 8px 0 10px;
-  font-size: 20px;
-  letter-spacing: -0.01em;
+  margin: 6px 0 8px;
+  font-size: 19px;
 }
 
 .tile p {
   margin: 0;
   color: rgba(255,255,255,0.82);
-  font-size: 14.5px;
-  line-height: 1.45;
+  font-size: 14px;
+  line-height: 1.4;
   max-width: 220px;
 }
 
 .tile svg {
-  width: 42px;
-  height: 42px;
+  width: 36px;
+  height: 36px;
   margin-bottom: 8px;
   color: var(--n1c-red);
 }
 
+/* mobile */
 @media (max-width: 700px) {
   .tiles {
     grid-template-columns: 1fr;
     max-width: 420px;
-  }
-
-  .tile {
-    aspect-ratio: auto;
-    min-height: 220px;
   }
 }
 
