@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automated Assessment Tools | N1C Gene Registry</title>
+
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="Benchmarking of automated therapeutic assessment tools against an independent manually curated dataset by the N=1 Collaborative.">
+
+  <meta property="og:title" content="Automated Assessment Tools | N1C Gene Registry" />
+  <meta property="og:description" content="Explore standardized benchmarking reports for automated therapeutic assessment tools." />
+  <meta property="og:image" content="https://n1collaborative.github.io/Gene_Registry/N1C_logo.jpg" />
+  <meta property="og:url" content="https://generegistry.n1collaborative.org/automated_assessment_tools.html" />
+  <meta property="og:type" content="website" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TEPVYP2XDJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TEPVYP2XDJ');
+  </script>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --n1c-blue: #042c5c;
+      --n1c-red: #de3b38;
+      --n1c-red-dark: #b9312c;
+      --n1c-white-soft: rgba(255,255,255,0.08);
+      --n1c-white-border: rgba(255,255,255,0.18);
+      --n1c-text-soft: rgba(255,255,255,0.84);
+      --n1c-text-muted: rgba(255,255,255,0.68);
+      --n1c-green: #27ae60;
+      --n1c-orange: #f39c12;
+      --n1c-grey: #95a5a6;
+    }
+
+    body {
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background-color: var(--n1c-blue);
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    .page {
+      width: min(1100px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 24px 0 60px;
+      text-align: center;
+    }
+
+    .floating-logo {
+      position: fixed;
+      top: 10px;
+      left: 20px;
+      z-index: 1000;
+    }
+
+    .floating-main-button {
+      position: fixed;
+      top: 20px;
+      right: 10px;
+      background-color: var(--n1c-red);
+      color: white;
+      padding: 6px 8px;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 12px;
+      width: 60px;
+      text-align: center;
+      line-height: 1.2;
+      z-index: 1000;
+      box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+    }
+
+    .floating-main-button:hover {
+      background-color: var(--n1c-red-dark);
+    }
+
+    h1 {
+      color: white;
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: bold;
+      margin: 28px 0 18px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-icon svg {
+      width: 54px;
+      height: 54px;
+      color: var(--n1c-red);
+      margin-top: 24px;
+    }
+
+    .intro-card {
+      background: var(--n1c-blue);
+      border: 1px solid var(--n1c-white-border);
+      border-radius: 16px;
+      padding: 26px;
+      margin: 24px auto 34px;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.20);
+      text-align: left;
+    }
+
+    .intro-card h2 {
+      color: var(--n1c-red);
+      margin-top: 0;
+      margin-bottom: 12px;
+    }
+
+    .intro-card p {
+      color: var(--n1c-text-soft);
+      line-height: 1.6;
+      font-size: 16px;
+      margin-bottom: 14px;
+    }
+
+    .construction-note {
+      display: inline-block;
+      background: rgba(222, 59, 56, 0.12);
+      border: 1px solid rgba(222, 59, 56, 0.45);
+      color: white;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 26px;
+      margin-top: 10px;
+    }
+
+    .tool-tile {
+      background-color: var(--n1c-blue);
+      border: 2px solid var(--n1c-red);
+      border-radius: 16px;
+      padding: 22px;
+      text-align: left;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.20);
+    }
+
+    .tool-tile:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+      border-color: white;
+    }
+
+    .tool-icon svg {
+      width: 36px;
+      height: 36px;
+      color: var(--n1c-red);
+      margin-bottom: 10px;
+    }
+
+    .tool-tile h3 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      color: white;
+    }
+
+    .tool-tile p {
+      margin: 0 0 16px;
+      color: var(--n1c-text-soft);
+      line-height: 1.5;
+      font-size: 15px;
+    }
+
+    .tile-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .badge-status-complete {
+      background-color: rgba(39, 174, 96, 0.18);
+      color: #bdf3cf;
+      border: 1px solid rgba(39, 174, 96, 0.45);
+    }
+
+    .badge-status-review {
+      background-color: rgba(243, 156, 18, 0.18);
+      color: #ffe1a8;
+      border: 1px solid rgba(243, 156, 18, 0.45);
+    }
+
+    .badge-status-soon {
+      background-color: rgba(149, 165, 166, 0.18);
+      color: #dde4e6;
+      border: 1px solid rgba(149, 165, 166, 0.45);
+    }
+
+    .badge-score {
+      background-color: rgba(255,255,255,0.10);
+      color: white;
+      border: 1px solid var(--n1c-white-border);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 42px;
+      font-size: 0.9em;
+      color: #bbb;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 5000;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.68);
+      padding: 28px 18px;
+      overflow-y: auto;
+    }
+
+    .modal-content {
+      width: min(900px, 100%);
+      margin: 40px auto;
+      background: var(--n1c-blue);
+      border: 1px solid var(--n1c-white-border);
+      border-radius: 18px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+      padding: 28px;
+      text-align: left;
+      position: relative;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .modal h2 {
+      color: white;
+      margin-top: 0;
+      margin-bottom: 10px;
+      padding-right: 32px;
+    }
+
+    .modal p {
+      color: var(--n1c-text-soft);
+      line-height: 1.6;
+      font-size: 15.5px;
+    }
+
+    .report-section {
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid var(--n1c-white-border);
+    }
+
+    .report-section h3 {
+      color: var(--n1c-red);
+      margin-top: 0;
+      margin-bottom: 12px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 14px 0 18px;
+    }
+
+    .summary-box {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--n1c-white-border);
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .summary-box .label {
+      display: block;
+      color: var(--n1c-text-muted);
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .summary-box .value {
+      color: white;
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .report-list {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--n1c-text-soft);
+    }
+
+    .report-list li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .report-note {
+      margin-top: 16px;
+      padding: 14px;
+      background: rgba(255,255,255,0.05);
+      border-left: 4px solid var(--n1c-red);
+      border-radius: 10px;
+      color: var(--n1c-text-soft);
+    }
+
+    @media (max-width: 900px) {
+      .tools-grid,
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <a href="https://www.n1collaborative.org/" target="_blank" class="floating-logo">
+      <img src="N1C_logo.jpg" alt="N1C Logo" style="height: 50px; border-radius: 50%;">
+    </a>
+
+    <a href="https://generegistry.n1collaborative.org/" class="floating-main-button">
+      Main<br>Registry
+    </a>
+
+    <div class="hero-icon">
+      <i data-lucide="bot"></i>
+    </div>
+
+    <h1>Automated Assessment Tools</h1>
+
+    <div class="intro-card">
+      <div class="construction-note">This section is currently under construction.</div>
+
+      <h2>About this section</h2>
+      <p>
+        This section is being developed to independently benchmark automated tools for therapeutic variant assessment against a protected manually curated dataset generated by trained N1C assessors.
+      </p>
+      <p>
+        Companies and developers can submit tools for thorough evaluation, including benchmarking against a dataset of manually assessed variants that is not publicly released and cannot be used for training. For each tool, we will provide a standardized report and publish the results openly through the N1C Gene Registry so that everyone can assess how well the tool performs.
+      </p>
+      <p>
+        Even if a tool is commercial or behind a paywall, the benchmarking results will remain freely accessible. Developers can then improve their tool and resubmit it for reassessment, allowing performance to be tracked transparently over time.
+      </p>
+    </div>
+
+    <div class="tools-grid">
+      <div class="tool-tile" onclick="openModal('tool1Modal')">
+        <div class="tool-icon"><i data-lucide="cpu"></i></div>
+        <h3>VariantMatcher AI</h3>
+        <p>Automated prioritization tool for therapeutic eligibility assessment of rare genetic variants.</p>
+        <div class="tile-meta">
+          <span class="badge badge-status-complete">Benchmark completed</span>
+          <span class="badge badge-score">84% agreement</span>
+        </div>
+      </div>
+
+      <div class="tool-tile" onclick="openModal('tool2Modal')">
+        <div class="tool-icon"><i data-lucide="workflow"></i></div>
+        <h3>TheraMap</h3>
+        <p>Decision-support tool for comparing possible interventional genomic approaches across variants.</p>
+        <div class="tile-meta">
+          <span class="badge badge-status-review">Under review</span>
+          <span class="badge badge-score">Report pending</span>
+        </div>
+      </div>
+
+      <div class="tool-tile" onclick="openModal('tool3Modal')">
+        <div class="tool-icon"><i data-lucide="sparkles"></i></div>
+        <h3>GeneRoute</h3>
+        <p>Automated framework for variant interpretation and route-to-therapy prioritization.</p>
+        <div class="tile-meta">
+          <span class="badge badge-status-complete">Benchmark completed</span>
+          <span class="badge badge-score">167/200 correct</span>
+        </div>
+      </div>
+
+      <div class="tool-tile" onclick="openModal('tool4Modal')">
+        <div class="tool-icon"><i data-lucide="flask-conical"></i></div>
+        <h3>InterventAI</h3>
+        <p>Tool under early evaluation for therapeutic assessment and intervention matching.</p>
+        <div class="tile-meta">
+          <span class="badge badge-status-soon">Coming soon</span>
+          <span class="badge badge-score">No report yet</span>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>© N=1 Collaborative</p>
+    </footer>
+  </div>
+
+  <!-- Modal 1 -->
+  <div id="tool1Modal" class="modal" onclick="closeModalOnOutside(event, 'tool1Modal')">
+    <div class="modal-content">
+      <button class="close-button" onclick="closeModal('tool1Modal')">&times;</button>
+      <h2>VariantMatcher AI</h2>
+      <p>
+        VariantMatcher AI is an automated tool designed to support therapeutic eligibility assessment for rare genetic variants by predicting suitable interventional genomic approaches based on variant and gene characteristics.
+      </p>
+
+      <div class="report-section">
+        <h3>Standardized benchmarking report</h3>
+
+        <div class="summary-grid">
+          <div class="summary-box">
+            <span class="label">Version tested</span>
+            <span class="value">v1.4</span>
+          </div>
+          <div class="summary-box">
+            <span class="label">Date assessed</span>
+            <span class="value">April 2026</span>
+          </div>
+          <div class="summary-box">
+            <span class="label">Benchmark dataset</span>
+            <span class="value">200 protected variants</span>
+          </div>
+          <div class="summary-box">
+            <span class="label">Overall agreement</span>
+            <span class="value">84%</span>
+          </div>
+        </div>
+
+        <ul class="report-list">
+          <li>Strong performance on variants with clear therapeutic modality matches.</li>
+          <li>Reduced performance on edge cases requiring nuanced manual interpretation.</li>
+          <li>Good consistency across well-characterized genes.</li>
+          <li>Occasional overcalling of eligibility in more ambiguous scenarios.</li>
+        </ul>
+
+        <div class="report-note">
+          Benchmarking was performed against an independent manually assessed dataset curated by trained N1C assessors. The underlying benchmarking dataset is not publicly released and cannot be used for model training.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2 -->
+  <div id="tool2Modal" class="modal" onclick="closeModalOnOutside(event, 'tool2Modal')">
+    <div class="modal-content">
+      <button class="close-button" onclick="closeModal('tool2Modal')">&times;</button>
+      <h2>TheraMap</h2>
+      <p>
+        TheraMap is a decision-support tool intended to compare possible therapeutic routes for rare disease variants and help prioritize candidate intervention strategies.
+      </p>
+
+      <div class="report-section">
+        <h3>Standardized benchmarking report</h3>
+
+        <div class="summary-grid">
+          <div class="summary-box">
+            <span class="label">Version tested</span>
+            <span class="value">v0.9 beta</span>
+          </div>
+          <div class="summary-box">
+            <span class="label">Assessment status</span>
+            <span class="value">Under review</span>
+          </div>
+          <div class="summary-box">
+            <span class="label">Benchmark dataset</span>
+            <span class="value">Protected internal dataset</span>
+          </div>
+          <div class="summary-box">
+            <span class="label">Public report</span>
+            <span class="value">Pending</span>
+          </div>
+        </div>
+
+        <ul class="report-list">
+          <li>Initial benchmarking is ongoing.</li>
+          <li>Final report will summarize overall agreement, common strengths, and observed limitations.</li>
+          <li>Results will be published openly through the N1C Gene Registry once review is complete.</li>
+        </ul>
+
+        <div class="report-note">
+          Developers may improve the tool and resubmit for reassessment. Updated results will be reported transparently.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3 -->
+  <div id="tool3Modal" class="modal" onclick="closeModalOnOutside(event, 'tool3Modal')">
+    <div class="modal-content">
+      <button class="close-button" onclick="closeModal('tool3Modal')">&times;</button>
+      <h2>GeneRoute</h2>
+      <p>
+        GeneRoute is an automated route-to-therapy prioritization tool that integrates variant interpretation with therapeutic pathway assessment.
+      </p>
+
+      <div class="report-section">
+        <h3>Standardized benchmarking report</h3>
+
+        <div class="summary-grid">
+          <div class="summary-box">
+            <span class="label">Version tested</span>
+            <span class="value">v2.1</span>
+          </div>
+          <div class="summary-box">
+            <span class="label">Date assessed</span>
+            <span class="value">April 2026</span>
+          </div>
+          <div class="summary-box">
+            <span class="label">Correct classifications</span>
+            <span class="value">167/200</span>
+          </div>
+          <div class="summary-box">
+            <span class="label">Overall agreement</span>
+            <span class="value">83.5%</span>
+          </div>
+        </div>
+
+        <ul class="report-list">
+          <li>Good overall alignment with manual assessor consensus.</li>
+          <li>Performed particularly well for clearly defined variant classes.</li>
+          <li>More limited performance for variants requiring contextual interpretation beyond variant-level features.</li>
+          <li>Would benefit from refinement in complex eligibility scenarios.</li>
+        </ul>
+
+        <div class="report-note">
+          Benchmarking results are freely accessible, regardless of whether the tool itself is publicly available or commercial.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4 -->
+  <div id="tool4Modal" class="modal" onclick="closeModalOnOutside(event, 'tool4Modal')">
+    <div class="modal-content">
+      <button class="close-button" onclick="closeModal('tool4Modal')">&times;</button>
+      <h2>InterventAI</h2>
+      <p>
+        InterventAI is currently being prepared for benchmarking against the N1C protected assessment dataset.
+      </p>
+
+      <div class="report-section">
+        <h3>Standardized benchmarking report</h3>
+
+        <div class="summary-grid">
+          <div class="summary-box">
+            <span class="label">Version tested</span>
+            <span class="value">Not yet assessed</span>
+          </div>
+          <div class="summary-box">
+            <span class="label">Assessment status</span>
+            <span class="value">Coming soon</span>
+          </div>
+          <div class="summary-box">
+            <span class="label">Benchmark dataset</span>
+            <span class="value">Protected internal dataset</span>
+          </div>
+          <div class="summary-box">
+            <span class="label">Public report</span>
+            <span class="value">Not yet available</span>
+          </div>
+        </div>
+
+        <ul class="report-list">
+          <li>Benchmarking has not yet been completed.</li>
+          <li>A standardized report will be published once assessment is finished.</li>
+          <li>This space serves as a placeholder for future openly accessible results.</li>
+        </ul>
+
+        <div class="report-note">
+          The benchmarking dataset remains inaccessible to tool developers and cannot be used for training or optimization outside the independent assessment process.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    function openModal(id) {
+      document.getElementById(id).style.display = "block";
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+
+    function closeModalOnOutside(event, id) {
+      if (event.target.id === id) {
+        closeModal(id);
+      }
+    }
+
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Escape") {
+        document.querySelectorAll(".modal").forEach(modal => {
+          modal.style.display = "none";
+        });
+        document.body.style.overflow = "auto";
+      }
+    });
+  </script>
+</body>
+</html>
