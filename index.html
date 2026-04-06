@@ -74,7 +74,7 @@
     }
 
     .card{
-      background: var(--n1c-blue);
+      background: white;
       border: 1px solid var(--n1c-white-border);
       border-radius: 16px;
       padding: 18px;
@@ -417,70 +417,64 @@
 }
 
 /* ===== 4 tiles grid ===== */
+/* ===== Registry Tiles ===== */
+
 .tiles {
   width: 90%;
-  max-width: 560px;   /* smaller overall 2x2 block */
-  margin: 30px auto 25px;
+  max-width: 1000px;
+  margin: 40px auto 30px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
+  gap: 28px;
 }
 
 .tile {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  width: 100%;
-  aspect-ratio: 1 / 1;
-
-  padding: 16px;   /* less empty space */
+  display: block;
   text-decoration: none;
   color: white;
   background-color: var(--n1c-blue);
   border: 2px solid var(--n1c-red);
   border-radius: 16px;
+  padding: 32px;
   text-align: center;
-  box-sizing: border-box;
 
-  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  transition: transform 0.15s ease,
+              box-shadow 0.15s ease,
+              border-color 0.15s ease;
 }
 
 .tile:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
   border-color: white;
 }
 
 .tile svg {
-  width: 38px;
-  height: 38px;
-  margin-bottom: 10px;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 14px;
   color: var(--n1c-red);
 }
 
 .tile h3 {
-  margin: 6px 0 8px;
-  font-size: 16px;
-  line-height: 1.2;
+  margin: 0 0 10px;
+  font-size: 22px;
+  letter-spacing: -0.01em;
 }
 
 .tile p {
   margin: 0;
   color: rgba(255,255,255,0.82);
-  font-size: 12.5px;
-  line-height: 1.35;
-  max-width: 180px;
+  font-size: 15px;
+  line-height: 1.5;
 }
 
+/* Mobile fallback */
 @media (max-width: 700px) {
   .tiles {
     grid-template-columns: 1fr;
-    max-width: 280px;
   }
 }
-
         
 </style>
 
@@ -542,7 +536,7 @@
     
     <div class="card" style="text-align:center;">
       <h2 style="color: #D8443D;">Submit Your Project</h2> 
-      <p style="font-size: 16px; color: rgba(255,255,255,0.85);">
+      <p style="font-size: 16px; color: black;">
         Are you developing a therapeutic approach for a specific genetic variant?
         Share your work with the N1C Gene Registry to increase visibility and collaboration.
         Submit your project below or follow this <a href="Submission_Template.xlsx" download style="color: #D8443D; font-weight: bold; text-decoration: underline;">LINK</a> for bulk entry. Please reach out to generegistry@n1collaborative.org for any questions related to the Gene Registry.  
@@ -550,8 +544,17 @@
       <a class="submit-button" href="https://forms.gle/9UBkdLkdGDEeC5cn7" target="_blank">Submit Your Project</a>
     </div>
 
-    <div style="margin-top: 30px;">
-        <a href="info.html" class="submit-button">Info</a>
+    <div style="margin-top: 40px; text-align: center;">
+
+      <a href="info.html" class="submit-button">Info</a>
+    
+      <p style="color: white; font-size: 16px; margin-top: 20px;">
+        Looking to integrate or access our data? Visit the 
+        <a href="api.html" style="color: #D8443D; font-weight: bold;">
+          N1C API documentation
+        </a>.
+      </p>
+    
     </div>
 
     <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="scroll-top">↑ Top</button>
