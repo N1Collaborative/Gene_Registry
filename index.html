@@ -457,11 +457,32 @@
   color: black;
 }
 
-.submit-tile a {
-  color: #de3b38;
-  font-weight: bold;
+.submit-tile-links {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
 }
 
+.submit-tile-button {
+  background-color: #de3b38;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.submit-tile-button:hover {
+  background-color: #b9312c;
+}
+
+.submit-template-link {
+  color: #de3b38;
+  font-weight: bold;
+  text-decoration: underline;
+}
 .tile:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 30px rgba(0,0,0,0.35);
@@ -538,7 +559,7 @@
     <a class="tile" href="published_genetic_therapies.html">
         <i data-lucide="book-open"></i>
         <h3>Published Genetic Therapies</h3>
-        <p>Genetic therapies reported in the scientific literature.</p>
+        <p>Browse genetic therapies reported in the scientific literature.</p>
     </a>
 
   <a class="tile" href="automated_assessment_tools.html">
@@ -547,16 +568,22 @@
       <p>Explore tools that automate the eligibility assessments.</p>
   </a>
 
- <a class="tile submit-tile" href="https://forms.gle/9UBkdLkdGDEeC5cn7" target="_blank">
-    <i data-lucide="folder-plus"></i>
-    <h3>Submit Your Project</h3>
-    <p>
-        Share your project with the N1C Gene Registry to increase visibility and collaboration.
-        <br><br>
-        For bulk entry download the
-        <a href="Submission_Template.xlsx" download onclick="event.stopPropagation()">submission template</a>.
-    </p>
-</a>
+    <div class="tile submit-tile">
+        <i data-lucide="folder-plus"></i>
+        <h3>Submit Your Project</h3>
+        <p>
+            Share your project with the N1C Gene Registry to increase visibility and collaboration.
+        </p>
+    
+        <div class="submit-tile-links">
+            <a class="submit-tile-button" href="https://forms.gle/9UBkdLkdGDEeC5cn7" target="_blank">
+                Submit project
+            </a>
+            <a class="submit-template-link" href="Submission_Template.xlsx" download>
+                Bulk entry template
+            </a>
+        </div>
+    </div>
 </div>
 
 
