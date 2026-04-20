@@ -470,17 +470,22 @@
   text-decoration: none;
 }
 
+.submit-tile-links{
+  margin-top:20px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:12px;
+}
+
+        
 .submit-template-link {
   color: var(--n1c-red);
   font-weight: bold;
   text-decoration: underline;
 }
 
-.submit-template-link {
-  color: var(--n1c-red);
-  font-weight: bold;
-  text-decoration: underline;
-}
+
 
         
 .tile:hover {
@@ -553,6 +558,7 @@
 
     
 <div class="tiles">
+
   <a class="tile" href="N1C_projects.html">
       <i data-lucide="dna"></i>
       <h3>N-of-1 Projects</h3>
@@ -571,11 +577,35 @@
       <p>View curated assessments of variants and their therapeutic eligibility.</p>
   </a>
 
-    <a class="tile" href="published_genetic_therapies.html">
-        <i data-lucide="book-open"></i>
-        <h3>Published Genetic Therapies</h3>
-        <p>Browse genetic therapies reported in the scientific literature.</p>
-    </a>
+  <a class="tile" href="published_genetic_therapies.html">
+      <i data-lucide="book-open"></i>
+      <h3>Published Genetic Therapies</h3>
+      <p>Genetic therapies reported in the scientific literature.</p>
+  </a>
+
+  <!-- CENTER TILE -->
+  <div class="tile submit-tile">
+
+      <i data-lucide="folder-plus"></i>
+      <h3>Submit Your Project</h3>
+
+      <div class="submit-tile-links">
+
+          <a class="submit-tile-button"
+             href="https://forms.gle/9UBkdLkdGDEeC5cn7"
+             target="_blank">
+             Submit project
+          </a>
+
+          <a class="submit-template-link"
+             href="Submission_Template.xlsx"
+             download>
+             Bulk entry template
+          </a>
+
+      </div>
+
+  </div>
 
   <a class="tile" href="automated_assessment_tools.html">
       <i data-lucide="bot"></i>
@@ -583,24 +613,7 @@
       <p>Explore tools that automate the eligibility assessments.</p>
   </a>
 
-    <div class="tile submit-tile">
-        <i data-lucide="folder-plus"></i>
-        <h3>Submit Your Project</h3>
-        <p>
-            Share your project with the N1C Gene Registry to increase visibility and collaboration.
-        </p>
-    
-        <div class="submit-tile-links">
-            <a class="submit-tile-button" href="https://forms.gle/9UBkdLkdGDEeC5cn7" target="_blank">
-                Submit project
-            </a>
-            <a class="submit-template-link" href="Submission_Template.xlsx" download>
-                Bulk entry template
-            </a>
-        </div>
-    </div>
 </div>
-
 
     <div class="search-wrapper">
       <input type="text" id="search" placeholder="Search all registries..." />
