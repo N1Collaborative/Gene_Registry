@@ -443,6 +443,25 @@
               border-color 0.15s ease;
 }
 
+.submit-tile {
+  background-color: white;
+  color: #042c5c;
+  border: 2px solid #de3b38;
+}
+
+.submit-tile h3 {
+  color: #de3b38;
+}
+
+.submit-tile p {
+  color: #333;
+}
+
+.submit-tile:hover {
+  background-color: #fde4e2;
+  transform: translateY(-4px);
+}
+
 .tile:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 30px rgba(0,0,0,0.35);
@@ -516,17 +535,23 @@
       <p>View curated assessments of variants and their therapeutic eligibility.</p>
   </a>
 
+    <a class="tile" href="published_genetic_therapies.html">
+        <i data-lucide="book-open"></i>
+        <h3>Published Genetic Therapies</h3>
+        <p>Genetic therapies reported in the scientific literature.</p>
+    </a>
+
   <a class="tile" href="automated_assessment_tools.html">
       <i data-lucide="bot"></i>
       <h3>Automated Assessment Tools</h3>
       <p>Explore tools that automate the eligibility assessments.</p>
   </a>
 
-    <a class="tile" href="published_genetic_therapies.html">
-        <i data-lucide="book-open"></i>
-        <h3>Published Genetic Therapies</h3>
-        <p>Genetic therapies reported in the scientific literature.</p>
-    </a>
+ <a class="tile submit-tile" href="https://forms.gle/9UBkdLkdGDEeC5cn7" target="_blank">
+    <i data-lucide="folder-plus"></i>
+    <h3>Submit Your Project</h3>
+    <p>Share a therapeutic project with the N1C Gene Registry to increase visibility and collaboration.</p>
+ </a>
 </div>
 
 
