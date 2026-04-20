@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N1C Gene Registry</title>
+
+    <meta name="description" content="Published Genetic Therapies in the N1C Gene Registry: genetic therapies reported in the scientific literature." />
+
+    <meta property="og:title" content="N1C Gene Registry" />
+    <meta property="og:description" content="Explore published genetic therapies reported in the scientific literature." />
+    <meta property="og:image" content="https://n1collaborative.github.io/Gene_Registry/N1C_logo.jpg" />
+    <meta property="og:url" content="https://generegistry.n1collaborative.org/" />
+    <meta property="og:type" content="website" />
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #042c5c;
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    margin: 5px 0 10px 0;
+    line-height: 1.2;
+    margin-top: 80px;
+  }
+
+  .search-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+  }
+
+  .search-wrapper input[type="text"] {
+    height: 42px;
+    padding: 0 12px;
+    font-size: 16px;
+    border: none;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    outline: none;
+    box-sizing: border-box;
+    width: 320px;
+  }
+
+  .search-button {
+    height: 42px;
+    padding: 0 16px;
+    font-size: 16px;
+    background-color: #de3b38;
+    color: white;
+    border: none;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    font-weight: bold;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+
+  table, th, td {
+    font-size: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 6px 8px;
+    word-wrap: break-word;
+    white-space: normal;
+  }
+
+  table {
+    background-color: white;
+    color: black;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th {
+    background-color: #de3b38;
+    color: white;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  th.sortable:hover {
+    background-color: #b9312c;
+  }
+
+  td {
+    background-color: white;
+    color: black;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  button,
+  .submit-button {
+    background-color: #de3b38;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  button:hover,
+  .submit-button:hover {
+    background-color: #b9312c;
+  }
+
+  .scroll-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #de3b38;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+  }
+
+  .scroll-top:hover {
+    background-color: #b9312c;
+  }
+
+  footer {
+    margin-top: 40px;
+    text-align: center;
+    color: white;
+    font-size: 0.9em;
+  }
+
+  .floating-logo {
+    position: fixed;
+    top: 10px;
+    left: 20px;
+    z-index: 1000;
+  }
+
+  .floating-main-button {
+    position: fixed;
+    top: 20px;
+    right: 10px;
+    background-color: #de3b38;
+    color: white;
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 12px;
+    width: 60px;
+    text-align: center;
+    line-height: 1.2;
+    z-index: 1000;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+  }
+
+  .floating-main-button:hover {
+    background-color: #b9312c;
+  }
+
+  p a {
+    color: #de3b38;
+    font-weight: bold;
+  }
+
+  th:nth-child(1), td:nth-child(1) { width: 120px; }
+  th:nth-child(2), td:nth-child(2) { width: 180px; }
+  th:nth-child(3), td:nth-child(3) { width: 140px; }
+  th:nth-child(4), td:nth-child(4) { width: 420px; }
+  th:nth-child(5), td:nth-child(5) { width: 120px; }
+
+  #loading {
+    margin-top: 20px;
+    font-size: 16px;
+  }
+
+  @media (max-width: 900px) {
+    table, th, td {
+      font-size: 11px;
+    }
+
+    h1 {
+      font-size: 30px;
+    }
+
+    .search-wrapper {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .search-wrapper input[type="text"] {
+      width: 90%;
+      border-radius: 4px;
+    }
+
+    .search-button {
+      border-radius: 4px;
+    }
+  }
+</style>
+
+<script>
+  let tableData = [];
+  let currentSort = { column: null, ascending: true };
+
+  async function loadTable(retry = false) {
+    try {
+      document.getElementById("loading").style.display = "block";
+
+      const response = await fetch("published_genetic_therapies.csv");
+      if (!response.ok) throw new Error("Network response was not ok");
+
+      const csvText = await response.text();
+      tableData = parseCSV(csvText);
+      displayTable(tableData);
+      sortTable("Gene");
+
+    } catch (error) {
+      console.error("Error loading data:", error);
+
+      if (!retry) {
+        console.log("Retrying in 3 seconds...");
+        setTimeout(() => loadTable(true), 3000);
+        return;
+      }
+
+      document.getElementById("data-table").innerHTML = "<p>Error loading data.</p>";
+    } finally {
+      document.getElementById("loading").style.display = "none";
+    }
+  }
+
+  function parseCSV(text) {
+    const rows = text.trim().split("\n").map(row => row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/));
+    const headers = rows[0].map(h => h.replace(/^"|"$/g, "").trim());
+
+    return rows.slice(1).map(row => {
+      const obj = {};
+      headers.forEach((header, index) => {
+        obj[header] = (row[index] || "").replace(/^"|"$/g, "").trim();
+      });
+      return obj;
+    });
+  }
+
+  function displayTable(data) {
+    const table = document.getElementById("data-table");
+    table.innerHTML = "";
+
+    if (data.length === 0) {
+      table.innerHTML = "<p>No data found.</p>";
+      return;
+    }
+
+    const headers = [
+      { key: "gene_name", label: "Gene" },
+      { key: "variant_annotation", label: "Variant" },
+      { key: "intervention_type", label: "Intervention type" },
+      { key: "title", label: "Title" },
+      { key: "link", label: "Link" }
+    ];
+
+    let headerRow = "<tr>";
+    headers.forEach(header => {
+      headerRow += `<th class="sortable" onclick="sortTable('${header.label}')">${header.label} <span id="arrow-${header.label.replace(/\s/g, '')}"></span></th>`;
+    });
+    headerRow += "</tr>";
+
+    let bodyRows = data.map(item => {
+      return `
+        <tr>
+          <td>${item["gene_name"] || "N/A"}</td>
+          <td>${item["variant_annotation"] || "N/A"}</td>
+          <td>${item["intervention_type"] || "N/A"}</td>
+          <td>${item["title"] || "N/A"}</td>
+          <td>${
+            item["link"]
+              ? `<a href="${item["link"]}" target="_blank" rel="noopener noreferrer">Open paper</a>`
+              : "N/A"
+          }</td>
+        </tr>
+      `;
+    }).join("");
+
+    table.innerHTML = headerRow + bodyRows;
+  }
+
+  function sortTable(columnLabel) {
+    const labelToKey = {
+      "Gene": "gene_name",
+      "Variant": "variant_annotation",
+      "Intervention type": "intervention_type",
+      "Title": "title",
+      "Link": "link"
+    };
+
+    const column = labelToKey[columnLabel];
+
+    if (currentSort.column === column) {
+      currentSort.ascending = !currentSort.ascending;
+    } else {
+      currentSort.column = column;
+      currentSort.ascending = true;
+    }
+
+    tableData.sort((a, b) => {
+      const valA = (a[column] || "").toLowerCase();
+      const valB = (b[column] || "").toLowerCase();
+      if (valA < valB) return currentSort.ascending ? -1 : 1;
+      if (valA > valB) return currentSort.ascending ? 1 : -1;
+      return 0;
+    });
+
+    displayTable(tableData);
+
+    document.querySelectorAll("th span").forEach(span => span.textContent = "");
+    const arrow = document.getElementById("arrow-" + columnLabel.replace(/\s/g, ""));
+    if (arrow) arrow.textContent = currentSort.ascending ? "▲" : "▼";
+  }
+
+  function searchTable() {
+    const query = document.getElementById("search").value.toLowerCase().trim();
+
+    const filtered = tableData.filter(item =>
+      (item["gene_name"] || "").toLowerCase().includes(query) ||
+      (item["variant_annotation"] || "").toLowerCase().includes(query) ||
+      (item["intervention_type"] || "").toLowerCase().includes(query) ||
+      (item["title"] || "").toLowerCase().includes(query)
+    );
+
+    displayTable(filtered);
+  }
+</script>
+</head>
+
+<body onload="loadTable()">
+  <a href="https://www.n1collaborative.org/" target="_blank" class="floating-logo">
+    <img src="N1C_logo.jpg" alt="N1C Logo" style="height: 50px; border-radius: 50%;">
+  </a>
+
+  <a href="https://generegistry.n1collaborative.org/" class="floating-main-button">
+    Main<br>Registry
+  </a>
+
+  <h1>
+    N1C Gene Registry<br>Published Genetic Therapies
+  </h1>
+
+  <div style="max-width: 800px; margin: 40px auto 20px; padding: 20px; background-color: white; border-radius: 8px; text-align: center;">
+    <h2 style="color: #D8443D;">Information missing?</h2>
+    <p style="font-size: 16px; color: #333;">
+      Are we missing a publication or relevant information?
+      Please reach out to generegistry@n1collaborative.org.
+    </p>
+  </div>
+
+  <div class="search-wrapper">
+    <input type="text" id="search" placeholder="Search..." />
+    <button class="search-button" onclick="searchTable()">Search</button>
+  </div>
+
+  <p id="loading">Loading table...</p>
+
+  <div>
+    <table id="data-table"></table>
+  </div>
+
+  <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="scroll-top">↑ Top</button>
+
+  <p style="color: white; font-size: 16px;">
+    Looking to integrate or access our data? Visit the
+    <a href="api.html" style="color: #D8443D; font-weight: bold;">N1C API documentation</a>.
+  </p>
+
+  <footer style="text-align: center; margin-top: 40px; font-size: 0.9em; color: #777;">
+    <p>© N=1 Collaborative</p>
+    <p id="last-updated">Last updated: ...</p>
+  </footer>
+
+  <script>
+    const now = new Date();
+    document.getElementById("last-updated").textContent = "Last updated: " + now.toLocaleString();
+  </script>
+</body>
+</html>
