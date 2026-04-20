@@ -421,10 +421,10 @@
 
 .tiles {
   width: 90%;
-  max-width: 1100px;
+  max-width: 1400px;
   margin: 40px auto 30px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 28px;
 }
 
@@ -437,64 +437,11 @@
   border-radius: 16px;
   padding: 32px;
   text-align: center;
-
   transition: transform 0.15s ease,
               box-shadow 0.15s ease,
               border-color 0.15s ease;
 }
 
-.submit-tile {
-  background-color: white;
-  border: 2px solid var(--n1c-red);
-  color: black;
-}
-
-.submit-tile h3 {
-  color: var(--n1c-red);
-}
-
-.submit-tile p,
-.submit-desc {
-  color: black;
-}
-
-.submit-tile svg {
-  color: var(--n1c-red);
-}
-
-.submit-tile-button {
-  background-color: var(--n1c-red);
-  color: white;
-  padding: 10px 18px;
-  border-radius: 6px;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.submit-tile-links{
-  margin-top:20px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:12px;
-}
-
-        
-.submit-template-link {
-  color: var(--n1c-red);
-  font-weight: bold;
-  text-decoration: underline;
-}
-
-.submit-desc{
-  color:black;
-  margin-top:10px;
-  margin-bottom:8px;
-  font-size:15px;
-  line-height:1.4;
-}
-
-        
 .tile:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 30px rgba(0,0,0,0.35);
@@ -521,17 +468,52 @@
   line-height: 1.5;
 }
 
-/* Mobile fallback */
-.tiles {
-  width: 90%;
-  max-width: 1400px;
-  margin: 40px auto 30px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+/* submit tile overrides */
+.submit-tile {
+  background-color: white;
+  color: black;
 }
 
-        @media (max-width: 900px) {
+.submit-tile h3 {
+  color: var(--n1c-red);
+}
+
+.submit-tile p {
+  color: black;
+}
+
+.submit-desc {
+  color: black;
+  margin-top: 10px;
+  margin-bottom: 8px;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.submit-tile-links {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.submit-tile-button {
+  background-color: var(--n1c-red);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.submit-template-link {
+  color: var(--n1c-red);
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
   .tiles {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -592,7 +574,6 @@
 
   <!-- CENTER TILE -->
     <div class="tile submit-tile">
-    
       <h3>Submit Your Project</h3>
     
       <p class="submit-desc">
@@ -600,21 +581,18 @@
       </p>
     
       <div class="submit-tile-links">
+        <a class="submit-tile-button"
+           href="https://forms.gle/9UBkdLkdGDEeC5cn7"
+           target="_blank">
+           Submit project
+        </a>
     
-          <a class="submit-tile-button"
-             href="https://forms.gle/9UBkdLkdGDEeC5cn7"
-             target="_blank">
-             Submit project
-          </a>
-    
-          <a class="submit-template-link"
-             href="Submission_Template.xlsx"
-             download>
-             Bulk entry template
-          </a>
-    
+        <a class="submit-template-link"
+           href="Submission_Template.xlsx"
+           download>
+           Bulk entry template
+        </a>
       </div>
-    
     </div>
 
   <a class="tile" href="automated_assessment_tools.html">
