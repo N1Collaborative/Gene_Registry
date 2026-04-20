@@ -445,8 +445,8 @@
 
 .submit-tile {
   background-color: white;
-  color: #042c5c;
   border: 2px solid #de3b38;
+  color: black;
 }
 
 .submit-tile h3 {
@@ -454,12 +454,12 @@
 }
 
 .submit-tile p {
-  color: #333;
+  color: black;
 }
 
-.submit-tile:hover {
-  background-color: #fde4e2;
-  transform: translateY(-4px);
+.submit-tile a {
+  color: #de3b38;
+  font-weight: bold;
 }
 
 .tile:hover {
@@ -550,8 +550,13 @@
  <a class="tile submit-tile" href="https://forms.gle/9UBkdLkdGDEeC5cn7" target="_blank">
     <i data-lucide="folder-plus"></i>
     <h3>Submit Your Project</h3>
-    <p>Share a therapeutic project with the N1C Gene Registry to increase visibility and collaboration.</p>
- </a>
+    <p>
+        Share your project with the N1C Gene Registry to increase visibility and collaboration.
+        <br><br>
+        For bulk entry download the
+        <a href="Submission_Template.xlsx" download onclick="event.stopPropagation()">submission template</a>.
+    </p>
+</a>
 </div>
 
 
@@ -562,18 +567,6 @@
 
     <!-- Make sure this line is present -->
     <div id="search-results"></div>
-
-  
-    
-    <div class="card" style="text-align:center;">
-      <h2 style="color: #D8443D;">Submit Your Project</h2> 
-      <p style="font-size: 16px; color: black;">
-        Are you developing a therapeutic approach for a specific genetic variant?
-        Share your work with the N1C Gene Registry to increase visibility and collaboration.
-        Submit your project below or follow this <a href="Submission_Template.xlsx" download style="color: #D8443D; font-weight: bold; text-decoration: underline;">LINK</a> for bulk entry. Please reach out to generegistry@n1collaborative.org for any questions related to the Gene Registry.  
-      </p>
-      <a class="submit-button" href="https://forms.gle/9UBkdLkdGDEeC5cn7" target="_blank">Submit Your Project</a>
-    </div>
 
     <div style="margin-top: 40px; text-align: center;">
 
