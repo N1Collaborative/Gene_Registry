@@ -454,19 +454,11 @@
 }
 
 .submit-tile p {
-  color: #333;
+  color: black;
 }
 
 .submit-tile svg {
   color: var(--n1c-red);
-}
-
-.submit-tile-links {
-  margin-top: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
 }
 
 .submit-tile-button {
@@ -476,6 +468,12 @@
   border-radius: 6px;
   font-weight: bold;
   text-decoration: none;
+}
+
+.submit-template-link {
+  color: var(--n1c-red);
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 .submit-template-link {
@@ -512,6 +510,21 @@
 }
 
 /* Mobile fallback */
+.tiles {
+  width: 90%;
+  max-width: 1400px;
+  margin: 40px auto 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+        @media (max-width: 900px) {
+  .tiles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 700px) {
   .tiles {
     grid-template-columns: 1fr;
