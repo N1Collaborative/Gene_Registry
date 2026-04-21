@@ -471,7 +471,14 @@
 /* submit tile overrides */
 .submit-tile {
   background-color: white;
+  border: 2px solid var(--n1c-red);
   color: black;
+
+  grid-column: 1 / -1;   /* makes the tile span the whole row */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .submit-tile h3 {
