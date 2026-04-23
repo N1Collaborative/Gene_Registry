@@ -324,24 +324,30 @@
             console.log("Headers being used:", headers);
 
             const grouped = {};
-            data.forEach((item) => {
-                const disease = item["Disease"] || "";
-                const letter = disease.charAt(0).toUpperCase();
-                if (!grouped[letter]) {
-                    grouped[letter] = [];
-                }
-                grouped[letter].push(item);
+        data.forEach((item) => {
+            const gene = item["Gene"] || "";
+            const letter = gene.charAt(0).toUpperCase();
+            if (!grouped[letter]) {
+                grouped[letter] = [];
+            }
+            grouped[letter].push(item);
+        });
+        
+        console.log("Grouped by gene letter:", grouped);
+        
+        for (const letter of Object.keys(grouped).sort()) {
+        
+            grouped[letter].sort((a, b) => {
+                const geneA = a["Gene"] || "";
+                const geneB = b["Gene"] || "";
+        
+                const geneComparison = geneA.localeCompare(geneB);
+                if (geneComparison !== 0) return geneComparison;
+        
+                const diseaseA = a["Disease"] || "";
+                const diseaseB = b["Disease"] || "";
+                return diseaseA.localeCompare(diseaseB);
             });
-
-            console.log("Grouped by disease letter:", grouped);
-
-            for (const letter of Object.keys(grouped).sort()) {
-
-                grouped[letter].sort((a, b) => {
-                    const diseaseA = a["Disease"] || "";
-                    const diseaseB = b["Disease"] || "";
-                    return diseaseA.localeCompare(diseaseB);
-                });
 
                 const section = document.createElement("details");
                 section.style.marginBottom = "20px";
