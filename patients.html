@@ -5,11 +5,207 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>For Patients | N1C Gene Registry</title>
 
+  <meta name="robots" content="index, follow" />
   <meta name="description" content="Information for patients and families using the N1C Gene Registry." />
-  <meta name="robots" content="index, follow">
 
-  <link rel="stylesheet" href="style.css" />
+  <meta property="og:title" content="For Patients | N1C Gene Registry" />
+  <meta property="og:description" content="Information for patients and families using the N1C Gene Registry." />
+  <meta property="og:image" content="https://n1collaborative.github.io/Gene_Registry/N1C_logo.jpg" />
+  <meta property="og:url" content="https://generegistry.n1collaborative.org/patients.html" />
+  <meta property="og:type" content="website" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "For Patients",
+    "description": "Information for patients and families using the N1C Gene Registry."
+  }
+  </script>
+
   <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --n1c-blue: #042c5c;
+      --n1c-red: #de3b38;
+      --n1c-red-dark: #b9312c;
+      --n1c-white-soft: rgba(255,255,255,0.08);
+      --n1c-white-border: rgba(255,255,255,0.18);
+    }
+
+    body {
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background-color: var(--n1c-blue);
+      color: white;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+    }
+
+    .page {
+      width: min(1100px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 18px 0 60px;
+    }
+
+    h1 {
+      text-align: center;
+      color: white;
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: bold;
+      margin: 20px 0;
+      letter-spacing: -0.02em;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--n1c-white-border);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 20px auto;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.20);
+      color: #042c5c;
+      max-width: 900px;
+    }
+
+    .card h2 {
+      color: var(--n1c-red);
+      margin-top: 0;
+    }
+
+    .card p {
+      line-height: 1.65;
+      font-size: 16px;
+    }
+
+    a {
+      color: var(--n1c-red);
+      font-weight: 700;
+    }
+
+    .registry-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(4, 44, 92, 0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .registry-header-inner {
+      width: min(1400px, calc(100% - 40px));
+      margin: 0 auto;
+      min-height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .registry-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .registry-brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      flex: 0 0 auto;
+    }
+
+    .menu-button {
+      background: var(--n1c-red);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .menu-button:hover {
+      background: var(--n1c-red-dark);
+      transform: translateY(-1px);
+    }
+
+    .registry-menu {
+      display: none;
+      background: rgba(4, 44, 92, 0.98);
+      border-top: 1px solid rgba(255,255,255,0.12);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .registry-menu.open {
+      display: block;
+    }
+
+    .registry-menu-inner {
+      width: min(1400px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 18px 0 22px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 18px;
+    }
+
+    .registry-menu-inner a {
+      color: rgba(255,255,255,0.94);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 10px 12px;
+      border-radius: 8px;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .registry-menu-inner a:hover,
+    .registry-menu-inner a.active {
+      background: rgba(255,255,255,0.08);
+      color: white;
+    }
+
+    .registry-menu-inner a.patient-link {
+      background: rgba(222, 59, 56, 0.18);
+      border: 1px solid rgba(222, 59, 56, 0.5);
+      color: white;
+    }
+
+    .registry-menu-inner a.patient-link:hover,
+    .registry-menu-inner a.patient-link.active {
+      background: rgba(222, 59, 56, 0.28);
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 28px;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.9em;
+    }
+
+    @media (max-width: 720px) {
+      .registry-header-inner {
+        flex-direction: row;
+      }
+
+      .registry-menu-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .registry-brand span {
+        font-size: 1.05rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -42,15 +238,19 @@
 
     <h1>For Patients</h1>
 
-    <div class="card" style="max-width: 900px; margin: 30px auto; background: white; color: #042c5c;">
-      <h2 style="color: #de3b38; margin-top: 0;">Patient inquiries</h2>
-      <p style="font-size: 16px; line-height: 1.6;">
+    <div class="card">
+      <h2>Patient inquiries</h2>
+      <p>
         Patient inquiries should please be directed to
         <a href="mailto:info@n1collaborative.org">info@n1collaborative.org</a>.
       </p>
-      <p style="font-size: 16px; line-height: 1.6; margin-bottom: 0;">
-        This page will be developed further to provide information for patients and families interested in the registry.
+      <p>
+        This page will be expanded over time with information that may be helpful for patients and families interested in the N1C Gene Registry.
       </p>
+    </div>
+
+    <div class="footer-note">
+      <p>© N=1 Collaborative</p>
     </div>
   </div>
 
