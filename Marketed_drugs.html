@@ -324,6 +324,114 @@ th.sortable:hover {
   background-color: #b9312c; /* darker on hover */
 }
 
+    /* NEW SHARED REGISTRY HEADER */
+.registry-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(4, 44, 92, 0.97);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.registry-header-inner {
+  width: min(1400px, calc(100% - 40px));
+  margin: 0 auto;
+  min-height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.registry-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.registry-brand-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+.menu-button {
+  background: #de3b38;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.menu-button:hover {
+  background: #b9312c;
+}
+
+.registry-menu {
+  display: none;
+  background: rgba(4, 44, 92, 0.98);
+  border-top: 1px solid rgba(255,255,255,0.12);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.registry-menu.open {
+  display: block;
+}
+
+.registry-menu-inner {
+  width: min(1400px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 18px 0 22px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 18px;
+}
+
+.registry-menu-inner a {
+  color: rgba(255,255,255,0.94);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 10px 12px;
+  border-radius: 8px;
+}
+
+.registry-menu-inner a:hover,
+.registry-menu-inner a.active {
+  background: rgba(255,255,255,0.08);
+  color: white;
+}
+
+.registry-menu-inner a.patient-link {
+  background: rgba(222, 59, 56, 0.18);
+  border: 1px solid rgba(222, 59, 56, 0.5);
+}
+
+.registry-menu-inner a.patient-link:hover {
+  background: rgba(222, 59, 56, 0.28);
+}
+
+/* HIDE OLD HEADER PIECES WITHOUT DELETING THEM YET */
+.top-right-button,
+.main-header,
+.back-to-main,
+.floating-logo,
+.floating-main-button,
+.registry-buttons,
+.registry-button,
+.logo {
+  display: none !important;
+}
     
 </style>
 
@@ -514,6 +622,21 @@ function sortTable(column) {
         const now = new Date();
         document.getElementById("last-updated").textContent = "Last updated: " + now.toLocaleString();
     </script>
+
+    <script>
+const menuButton = document.getElementById("menuButton");
+const registryMenu = document.getElementById("registryMenu");
+
+menuButton.addEventListener("click", function () {
+  registryMenu.classList.toggle("open");
+});
+
+document.addEventListener("click", function (e) {
+  if (!registryMenu.contains(e.target) && e.target !== menuButton) {
+    registryMenu.classList.remove("open");
+  }
+});
+</script>
     
 </body>
 </html>
