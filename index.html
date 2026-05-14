@@ -531,6 +531,78 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+.registry-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(4, 44, 92, 0.96);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.registry-header-inner {
+  width: min(1400px, calc(100% - 32px));
+  margin: 0 auto;
+  min-height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.registry-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.registry-brand-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+.registry-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px 16px;
+}
+
+.registry-nav a {
+  color: rgba(255,255,255,0.9);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 6px 0;
+  border-bottom: 2px solid transparent;
+}
+
+.registry-nav a:hover,
+.registry-nav a.active {
+  color: white;
+  border-bottom-color: var(--n1c-red);
+}
+
+@media (max-width: 1100px) {
+  .registry-header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 14px 0;
+  }
+
+  .registry-nav {
+    justify-content: flex-start;
+  }
+}
         
 </style>
 
@@ -541,14 +613,26 @@
 </head>
     
 <body>
- <div class="page">
-    <a href="https://www.n1collaborative.org/" target="_blank" class="floating-logo">
-      <img src="N1C_logo.jpg" alt="N1C Logo" style="height: 50px; border-radius: 50%;">
+<div class="page">
+<header class="registry-header">
+  <div class="registry-header-inner">
+    <a href="index.html" class="registry-brand">
+      <img src="N1C_logo.jpg" alt="N1C Logo" class="registry-brand-logo">
+      <span>N1C Gene Registry</span>
     </a>
-    
-    <a href="https://generegistry.n1collaborative.org/" class="floating-main-button">
-      Main<br>Registry
-    </a>
+
+    <nav class="registry-nav">
+      <a href="N1C_projects.html">N-of-1 Projects</a>
+      <a href="Marketed_drugs.html">Marketed Genetic Therapies</a>
+      <a href="assessed_variants.html">Assessed Variants</a>
+      <a href="published_genetic_therapies.html">Published Genetic Therapies</a>
+      <a href="assessed_genes_diseases.html">Assessed Genes &amp; Diseases</a>
+      <a href="automated_assessment_tools.html">Automated Assessment Tools</a>
+      <a href="patients.html">For Patients</a>
+      <a href="info.html">Info</a>
+    </nav>
+  </div>
+</header>
     
     <h1>N1C Gene Registry</h1>
 
