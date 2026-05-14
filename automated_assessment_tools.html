@@ -339,13 +339,31 @@
 </head>
 <body>
   <div class="page">
-    <a href="https://www.n1collaborative.org/" target="_blank" class="floating-logo">
-      <img src="N1C_logo.jpg" alt="N1C Logo" style="height: 50px; border-radius: 50%;">
+    <header class="registry-header">
+  <div class="registry-header-inner">
+    <a href="index.html" class="registry-brand">
+      <img src="N1C_logo.jpg" alt="N1C Logo" class="registry-brand-logo">
+      <span>N1C Gene Registry</span>
     </a>
 
-    <a href="https://generegistry.n1collaborative.org/" class="floating-main-button">
-      Main<br>Registry
-    </a>
+    <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="registryMenu">
+      Menu
+    </button>
+  </div>
+
+  <nav class="registry-menu" id="registryMenu">
+    <div class="registry-menu-inner">
+      <a href="N1C_projects.html" >N-of-1 Projects</a>
+      <a href="Marketed_drugs.html">Marketed Genetic Therapies</a>
+      <a href="assessed_variants.html">Assessed Variants</a>
+      <a href="published_genetic_therapies.html">Published Genetic Therapies</a>
+      <a href="assessed_genes_diseases.html">Assessed Genes &amp; Diseases</a>
+      <a href="automated_assessment_tools.html" class="active">Automated Assessment Tools</a>
+      <a href="patients.html" class="patient-link">For Patients</a>
+      <a href="info.html">Info</a>
+    </div>
+  </nav>
+</header>
 
     <h1>Automated Eligibility Assessment Tools</h1>
 
