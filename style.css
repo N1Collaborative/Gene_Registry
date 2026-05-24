@@ -343,3 +343,14 @@ details td:nth-child(6) {
     font-size: 1.05rem;
   }
 }
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  padding-bottom: 30px;
+
+  color: rgba(255,255,255,0.78);
+
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
