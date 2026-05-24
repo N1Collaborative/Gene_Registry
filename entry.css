@@ -61,3 +61,10 @@
 .back-button:hover {
   background-color: #b9312c;
 }
+
+.loading-message {
+  text-align: center;
+  color: rgba(255,255,255,0.82);
+  font-size: 18px;
+  margin: 30px auto 10px;
+}
