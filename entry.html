@@ -5,96 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entry Details</title>
 
-    <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #042c5c;
-        color: black;
-        text-align: center;
-        margin: 0;
-        padding: 20px;
-    }
-
-
-    h1 {
-        text-align: center;
-        font-size: 28px;
-        margin-bottom: 20px;
-        color: white;
-    }
-
-        
-    .entry-box {
-      background-color: white;
-      max-width: 800px;
-      margin: 30px auto;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-    .entry-box h2 {
-      color: #de3b38;
-      margin-top: 0;
-      font-size: 22px;
-      text-align: left;
-    }
-
-    .entry-box ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .entry-box li {
-      margin-bottom: 12px;
-      text-align: left;
-    }
-
-    .back-button {
-      display: block;
-      text-align: center;
-      margin: 30px auto;
-      background-color: #de3b38;
-      color: white;
-      padding: 10px 20px;
-      text-decoration: none;
-      border-radius: 4px;
-      width: fit-content;
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    a:hover {
-        background: #b9312c;
-    }
-
-.floating-main-button {
-  position: fixed;
-  top: 20px;
-  right: 10px;
-  background-color: #de3b38;
-  color: white;
-  padding: 6px 8px;
-  border-radius: 6px;
-  font-weight: bold;
-  text-decoration: none;
-  font-size: 12px;
-  width: 60px;
-  text-align: center;
-  line-height: 1.2;
-  z-index: 1000;
-  box-shadow: 1px 1px 5px rgba(0,0,0,0.2); /* optional: subtle shadow */
-}
-
-
-.floating-main-button:hover {
-  background-color: #b9312c;
-}
-
-
-        
-</style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="entry.css">
 
     
 <script>
@@ -175,14 +87,30 @@
 </head>
 <body onload="loadEntry()">
 
-    <header style="display: flex; align-items: center; padding: 10px 20px;">
-      <img src="N1C_logo.jpg" alt="N1C Logo" style="height: 50px; border-radius: 50%;" />
+      <header class="registry-header">
+      <div class="registry-header-inner">
+        <a href="index.html" class="registry-brand">
+          <img src="N1C_logo.jpg" alt="N1C Logo" class="registry-brand-logo">
+          <span>N1C Gene Registry</span>
+        </a>
+    
+        <button type="button" class="menu-button" id="menuButton" aria-expanded="false" aria-controls="registryMenu">
+          Menu
+        </button>
+      </div>
+    
+      <nav class="registry-menu" id="registryMenu">
+        <div class="registry-menu-inner">
+          <a href="N1C_projects.html" class="active">N-of-1 Projects</a>
+          <a href="Marketed_drugs.html">Marketed Genetic Therapies</a>
+          <a href="assessed_variants.html">Assessed Variants</a>
+          <a href="published_genetic_therapies.html">Published Genetic Therapies</a>
+          <a href="assessed_genes_diseases.html">Assessed Genes &amp; Diseases</a>
+          <a href="automated_assessment_tools.html">Automated Assessment Tools</a>
+          <a href="patients.html" class="patient-link">For Patients</a>
+        </div>
+      </nav>
     </header>
-    <h1>Entry Details</h1>
-
-    <a href="https://generegistry.n1collaborative.org/" class="floating-main-button">
-      Main<br>Registry
-    </a>
 
     <div class="entry-box">
       <h2>Variant Information</h2>
@@ -196,5 +124,23 @@
  
 </div>
     <a class="back-button" href="N1C_projects.html">Back to N-of-1 Projects</a>
+
+<script>
+  const menuButton = document.getElementById("menuButton");
+  const registryMenu = document.getElementById("registryMenu");
+
+  menuButton.addEventListener("click", () => {
+    const isOpen = registryMenu.classList.toggle("open");
+    menuButton.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!registryMenu.contains(event.target) && !menuButton.contains(event.target)) {
+      registryMenu.classList.remove("open");
+      menuButton.setAttribute("aria-expanded", "false");
+    }
+  });
+</script>
+    
 </body>
 </html>
