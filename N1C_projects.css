@@ -1,0 +1,35 @@
+/* N1C_projects.css
+   Page-specific overrides only.
+   Most styling now lives in the shared style.css.
+*/
+
+/* Keep the N-of-1 projects table column widths consistent */
+details th:nth-child(1),
+details td:nth-child(1) {
+  width: 15%;  /* Gene */
+}
+
+details th:nth-child(2),
+details td:nth-child(2) {
+  width: 15%;  /* Transcript */
+}
+
+details th:nth-child(3),
+details td:nth-child(3) {
+  width: 20%;  /* Coding change */
+}
+
+details th:nth-child(4),
+details td:nth-child(4) {
+  width: 20%;  /* Protein/RNA change */
+}
+
+details th:nth-child(5),
+details td:nth-child(5) {
+  width: 20%;  /* Therapeutic Modality */
+}
+
+details th:nth-child(6),
+details td:nth-child(6) {
+  width: 10%;  /* Status */
+}
