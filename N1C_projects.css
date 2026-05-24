@@ -45,3 +45,7 @@ details summary {
   margin-top: 20px;
   font-size: 16px;
 }
+
+details summary {
+  text-align: center;
+}
