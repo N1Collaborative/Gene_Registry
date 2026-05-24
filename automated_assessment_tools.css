@@ -187,12 +187,6 @@ h1 {
   border: 1px solid var(--n1c-white-border);
 }
 
-footer {
-  text-align: center;
-  margin-top: 42px;
-  font-size: 0.9em;
-  color: #bbb;
-}
 
 /* Modal */
 .modal {
