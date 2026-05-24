@@ -232,6 +232,24 @@
     document.getElementById("last-updated").textContent = "Last updated: " + now.toLocaleString();
   </script>
 
+<script>
+  const menuButton = document.getElementById("menuButton");
+  const registryMenu = document.getElementById("registryMenu");
+
+  menuButton.addEventListener("click", () => {
+    const isOpen = registryMenu.classList.toggle("open");
+    menuButton.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!registryMenu.contains(event.target) && !menuButton.contains(event.target)) {
+      registryMenu.classList.remove("open");
+      menuButton.setAttribute("aria-expanded", "false");
+    }
+  });
+</script>
+
+
     
 </body>
 </html>
