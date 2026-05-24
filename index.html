@@ -295,12 +295,12 @@ details th:nth-child(6), details td:nth-child(6) { width: 10%; }
   width: 420px;
   max-width: calc(100vw - 40px);
 
-  background: rgba(4, 44, 92, 0.98);
+  background: white;
 
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 1px solid rgba(4, 44, 92, 0.12);
   border-radius: 16px;
 
-  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.18);
 
   z-index: 2000;
 
@@ -320,30 +320,14 @@ details th:nth-child(6), details td:nth-child(6) { width: 10%; }
   gap: 6px;
 }
 
-.registry-menu.open {
-  display: block;
-}
-
-.registry-menu-inner {
-  width: min(700px, calc(100% - 40px));
-  margin: 0 auto;
-  padding: 24px 0 28px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  gap: 12px;
-}
-
 .registry-menu-inner a {
   display: block;
 
-  color: rgba(255,255,255,0.94);
+  color: var(--n1c-blue);
   text-decoration: none;
 
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
 
   padding: 14px 16px;
 
@@ -357,8 +341,8 @@ details th:nth-child(6), details td:nth-child(6) { width: 10%; }
 
 .registry-menu-inner a:hover,
 .registry-menu-inner a.active {
-  background: rgba(255,255,255,0.08);
-  color: white;
+  background: rgba(4, 44, 92, 0.08);
+  color: var(--n1c-red);
 }
 
 
