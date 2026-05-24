@@ -235,3 +235,23 @@ footer {
   color: white;
   font-size: 0.9em;
 }
+
+
+/* Make marketed drugs table slightly narrower */
+table {
+  width: 92%;
+  max-width: 1600px;
+  margin: 20px auto;
+}
+
+/* Center bottom text again */
+.registry-footer-text {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+/* Keep footer centered */
+footer {
+  text-align: center;
+}
