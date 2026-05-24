@@ -1,0 +1,241 @@
+/* Published Genetic Therapies page-specific CSS */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #042c5c;
+  color: white;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  font-size: 36px;
+  font-weight: bold;
+  margin: 80px 0 10px 0;
+  line-height: 1.2;
+}
+
+.search-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+}
+
+.search-wrapper input[type="text"] {
+  height: 42px;
+  padding: 0 12px;
+  font-size: 16px;
+  border: none;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  outline: none;
+  box-sizing: border-box;
+  width: 320px;
+}
+
+.search-button {
+  height: 42px;
+  padding: 0 16px;
+  font-size: 16px;
+  background-color: #de3b38;
+  color: white;
+  border: none;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  font-weight: bold;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: #b9312c;
+}
+
+table,
+th,
+td {
+  font-size: 12px;
+  border: 1px solid #ddd;
+  text-align: center;
+  padding: 6px 8px;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+table {
+  background-color: white;
+  color: black;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  background-color: #de3b38;
+  color: white;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+th.sortable:hover {
+  background-color: #b9312c;
+}
+
+td {
+  background-color: white;
+  color: black;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+button,
+.submit-button {
+  background-color: #de3b38;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+button:hover,
+.submit-button:hover {
+  background-color: #b9312c;
+}
+
+.scroll-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #de3b38;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+}
+
+.scroll-top:hover {
+  background-color: #b9312c;
+}
+
+footer {
+  margin-top: 40px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+footer p {
+  margin: 6px 0;
+}
+
+.floating-logo {
+  position: fixed;
+  top: 10px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.floating-main-button {
+  position: fixed;
+  top: 20px;
+  right: 10px;
+  background-color: #de3b38;
+  color: white;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 12px;
+  width: 60px;
+  text-align: center;
+  line-height: 1.2;
+  z-index: 1000;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.floating-main-button:hover {
+  background-color: #b9312c;
+}
+
+p a {
+  color: #de3b38;
+  font-weight: bold;
+}
+
+th:nth-child(1),
+td:nth-child(1) {
+  width: 120px;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  width: 180px;
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+  width: 140px;
+}
+
+th:nth-child(4),
+td:nth-child(4) {
+  width: 420px;
+}
+
+th:nth-child(5),
+td:nth-child(5) {
+  width: 120px;
+}
+
+#loading {
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+@media (max-width: 900px) {
+  table,
+  th,
+  td {
+    font-size: 11px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  .search-wrapper {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .search-wrapper input[type="text"] {
+    width: 90%;
+    border-radius: 4px;
+  }
+
+  .search-button {
+    border-radius: 4px;
+  }
+}
