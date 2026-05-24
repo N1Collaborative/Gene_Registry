@@ -4,181 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Information – N1C Gene Registry</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #042c5c;
-      color: white;
-      margin: 0;
-      padding: 20px;
-      text-align: center;
-    }
 
-    .content-box {
-      max-width: 800px;
-      margin: 40px auto;
-      background-color: white;
-      padding: 30px;
-      border-radius: 10px;
-      text-align: left;
-      color: #333;
-    }
-
-    h1 {
-      color: white;
-      font-size: 48px;
-      margin-top: 20px;
-    }
-
-    h2 {
-      color: #de3b38;
-      margin-top: 30px;
-    }
-
-    p {
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
-    .floating-logo {
-      position: fixed;
-      top: 10px;
-      left: 20px;
-      z-index: 1000;
-    }
-
-    .floating-main-button {
-      position: fixed;
-      top: 20px;
-      right: 10px;
-      background-color: #de3b38;
-      color: white;
-      padding: 6px 8px;
-      border-radius: 6px;
-      font-weight: bold;
-      text-decoration: none;
-      font-size: 12px;
-      width: 60px;
-      text-align: center;
-      line-height: 1.2;
-      z-index: 1000;
-      box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
-    }
-
-    .floating-main-button:hover {
-      background-color: #b9312c;
-    }
-
-    /* NEW SHARED REGISTRY HEADER */
-.registry-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: rgba(4, 44, 92, 0.97);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(255,255,255,0.12);
-}
-
-.registry-header-inner {
-  width: min(1400px, calc(100% - 40px));
-  margin: 0 auto;
-  min-height: 84px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-.registry-brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: white;
-  text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-.registry-brand-logo {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  flex: 0 0 auto;
-}
-
-.menu-button {
-  background: #de3b38;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 16px;
-  font-size: 15px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.menu-button:hover {
-  background: #b9312c;
-}
-
-.registry-menu {
-  display: none;
-  background: rgba(4, 44, 92, 0.98);
-  border-top: 1px solid rgba(255,255,255,0.12);
-  border-bottom: 1px solid rgba(255,255,255,0.12);
-}
-
-.registry-menu.open {
-  display: block;
-}
-
-.registry-menu-inner {
-  width: min(1400px, calc(100% - 40px));
-  margin: 0 auto;
-  padding: 18px 0 22px;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px 18px;
-}
-
-.registry-menu-inner a {
-  color: rgba(255,255,255,0.94);
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 600;
-  padding: 10px 12px;
-  border-radius: 8px;
-}
-
-.registry-menu-inner a:hover,
-.registry-menu-inner a.active {
-  background: rgba(255,255,255,0.08);
-  color: white;
-}
-
-.registry-menu-inner a.patient-link {
-  background: rgba(222, 59, 56, 0.18);
-  border: 1px solid rgba(222, 59, 56, 0.5);
-}
-
-.registry-menu-inner a.patient-link:hover {
-  background: rgba(222, 59, 56, 0.28);
-}
-
-/* HIDE OLD HEADER PIECES WITHOUT DELETING THEM YET */
-.top-right-button,
-.main-header,
-.back-to-main,
-.floating-logo,
-.floating-main-button,
-.registry-buttons,
-.registry-button,
-.logo {
-  display: none !important;
-}
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="info.css">
     
-  </style>
 </head>
 <body>
 
@@ -202,10 +31,6 @@
       <a href="published_genetic_therapies.html">Published Genetic Therapies</a>
       <a href="assessed_genes_diseases.html">Assessed Genes &amp; Diseases</a>
       <a href="automated_assessment_tools.html">Automated Assessment Tools</a>
-      <a href="patients.html" class="patient-link">For Patients</a>
-      <a href="info.html" class="active">Info</a>
-      <a href="patients.html" class="patient-link">For Patients</a>
-
       
       <a href="https://connections.n1collaborative.org/" target="_blank">
         N1C Connections
@@ -214,6 +39,10 @@
       <a href="https://www.n1collaborative.org/" target="_blank">
         N1C Website
       </a>
+
+      <a href="info.html" class="active">Info</a>
+      <a href="patients.html" class="patient-link">For Patients</a>
+      
     </div>
   </nav>
 </header>
