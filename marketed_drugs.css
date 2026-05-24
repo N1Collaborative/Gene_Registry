@@ -1,0 +1,237 @@
+/* Marketed drugs page-specific CSS */
+
+/* Page title spacing */
+h1 {
+  text-align: center;
+  color: white;
+  font-size: 48px;
+  font-weight: bold;
+  margin: 5px 0 10px 0;
+}
+
+/* Search bar */
+.search-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+}
+
+.search-wrapper input[type="text"] {
+  height: 42px;
+  padding: 0 12px;
+  font-size: 16px;
+  border: none;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.search-button {
+  height: 42px;
+  padding: 0 16px;
+  font-size: 16px;
+  background-color: var(--n1c-red);
+  color: white;
+  border: none;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.search-button:hover {
+  background-color: var(--n1c-red-dark);
+}
+
+/* Filters */
+#filters {
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+#filters select {
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+/* Main table */
+table,
+th,
+td {
+  font-size: 12px;
+  border: 1px solid #ddd;
+  text-align: center;
+  padding: 6px 8px;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+table {
+  background-color: white;
+  color: black;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  background-color: var(--n1c-red);
+  color: white;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+th.sortable:hover {
+  background-color: var(--n1c-red-dark);
+}
+
+td {
+  background-color: white;
+  color: black;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Keep rows inside details from changing hover style too aggressively */
+details table tr:hover {
+  background: inherit !important;
+  cursor: default !important;
+}
+
+/* Summary letters */
+details summary {
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--n1c-red);
+  background-color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: 10px auto;
+  border: 1px solid #ccc;
+  list-style: none;
+  text-align: center;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details summary:hover {
+  background-color: #fde4e2;
+  color: var(--n1c-red-dark);
+  cursor: pointer;
+}
+
+/* Table layout inside details */
+details table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+details th,
+details td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+/* Column widths for marketed drug table */
+details th:nth-child(1),
+details td:nth-child(1) {
+  width: 120px;
+}
+
+details th:nth-child(2),
+details td:nth-child(2) {
+  width: 180px;
+}
+
+details th:nth-child(3),
+details td:nth-child(3) {
+  width: 80px;
+}
+
+details th:nth-child(4),
+details td:nth-child(4) {
+  width: 100px;
+}
+
+details th:nth-child(5),
+details td:nth-child(5) {
+  width: 160px;
+}
+
+details th:nth-child(6),
+details td:nth-child(6) {
+  width: 120px;
+}
+
+details th:nth-child(7),
+details td:nth-child(7) {
+  width: 100px;
+}
+
+/* Optional page controls */
+button,
+.submit-button {
+  background-color: var(--n1c-red);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+button:hover,
+.submit-button:hover {
+  background-color: var(--n1c-red-dark);
+}
+
+.scroll-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--n1c-red);
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+}
+
+.scroll-top:hover {
+  background-color: var(--n1c-red-dark);
+}
+
+/* Footer text */
+footer {
+  margin-top: 40px;
+  text-align: center;
+  color: white;
+  font-size: 0.9em;
+}
