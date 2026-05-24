@@ -287,9 +287,37 @@ details th:nth-child(6), details td:nth-child(6) { width: 10%; }
 
 .registry-menu {
   display: none;
+
+  position: absolute;
+  top: 78px;
+  right: 20px;
+
+  width: 420px;
+  max-width: calc(100vw - 40px);
+
   background: rgba(4, 44, 92, 0.98);
-  border-top: 1px solid rgba(255,255,255,0.12);
-  border-bottom: 1px solid rgba(255,255,255,0.12);
+
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+
+  z-index: 2000;
+
+  overflow: hidden;
+}
+
+.registry-menu.open {
+  display: block;
+}
+
+.registry-menu-inner {
+  padding: 14px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 6px;
 }
 
 .registry-menu.open {
@@ -309,18 +337,17 @@ details th:nth-child(6), details td:nth-child(6) { width: 10%; }
 }
 
 .registry-menu-inner a {
-  width: 100%;
-  text-align: center;
+  display: block;
 
   color: rgba(255,255,255,0.94);
   text-decoration: none;
 
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 600;
 
-  padding: 16px 18px;
+  padding: 14px 16px;
 
-  border-radius: 12px;
+  border-radius: 10px;
 
   transition:
     background-color 0.2s ease,
@@ -333,6 +360,8 @@ details th:nth-child(6), details td:nth-child(6) { width: 10%; }
   background: rgba(255,255,255,0.08);
   color: white;
 }
+
+
 
 .tiles {
   width: 90%;
