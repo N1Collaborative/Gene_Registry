@@ -33,3 +33,15 @@ details th:nth-child(6),
 details td:nth-child(6) {
   width: 10%;  /* Status */
 }
+
+/* Center registry overview letters */
+details summary {
+  text-align: center;
+}
+
+/* Center bottom information text */
+.registry-footer-text {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 16px;
+}
