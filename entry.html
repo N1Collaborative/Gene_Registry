@@ -20,6 +20,7 @@
 
         const data = await response.json();
         const entry = data.find(item => String(item["ID"]) === id);
+        document.getElementById("loading-message").style.display = "none";
 
         if (!entry) {
             document.getElementById("variant-details").innerHTML = "<li>Entry not found.</li>";
@@ -88,6 +89,9 @@
 <body onload="loadEntry()">
 
       <header class="registry-header">
+          <p id="loading-message" class="loading-message">
+              Loading entry information...
+        </p>
       <div class="registry-header-inner">
         <a href="index.html" class="registry-brand">
           <img src="N1C_logo.jpg" alt="N1C Logo" class="registry-brand-logo">
