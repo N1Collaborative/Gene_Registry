@@ -271,46 +271,46 @@
 
       let assessmentsHTML = `
           <h3>Assessments</h3>
-      `;
-
-      assessmentRows.forEach(({ row }) => {
-        const submitter = getSubmitter(row);
-
-        assessmentsHTML += `
-          <div class="assessment-card">
-            <h4>Submitter: ${escapeHtml(submitter || "n/a")}</h4>
-
-            <div class="assessment-grid">
-              <div class="assessment-item">
-                <strong>Therapeutic Modality:</strong> ${renderValue(firstNonEmpty(row, ["Therapeutic Modality"]))}
-              </div>
-
-              <div class="assessment-item">
-                <strong>Approach:</strong> ${renderValue(firstNonEmpty(row, ["Approach"]))}
-              </div>
-
-              <div class="assessment-item">
-                <strong>Eligibility:</strong> ${renderValue(firstNonEmpty(row, ["Eligibility"]))}
-              </div>
-
-              <div class="assessment-item">
-                <strong>Publication:</strong> ${renderValue(firstNonEmpty(row, ["Publication"]))}
-              </div>
-
-              <div class="assessment-item">
-                <strong>Date assessment:</strong> ${formatDate(firstNonEmpty(row, ["Date assessment"]))}
-              </div>
-            </div>
-
-            <div class="assessment-text-block">
-              <strong>Assessment text:</strong>
-              <div class="assessment-text">${renderText(firstNonEmpty(row, ["Assessment text"]))}</div>
-            </div>
         `;
-      });
-
-      assessmentsHTML += `</div>`;
-      document.getElementById("assessment").innerHTML = assessmentsHTML;
+        
+        assessmentRows.forEach(({ row }) => {
+          const submitter = getSubmitter(row);
+        
+          assessmentsHTML += `
+            <div class="assessment-card">
+              <h4>Submitter: ${escapeHtml(submitter || "n/a")}</h4>
+        
+              <div class="assessment-grid">
+                <div class="assessment-item">
+                  <strong>Therapeutic Modality:</strong> ${renderValue(firstNonEmpty(row, ["Therapeutic Modality"]))}
+                </div>
+        
+                <div class="assessment-item">
+                  <strong>Approach:</strong> ${renderValue(firstNonEmpty(row, ["Approach"]))}
+                </div>
+        
+                <div class="assessment-item">
+                  <strong>Eligibility:</strong> ${renderValue(firstNonEmpty(row, ["Eligibility"]))}
+                </div>
+        
+                <div class="assessment-item">
+                  <strong>Publication:</strong> ${renderValue(firstNonEmpty(row, ["Publication"]))}
+                </div>
+        
+                <div class="assessment-item">
+                  <strong>Date assessment:</strong> ${formatDate(firstNonEmpty(row, ["Date assessment"]))}
+                </div>
+              </div>
+        
+              <div class="assessment-text-block">
+                <strong>Assessment text:</strong>
+                <div class="assessment-text">${renderText(firstNonEmpty(row, ["Assessment text"]))}</div>
+              </div>
+            </div>
+          `;
+        });
+        
+        document.getElementById("assessment").innerHTML = assessmentsHTML;
 
     } catch (error) {
       console.error("Error loading entry:", error);
