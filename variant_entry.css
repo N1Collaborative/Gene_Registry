@@ -211,3 +211,26 @@ body {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px 14px;
 }
+
+.overview-single-row {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.overview-pair-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.overview-cell {
+  min-width: 0;
+}
+
+@media (max-width: 700px) {
+  .overview-pair-row {
+    grid-template-columns: 1fr;
+  }
+}
