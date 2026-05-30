@@ -210,24 +210,38 @@
       const assessmentRows = rows
         .map((row, index) => ({ row, index }))
         .sort((a, b) => {
-          const submitterA = getSubmitter(a.row);
-          const submitterB = getSubmitter(b.row);
-
+          const submitterA = getSubmitter(a.row).toLowerCase();
+          const submitterB = getSubmitter(b.row).toLowerCase();
+      
           const priority = (name) => {
-            const n = name.toLowerCase();
-            if (n === "n=1 collaborative") return 0;
-            if (n) return 1;
+            if (name === "n=1 collaborative") return 0;
+            if (name) return 1;
             return 2;
           };
-
+      
           const pA = priority(submitterA);
           const pB = priority(submitterB);
-
+      
           if (pA !== pB) return pA - pB;
-
-          const nameCmp = submitterA.localeCompare(submitterB, undefined, { sensitivity: "base" });
-          if (nameCmp !== 0) return nameCmp;
-
+      
+          const submitterCmp = submitterA.localeCompare(submitterB, undefined, { sensitivity: "base" });
+          if (submitterCmp !== 0) return submitterCmp;
+      
+          const modalityA = cleanValue(a.row["Therapeutic Modality"]).toLowerCase();
+          const modalityB = cleanValue(b.row["Therapeutic Modality"]).toLowerCase();
+          const modalityCmp = modalityA.localeCompare(modalityB, undefined, { sensitivity: "base" });
+          if (modalityCmp !== 0) return modalityCmp;
+      
+          const approachA = cleanValue(a.row["Approach"]).toLowerCase();
+          const approachB = cleanValue(b.row["Approach"]).toLowerCase();
+          const approachCmp = approachA.localeCompare(approachB, undefined, { sensitivity: "base" });
+          if (approachCmp !== 0) return approachCmp;
+      
+          const dateA = cleanValue(a.row["Date assessment"]);
+          const dateB = cleanValue(b.row["Date assessment"]);
+          const dateCmp = dateA.localeCompare(dateB);
+          if (dateCmp !== 0) return dateCmp;
+      
           return a.index - b.index;
         });
 
