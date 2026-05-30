@@ -172,3 +172,73 @@ body {
   align-items: center;
   gap: 6px;
 }
+
+.variant-section,
+.assessment-section {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+}
+
+.variant-title {
+  margin-top: -6px;
+  color: #555;
+  font-weight: 600;
+}
+
+.field-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.field-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.field-list li:last-child {
+  border-bottom: none;
+}
+
+.assessment-card {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fafafa;
+}
+
+.assessment-card h4 {
+  margin: 0 0 14px;
+  color: #D8443D;
+}
+
+.assessment-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 18px;
+}
+
+.assessment-item strong,
+.assessment-text-block strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.assessment-text-block {
+  margin-top: 14px;
+}
+
+.assessment-text {
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+  .assessment-grid {
+    grid-template-columns: 1fr;
+  }
+}
