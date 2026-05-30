@@ -42,12 +42,6 @@ body {
   text-align: left;
 }
 
-.entry-box h2 {
-  color: #de3b38;
-  margin-top: 0;
-  margin-bottom: 20px;
-  font-size: 24px;
-}
 
 .entry-box ul {
   list-style: none;
@@ -177,7 +171,7 @@ body {
 .assessment-section {
   max-width: 1000px;
   margin: 14px auto;
-  padding: 14px 20px;
+  padding: 20px;
   background: white;
   border-radius: 10px;
 }
@@ -186,6 +180,12 @@ body {
 .assessment-section h3 {
   color: #D8443D;
   margin: 0 0 10px;
+}
+
+.field-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .field-list li {
@@ -233,4 +233,13 @@ body {
   .overview-pair-row {
     grid-template-columns: 1fr;
   }
+
+  .assessment-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.assessment-section {
+  margin-top: 34px;
+  border-top: 3px solid #D8443D;
 }
