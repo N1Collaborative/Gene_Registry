@@ -162,48 +162,74 @@
 
       const rows = selectedGroup.rows;
 
-      const overviewFields = [
-        ["Disease", ["Disease", "Condition/indication", "Condition", "Indication"]],
-        ["Gene", ["Gene"]],
-        ["Genomic HGVS", ["Genomic HGVS"]],
-        ["RefSeq Transcript", ["RefSeq Transcript"]],
-        ["Coding DNA change (c.)", ["Coding DNA change (c.)"]],
-        ["Predicted protein change (p.)", ["Predicted protein change (p.)"]],
-        ["Confirmed protein or RNA change", ["Confirmed protein or RNA change"]],
-        ["ClinVar", ["ClinVar"]],
-        ["Pathomechanism", ["Pathomechanism"]],
-        ["Inheritance", ["Inheritance"]],
-        ["Splicing effect?", ["Splicing effect?", "Splicing effect", "Splicing Effect?"]],
-        ["Variant publication", ["Variant publication"]]
-      ];
+      const overview = rows[0];
 
-
-      let overviewHTML = `
-        <div class="variant-section">
-          <h2>Variant overview</h2>
-          <ul class="field-list">
-      `;
-
-      overviewFields.forEach(([label, keys]) => {
-        const value = firstNonEmpty(
-          rows.find(row => firstNonEmpty(row, keys)) || {},
-          keys
-        );
-
-        overviewHTML += `
-          <li>
-            <strong>${escapeHtml(label)}:</strong>
-            ${label === "Variant publication" || /^https?:\/\//i.test(cleanValue(value))
-              ? renderValue(value)
-              : (cleanValue(value) ? escapeHtml(cleanValue(value)) : "n/a")}
-          </li>
+        function fieldValue(keys) {
+          return firstNonEmpty(overview, keys) || "n/a";
+        }
+        
+        function pairRow(label1, value1, label2, value2) {
+          return `
+            <div class="overview-pair-row">
+              <div class="overview-cell">
+                <strong>${label1}:</strong> ${value1}
+              </div>
+              <div class="overview-cell">
+                <strong>${label2}:</strong> ${value2}
+              </div>
+            </div>
+          `;
+        }
+        
+        let overviewHTML = `
+          <div class="variant-section">
+            <h2>Variant Information</h2>
+        
+            <div class="overview-single-row">
+              <strong>ClinVar:</strong> ${renderValue(fieldValue(["ClinVar"]))}
+            </div>
+        
+            <div class="overview-single-row">
+              <strong>Disease:</strong> ${renderValue(fieldValue(["Disease", "Condition/indication", "Condition", "Indication"]))}
+            </div>
+        
+            ${pairRow(
+              "Gene",
+              renderValue(fieldValue(["Gene"])),
+              "Genomic HGVS",
+              renderValue(fieldValue(["Genomic HGVS"]))
+            )}
+        
+            ${pairRow(
+              "RefSeq Transcript",
+              renderValue(fieldValue(["RefSeq Transcript"])),
+              "Coding DNA change (c.)",
+              renderValue(fieldValue(["Coding DNA change (c.)"]))
+            )}
+        
+            ${pairRow(
+              "Predicted protein change (p.)",
+              renderValue(fieldValue(["Predicted protein change (p.)"])),
+              "Confirmed protein or RNA change",
+              renderValue(fieldValue(["Confirmed protein or RNA change"]))
+            )}
+        
+            ${pairRow(
+              "Pathomechanism",
+              renderValue(fieldValue(["Pathomechanism"])),
+              "Inheritance",
+              renderValue(fieldValue(["Inheritance"]))
+            )}
+        
+            ${pairRow(
+              "Splicing effect?",
+              renderValue(fieldValue(["Splicing effect?", "Splicing effect", "Splicing Effect?"])),
+              "Variant publication",
+              renderValue(fieldValue(["Variant publication"]))
+            )}
+          </div>
         `;
-      });
 
-      overviewHTML += `
-          </ul>
-        </div>
-      `;
 
       document.getElementById("variant-details").innerHTML = overviewHTML;
 
