@@ -194,4 +194,8 @@ details td:nth-child(6) {
   width: 15%;
 }
 
+#loading {
+    text-align: center;
+}
+
 
