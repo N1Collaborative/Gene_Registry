@@ -39,7 +39,32 @@
   }
 
   function getDiseaseName(item) {
-    return item["Disease"] || item["Condition/indication"] || item["Condition"] || "N/A";
+    return item["Disease"] || item["Condition/indication"] || item["Condition"] || item["Indication"] || "N/A";
+  }
+
+  function getVariantKey(item) {
+    const hgvs = (item["Genomic HGVS"] || "").trim();
+    if (hgvs) return `hgvs:${hgvs.toLowerCase()}`;
+
+    const gene = (item["Gene"] || "").trim().toLowerCase();
+    const transcript = (item["RefSeq Transcript"] || "").trim().toLowerCase();
+    const cdna = (item["Coding DNA change (c.)"] || "").trim().toLowerCase();
+    const protein = (item["Predicted protein change (p.)"] || "").trim().toLowerCase();
+
+    return `fallback:${gene}|${transcript}|${cdna}|${protein}`;
+  }
+
+  function getVariantLabel(item) {
+    const hgvs = (item["Genomic HGVS"] || "").trim();
+    if (hgvs) return hgvs;
+
+    const cdna = (item["Coding DNA change (c.)"] || "").trim();
+    const protein = (item["Predicted protein change (p.)"] || "").trim();
+
+    if (cdna && protein) return `${cdna} / ${protein}`;
+    if (cdna) return cdna;
+    if (protein) return protein;
+    return "Pending HGVS";
   }
 
   function displayTable(data, expandAll = false) {
@@ -51,50 +76,52 @@
       return;
     }
 
-    data.sort((a, b) => {
-      const geneA = (a["Gene"] || "").toLowerCase();
-      const geneB = (b["Gene"] || "").toLowerCase();
+    // Group rows into unique variants
+    const grouped = {};
+    data.forEach((item) => {
+      const key = getVariantKey(item);
+      if (!grouped[key]) grouped[key] = [];
+      grouped[key].push(item);
+    });
+
+    // Build a sortable list of unique variant groups
+    const groupedList = Object.entries(grouped).map(([key, items]) => {
+      const first = items[0];
+      return {
+        key,
+        items,
+        gene: first["Gene"] || "",
+        disease: getDiseaseName(first),
+        variant: getVariantLabel(first),
+        count: items.length
+      };
+    });
+
+    groupedList.sort((a, b) => {
+      const geneA = a.gene.toLowerCase();
+      const geneB = b.gene.toLowerCase();
       if (geneA < geneB) return -1;
       if (geneA > geneB) return 1;
 
-      const diseaseA = getDiseaseName(a).toLowerCase();
-      const diseaseB = getDiseaseName(b).toLowerCase();
+      const diseaseA = a.disease.toLowerCase();
+      const diseaseB = b.disease.toLowerCase();
       if (diseaseA < diseaseB) return -1;
       if (diseaseA > diseaseB) return 1;
 
-      const cA = a["Coding DNA change (c.)"] || "";
-      const cB = b["Coding DNA change (c.)"] || "";
-      return cA.localeCompare(cB, undefined, { numeric: true });
+      return a.variant.localeCompare(b.variant, undefined, { numeric: true });
     });
 
-    const grouped = {};
-    data.forEach((item) => {
-      const gene = item["Gene"] || "";
-      const letter = gene.charAt(0).toUpperCase();
-      if (!grouped[letter]) grouped[letter] = [];
-      grouped[letter].push(item);
+    // Group by first letter of gene for expandable sections
+    const alphabetGroups = {};
+    groupedList.forEach((group) => {
+      const letter = (group.gene || group.variant || "#").charAt(0).toUpperCase();
+      if (!alphabetGroups[letter]) alphabetGroups[letter] = [];
+      alphabetGroups[letter].push(group);
     });
 
-    const headers = [
-      "Gene",
-      "Disease",
-      "RefSeq Transcript",
-      "Coding DNA change (c.)",
-      "Predicted protein change (p.)"
-    ];
+    const headers = ["Gene", "Disease", "Variant", "Assessments"];
 
-    Object.keys(grouped).sort().forEach((letter) => {
-      grouped[letter].sort((a, b) => {
-        const geneA = (a["Gene"] || "").toLowerCase();
-        const geneB = (b["Gene"] || "").toLowerCase();
-        if (geneA < geneB) return -1;
-        if (geneA > geneB) return 1;
-
-        const diseaseA = getDiseaseName(a).toLowerCase();
-        const diseaseB = getDiseaseName(b).toLowerCase();
-        return diseaseA.localeCompare(diseaseB);
-      });
-
+    Object.keys(alphabetGroups).sort().forEach((letter) => {
       const section = document.createElement("details");
       section.style.marginBottom = "20px";
       if (expandAll) section.open = true;
@@ -119,15 +146,15 @@
       headerRow += "</tr>";
 
       let bodyRows = "";
-      grouped[letter].forEach((item) => {
-        let row = `<tr onclick="viewEntry('${item["ID"]}')" style="cursor: pointer;">`;
-        row += `<td>${item["Gene"] || "N/A"}</td>`;
-        row += `<td>${getDiseaseName(item)}</td>`;
-        row += `<td>${item["RefSeq Transcript"] || "N/A"}</td>`;
-        row += `<td>${item["Coding DNA change (c.)"] || "N/A"}</td>`;
-        row += `<td>${item["Predicted protein change (p.)"] || "N/A"}</td>`;
-        row += `</tr>`;
-        bodyRows += row;
+      alphabetGroups[letter].forEach((group) => {
+        bodyRows += `
+          <tr onclick="viewEntry('${encodeURIComponent(group.key)}')" style="cursor: pointer;">
+            <td>${group.gene || "N/A"}</td>
+            <td>${group.disease}</td>
+            <td>${group.variant}</td>
+            <td>${group.count}</td>
+          </tr>
+        `;
       });
 
       tableElement.innerHTML = headerRow + bodyRows;
@@ -146,8 +173,8 @@
     displayTable(filteredData, true);
   }
 
-  function viewEntry(id) {
-    window.location.href = `variant_entry.html?id=${id}`;
+  function viewEntry(variantKey) {
+    window.location.href = `variant_entry.html?variant=${variantKey}`;
   }
 
   function expandAll(expand) {
