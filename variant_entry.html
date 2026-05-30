@@ -182,7 +182,6 @@
         }
         
         let overviewHTML = `
-          <div class="variant-section">
             <h2>Variant Information</h2>
         
             <div class="overview-single-row">
@@ -227,7 +226,6 @@
               "Variant publication",
               renderValue(fieldValue(["Variant publication"]))
             )}
-          </div>
         `;
 
 
@@ -272,7 +270,6 @@
         });
 
       let assessmentsHTML = `
-        <div class="assessment-section">
           <h3>Assessments</h3>
       `;
 
@@ -309,7 +306,6 @@
               <strong>Assessment text:</strong>
               <div class="assessment-text">${renderText(firstNonEmpty(row, ["Assessment text"]))}</div>
             </div>
-          </div>
         `;
       });
 
