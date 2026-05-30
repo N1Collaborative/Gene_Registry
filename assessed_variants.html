@@ -10,13 +10,36 @@
   <meta property="og:title" content="N1C Assessed Variants" />
   <meta property="og:description" content="Explore assessed variants and their therapeutic eligibility, curated by the N=1 Collaborative." />
   <meta property="og:image" content="https://n1collaborative.github.io/Gene_Registry/N1C_logo.jpg" />
-  <meta property="og:url" content="https://n1collaborative.github.io/Gene_Registry/variants.html" />
+  <meta property="og:url" content="https://n1collaborative.github.io/Gene_Registry/assessed_variants.html" />
   <meta property="og:type" content="website" />
 
  <link rel="stylesheet" href="style.css">
  <link rel="stylesheet" href="assessed_variants.css">
 
 <script>
+  let tableData = [];
+
+  async function loadTable(retry = false) {
+    try {
+      document.getElementById("loading").style.display = "block";
+
+      const response = await fetch("https://gene-registry.onrender.com/api/data?table=assessed_variants");
+      if (!response.ok) throw new Error("Network response was not ok");
+
+      tableData = await response.json();
+      displayTable(tableData);
+    } catch (error) {
+      console.error("Error loading data:", error);
+      if (!retry) {
+        setTimeout(() => loadTable(true), 3000);
+      } else {
+        document.getElementById("data-table").innerHTML = "<p>Error loading data.</p>";
+      }
+    } finally {
+      document.getElementById("loading").style.display = "none";
+    }
+  }
+
   function getDiseaseName(item) {
     return item["Disease"] || item["Condition/indication"] || item["Condition"] || item["Indication"] || "n/a";
   }
@@ -50,7 +73,7 @@
     const table = document.getElementById("data-table");
     table.innerHTML = "";
 
-    if (data.length === 0) {
+    if (!data || data.length === 0) {
       table.innerHTML = "<p>No data found.</p>";
       return;
     }
@@ -137,6 +160,26 @@
       tableElement.innerHTML = headerRow + bodyRows;
       section.appendChild(tableElement);
       table.appendChild(section);
+    });
+  }
+
+  function searchTable() {
+    const query = document.getElementById("search").value.toLowerCase();
+    const filteredData = tableData.filter(row =>
+      Object.values(row).some(value =>
+        String(value).toLowerCase().includes(query)
+      )
+    );
+    displayTable(filteredData, true);
+  }
+
+  function viewEntry(variantKey) {
+    window.location.href = `variant_entry.html?variant=${variantKey}`;
+  }
+
+  function expandAll(expand) {
+    document.querySelectorAll("details").forEach(section => {
+      section.open = expand;
     });
   }
 </script>
