@@ -9,113 +9,288 @@
   <link rel="stylesheet" href="variant_entry.css">
 
    <script>
-    async function loadEntry() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const id = urlParams.get("id");
-  
-      try {
-        const response = await fetch("https://gene-registry.onrender.com/api/data?table=assessed_variants");
-        if (!response.ok) throw new Error("Network error");
-  
-        const data = await response.json();
-        const entry = data.find(item => String(item["ID"]) === id);
-        document.getElementById("loading-message").style.display = "none";
-  
-        if (!entry) {
-          document.getElementById("variant-details").innerHTML = "<li>Entry not found.</li>";
-          return;
-        }
-  
-        const variantFields = [
-          "Gene",
-          "RefSeq Transcript",
-          "Coding DNA change (c.)",
-          "Predicted protein change (p.)",
-          "Confirmed protein or RNA change",
-          "ClinVar",
-          "Pathomechanism",
-          "Inheritance",
-          "Splicing effect?",
-          "Variant publication",
-          "Therapeutic Modality",
-          "Approach",
-          "Eligibility",
-          "Publication",
-          "Date assessment"
-        ];
-  
-        const variantList = document.getElementById("variant-details");
-        variantList.innerHTML = "";
-  
-        variantFields.forEach((key) => {
-          let raw = entry[key];
-  
-          if (key === "Splicing effect?" && (raw === undefined || raw === null)) {
-            raw = entry["Splicing effect"] ?? entry["Splicing effect? "] ?? entry["Splicing Effect?"];
-          }
-  
-          if (raw === undefined || raw === null) return;
-  
-          const value = String(raw).trim();
-          if (value === "") return;
-  
-          let displayValue = value;
-  
-          if (/^https?:\/\//i.test(value)) {
-            displayValue = `<a href="${value}" target="_blank" rel="noopener noreferrer">${value}</a>`;
-          }
-  
-          if (key === "Date assessment") {
-            const parsedDate = new Date(value);
-            if (!isNaN(parsedDate.getTime())) {
-              displayValue = parsedDate.toISOString().split("T")[0];
-            }
-          }
-  
-          let labelHTML = `<strong>${key}:</strong>`;
-  
-          if (key === "Splicing effect?") {
-            labelHTML = `
-              <strong class="field-label">
-                ${key}
-                <span class="info-tooltip">
-                  <span class="info-icon">i</span>
-                  <span class="info-text">
-                    A "yes" indicates that there is functional evidence
-                    (for example RNA-seq or cDNA analysis in an endogenous background)
-                    for a splicing effect. A "no" indicates there is functional evidence against a 
-                    splicing effect.
-                  </span>
-                </span>:
-              </strong>
-            `;
-          }
-  
-          variantList.insertAdjacentHTML(
-            "beforeend",
-            `<li>${labelHTML} ${displayValue}</li>`
-          );
-        });
-  
-        const assessmentBox = document.getElementById("assessment");
-        if (entry["Assessment text"] && String(entry["Assessment text"]).trim() !== "") {
-          assessmentBox.innerHTML = `
-            <div class="assessment-box">
-              <h3>Assessment</h3>
-              <p>${entry["Assessment text"]}</p>
-            </div>
-          `;
-        } else {
-          assessmentBox.innerHTML = "";
-        }
-  
-      } catch (error) {
-        console.error("Error loading entry:", error);
-        document.getElementById("variant-details").innerHTML = "<li>Error loading entry details.</li>";
-      }
+  let tableData = [];
+
+  function cleanValue(value) {
+    return value === undefined || value === null ? "" : String(value).trim();
+  }
+
+  function escapeHtml(text) {
+    return String(text)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function firstNonEmpty(item, keys) {
+    for (const key of keys) {
+      const value = cleanValue(item[key]);
+      if (value) return value;
     }
-  </script>
+    return "";
+  }
+
+  function getDiseaseName(item) {
+    return firstNonEmpty(item, ["Disease", "Condition/indication", "Condition", "Indication"]);
+  }
+
+  function getSubmitter(item) {
+    return firstNonEmpty(item, ["Submitter/Assessor"]);
+  }
+
+  function getFallbackSignature(item) {
+    return [
+      cleanValue(item["Gene"]).toLowerCase(),
+      cleanValue(item["RefSeq Transcript"]).toLowerCase(),
+      cleanValue(item["Coding DNA change (c.)"]).toLowerCase(),
+      cleanValue(item["Predicted protein change (p.)"]).toLowerCase()
+    ].join("|");
+  }
+
+  function getVariantLabelFromRows(rows) {
+    const hgvs = firstNonEmpty(rows[0], ["Genomic HGVS"]);
+    if (hgvs) return hgvs;
+
+    const cdna = firstNonEmpty(rows[0], ["Coding DNA change (c.)"]);
+    const protein = firstNonEmpty(rows[0], ["Predicted protein change (p.)"]);
+
+    if (cdna && protein) return `${cdna} / ${protein}`;
+    if (cdna) return cdna;
+    if (protein) return protein;
+    return "n/a";
+  }
+
+  function buildVariantGroups(data) {
+    const bySignature = {};
+
+    data.forEach((item, index) => {
+      const signature = getFallbackSignature(item);
+      if (!bySignature[signature]) {
+        bySignature[signature] = [];
+      }
+      bySignature[signature].push({ item, index });
+    });
+
+    return Object.entries(bySignature).map(([signature, entries]) => {
+      const rows = entries.map(e => e.item);
+      const hgvsValues = [...new Set(
+        rows
+          .map(row => cleanValue(row["Genomic HGVS"]).toLowerCase())
+          .filter(Boolean)
+      )];
+
+      const canonicalKey =
+        hgvsValues.length === 1
+          ? `hgvs:${hgvsValues[0]}`
+          : `fallback:${signature}`;
+
+      return {
+        key: canonicalKey,
+        rows,
+        firstIndex: entries[0].index
+      };
+    });
+  }
+
+  function formatDate(value) {
+    const raw = cleanValue(value);
+    if (!raw) return "n/a";
+
+    const parsed = new Date(raw);
+    if (!isNaN(parsed.getTime())) {
+      return parsed.toISOString().split("T")[0];
+    }
+    return escapeHtml(raw);
+  }
+
+  function renderValue(value) {
+    const raw = cleanValue(value);
+    if (!raw) return "n/a";
+
+    if (/^https?:\/\//i.test(raw)) {
+      const safe = escapeHtml(raw);
+      return `<a href="${safe}" target="_blank" rel="noopener noreferrer">${safe}</a>`;
+    }
+
+    return escapeHtml(raw);
+  }
+
+  function renderText(value) {
+    const raw = cleanValue(value);
+    if (!raw) return "n/a";
+    return escapeHtml(raw).replace(/\n/g, "<br>");
+  }
+
+  async function loadEntry() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const variantParam = cleanValue(urlParams.get("variant")).toLowerCase();
+    const idParam = cleanValue(urlParams.get("id"));
+
+    try {
+      const response = await fetch("https://gene-registry.onrender.com/api/data?table=assessed_variants");
+      if (!response.ok) throw new Error("Network error");
+
+      tableData = await response.json();
+
+      const groups = buildVariantGroups(tableData);
+
+      let selectedGroup = null;
+
+      if (variantParam) {
+        selectedGroup = groups.find(group => group.key.toLowerCase() === variantParam);
+      }
+
+      if (!selectedGroup && idParam) {
+        const matchedRow = tableData.find(item => String(item["ID"]) === idParam);
+        if (matchedRow) {
+          const signature = getFallbackSignature(matchedRow);
+          const hgvs = cleanValue(matchedRow["Genomic HGVS"]).toLowerCase();
+          const canonicalKey = hgvs ? `hgvs:${hgvs}` : `fallback:${signature}`;
+          selectedGroup = groups.find(group => group.key.toLowerCase() === canonicalKey.toLowerCase());
+        }
+      }
+
+      document.getElementById("loading-message").style.display = "none";
+
+      if (!selectedGroup) {
+        document.getElementById("variant-details").innerHTML = "<p>Entry not found.</p>";
+        document.getElementById("assessment").innerHTML = "";
+        return;
+      }
+
+      const rows = selectedGroup.rows;
+
+      const overviewFields = [
+        ["Disease", ["Disease", "Condition/indication", "Condition", "Indication"]],
+        ["Gene", ["Gene"]],
+        ["RefSeq Transcript", ["RefSeq Transcript"]],
+        ["Genomic HGVS", ["Genomic HGVS"]],
+        ["Coding DNA change (c.)", ["Coding DNA change (c.)"]],
+        ["Predicted protein change (p.)", ["Predicted protein change (p.)"]],
+        ["Confirmed protein or RNA change", ["Confirmed protein or RNA change"]],
+        ["ClinVar", ["ClinVar"]],
+        ["Pathomechanism", ["Pathomechanism"]],
+        ["Inheritance", ["Inheritance"]],
+        ["Splicing effect?", ["Splicing effect?", "Splicing effect", "Splicing Effect?"]],
+        ["Variant publication", ["Variant publication"]]
+      ];
+
+      const variantTitle = [
+        firstNonEmpty(rows[0], ["Gene"]),
+        getVariantLabelFromRows(rows)
+      ].filter(Boolean).join(" — ");
+
+      let overviewHTML = `
+        <div class="variant-section">
+          <h2>Variant overview</h2>
+          <p class="variant-title">${escapeHtml(variantTitle || "n/a")}</p>
+          <ul class="field-list">
+      `;
+
+      overviewFields.forEach(([label, keys]) => {
+        const value = firstNonEmpty(
+          rows.find(row => firstNonEmpty(row, keys)) || {},
+          keys
+        );
+
+        overviewHTML += `
+          <li>
+            <strong>${escapeHtml(label)}:</strong>
+            ${label === "Variant publication" || /^https?:\/\//i.test(cleanValue(value))
+              ? renderValue(value)
+              : (cleanValue(value) ? escapeHtml(cleanValue(value)) : "n/a")}
+          </li>
+        `;
+      });
+
+      overviewHTML += `
+          </ul>
+        </div>
+      `;
+
+      document.getElementById("variant-details").innerHTML = overviewHTML;
+
+      const assessmentRows = rows
+        .map((row, index) => ({ row, index }))
+        .sort((a, b) => {
+          const submitterA = getSubmitter(a.row);
+          const submitterB = getSubmitter(b.row);
+
+          const priority = (name) => {
+            const n = name.toLowerCase();
+            if (n === "n=1 collaborative") return 0;
+            if (n) return 1;
+            return 2;
+          };
+
+          const pA = priority(submitterA);
+          const pB = priority(submitterB);
+
+          if (pA !== pB) return pA - pB;
+
+          const nameCmp = submitterA.localeCompare(submitterB, undefined, { sensitivity: "base" });
+          if (nameCmp !== 0) return nameCmp;
+
+          return a.index - b.index;
+        });
+
+      let assessmentsHTML = `
+        <div class="assessment-section">
+          <h3>Assessments</h3>
+      `;
+
+      assessmentRows.forEach(({ row }) => {
+        const submitter = getSubmitter(row);
+
+        assessmentsHTML += `
+          <div class="assessment-card">
+            <h4>${escapeHtml(submitter || "n/a")}</h4>
+
+            <div class="assessment-grid">
+              <div class="assessment-item">
+                <strong>Therapeutic Modality:</strong> ${renderValue(firstNonEmpty(row, ["Therapeutic Modality"]))}
+              </div>
+
+              <div class="assessment-item">
+                <strong>Approach:</strong> ${renderValue(firstNonEmpty(row, ["Approach"]))}
+              </div>
+
+              <div class="assessment-item">
+                <strong>Eligibility:</strong> ${renderValue(firstNonEmpty(row, ["Eligibility"]))}
+              </div>
+
+              <div class="assessment-item">
+                <strong>Publication:</strong> ${renderValue(firstNonEmpty(row, ["Publication"]))}
+              </div>
+
+              <div class="assessment-item">
+                <strong>Date assessment:</strong> ${formatDate(firstNonEmpty(row, ["Date assessment"]))}
+              </div>
+            </div>
+
+            <div class="assessment-text-block">
+              <strong>Assessment text:</strong>
+              <div class="assessment-text">${renderText(firstNonEmpty(row, ["Assessment text"]))}</div>
+            </div>
+          </div>
+        `;
+      });
+
+      assessmentsHTML += `</div>`;
+      document.getElementById("assessment").innerHTML = assessmentsHTML;
+
+    } catch (error) {
+      console.error("Error loading entry:", error);
+      document.getElementById("loading-message").style.display = "none";
+      document.getElementById("variant-details").innerHTML = "<p>Error loading entry details.</p>";
+      document.getElementById("assessment").innerHTML = "";
+    }
+  }
+</script>
 </head>
+  
 <body onload="loadEntry()">
   <header class="registry-header">
     <div class="registry-header-inner">
@@ -155,7 +330,7 @@
 
   <div class="entry-box">
     <h2>Variant Information</h2>
-    <ul id="variant-details"></ul>
+    <div id="variant-details"></div>
     <div id="assessment"></div>
   </div>
 
