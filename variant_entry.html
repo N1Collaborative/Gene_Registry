@@ -165,8 +165,8 @@
       const overviewFields = [
         ["Disease", ["Disease", "Condition/indication", "Condition", "Indication"]],
         ["Gene", ["Gene"]],
-        ["RefSeq Transcript", ["RefSeq Transcript"]],
         ["Genomic HGVS", ["Genomic HGVS"]],
+        ["RefSeq Transcript", ["RefSeq Transcript"]],
         ["Coding DNA change (c.)", ["Coding DNA change (c.)"]],
         ["Predicted protein change (p.)", ["Predicted protein change (p.)"]],
         ["Confirmed protein or RNA change", ["Confirmed protein or RNA change"]],
@@ -177,10 +177,6 @@
         ["Variant publication", ["Variant publication"]]
       ];
 
-      const variantTitle = [
-        firstNonEmpty(rows[0], ["Gene"]),
-        getVariantLabelFromRows(rows)
-      ].filter(Boolean).join(" — ");
 
       let overviewHTML = `
         <div class="variant-section">
@@ -246,7 +242,7 @@
 
         assessmentsHTML += `
           <div class="assessment-card">
-            <h4>${escapeHtml(submitter || "n/a")}</h4>
+            <h4>Submitter: ${escapeHtml(submitter || "n/a")}</h4>
 
             <div class="assessment-grid">
               <div class="assessment-item">
