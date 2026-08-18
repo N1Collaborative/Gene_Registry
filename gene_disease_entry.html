@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gene-Disease Assessment | N1C Gene Registry</title>
+
+    <meta
+        name="description"
+        content="Detailed gene-disease assessment in the N1C Gene Registry."
+    >
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Gene-Disease Assessment | N1C Gene Registry">
+    <meta
+        property="og:description"
+        content="Detailed assessment of gene-disease validity, molecular considerations, clinical considerations, and therapeutic opportunities."
+    >
+    <meta
+        property="og:image"
+        content="https://n1collaborative.github.io/Gene_Registry/N1C_logo.jpg"
+    >
+    <meta
+        property="og:type"
+        content="website"
+    >
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="entry.css">
+
+    <style>
+
+        /* =========================================================
+           PAGE
+        ========================================================= */
+
+        .gene-disease-page {
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 30px 20px 70px;
+        }
+
+
+        /* =========================================================
+           HEADER / TITLE
+        ========================================================= */
+
+        .gene-disease-title {
+            text-align: center;
+            color: white;
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: bold;
+            margin: 25px 0 8px;
+        }
+
+        .gene-disease-subtitle {
+            text-align: center;
+            color: rgba(255,255,255,0.82);
+            font-size: 20px;
+            margin: 0 auto 30px;
+        }
+
+
+        /* =========================================================
+           ELIGIBILITY SUMMARY
+        ========================================================= */
+
+        .eligibility-summary {
+            max-width: 900px;
+            margin: 0 auto 30px;
+            padding: 20px 25px;
+            background: white;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.12);
+        }
+
+        .eligibility-summary-label {
+            color: #555;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .eligibility-summary-value {
+            color: #042c5c;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+
+        /* =========================================================
+           ASSESSMENT SECTIONS
+        ========================================================= */
+
+        .assessment-section {
+            background: white;
+            border-radius: 10px;
+            margin: 25px auto;
+            padding: 25px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.12);
+            text-align: left;
+        }
+
+        .assessment-section h2 {
+            color: #042c5c;
+            margin: 0 0 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #de3b38;
+        }
+
+        .assessment-section-description {
+            color: #555;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+
+        /* =========================================================
+           FIELD GRID
+        ========================================================= */
+
+        .assessment-grid {
+            display: grid;
+            grid-template-columns: 240px minmax(0, 1fr);
+            border-top: 1px solid #ddd;
+        }
+
+        .assessment-label {
+            padding: 12px;
+            background-color: #f7f7f7;
+            border-bottom: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .assessment-value {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            color: #333;
+            line-height: 1.55;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+        }
+
+        .assessment-value a {
+            color: #D8443D;
+            font-weight: bold;
+        }
+
+        .assessment-value a:hover {
+            color: #b9312c;
+        }
+
+
+        /* =========================================================
+           SPECIAL VALUES
+        ========================================================= */
+
+        .not-reported {
+            color: #888;
+            font-style: italic;
+        }
+
+        .eligibility-inline {
+            font-weight: bold;
+        }
+
+        .comment-value {
+            white-space: pre-wrap;
+        }
+
+
+        /* =========================================================
+           BACK BUTTON
+        ========================================================= */
+
+        .back-link-wrapper {
+            text-align: center;
+            margin: 35px 0 10px;
+        }
+
+        .back-link {
+            display: inline-block;
+            background-color: #de3b38;
+            color: white;
+            font-weight: bold;
+            padding: 10px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+        }
+
+        .back-link:hover {
+            background-color: #b9312c;
+        }
+
+
+        /* =========================================================
+           LOADING / ERROR
+        ========================================================= */
+
+        .loading-message {
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            margin: 50px auto;
+        }
+
+        .error-message {
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            color: #333;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media (max-width: 700px) {
+
+            .gene-disease-page {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            .assessment-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .assessment-label {
+                border-right: none;
+                border-bottom: none;
+            }
+
+            .gene-disease-title {
+                font-size: 34px;
+            }
+
+            .gene-disease-subtitle {
+                font-size: 17px;
+            }
+
+            .assessment-section {
+                padding: 18px;
+            }
+        }
+
+    </style>
+
+
+    <script>
+
+        /* =========================================================
+           CONFIGURATION
+        ========================================================= */
+
+        const BACKEND_TABLE = "assessed_genes_diseases";
+
+
+        /* =========================================================
+           HELPERS
+        ========================================================= */
+
+        function cleanValue(value) {
+
+            if (
+                value === undefined ||
+                value === null
+            ) {
+                return "";
+            }
+
+            return String(value).trim();
+
+        }
+
+
+        function escapeHtml(value) {
+
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+
+        }
+
+
+        function formatValue(value) {
+
+            const text = cleanValue(value);
+
+            if (!text) {
+
+                return `
+                    <span class="not-reported">
+                        Not reported
+                    </span>
+                `;
+
+            }
+
+            return escapeHtml(text)
+                .replace(/\n/g, "<br>");
+
+        }
+
+
+        function formatLink(value) {
+
+            const text = cleanValue(value);
+
+            if (!text) {
+
+                return `
+                    <span class="not-reported">
+                        Not reported
+                    </span>
+                `;
+
+            }
+
+            /*
+             * If the field is a URL, make it clickable.
+             */
+            if (
+                text.startsWith("http://") ||
+                text.startsWith("https://")
+            ) {
+
+                return `
+                    <a
+                        href="${escapeHtml(text)}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        ${escapeHtml(text)}
+                    </a>
+                `;
+
+            }
+
+            return formatValue(text);
+
+        }
+
+
+        function createField(
+            container,
+            label,
+            value,
+            options = {}
+        ) {
+
+            const labelElement =
+                document.createElement("div");
+
+            labelElement.className =
+                "assessment-label";
+
+            labelElement.textContent =
+                label;
+
+
+            const valueElement =
+                document.createElement("div");
+
+            valueElement.className =
+                "assessment-value";
+
+
+            if (options.comment) {
+                valueElement.classList.add(
+                    "comment-value"
+                );
+            }
+
+
+            if (options.eligibility) {
+                valueElement.classList.add(
+                    "eligibility-inline"
+                );
+            }
+
+
+            valueElement.innerHTML =
+                options.link
+                    ? formatLink(value)
+                    : formatValue(value);
+
+
+            container.appendChild(
+                labelElement
+            );
+
+            container.appendChild(
+                valueElement
+            );
+
+        }
+
+
+        function getIdFromUrl() {
+
+            const params =
+                new URLSearchParams(
+                    window.location.search
+                );
+
+            return params.get("id");
+
+        }
+
+
+        /* =========================================================
+           LOAD ENTRY
+        ========================================================= */
+
+        async function loadEntry() {
+
+            const id = getIdFromUrl();
+
+
+            if (!id) {
+
+                showError(
+                    "No assessment ID was provided."
+                );
+
+                return;
+
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "https://gene-registry.onrender.com/api/data?table="
+                        + encodeURIComponent(
+                            BACKEND_TABLE
+                        )
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Network response was not ok."
+                    );
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                const entry =
+                    data.find(
+                        item =>
+                            String(item["ID"]) ===
+                            String(id)
+                    );
+
+
+                if (!entry) {
+
+                    showError(
+                        "The requested gene-disease assessment could not be found."
+                    );
+
+                    return;
+
+                }
+
+
+                renderEntry(entry);
+
+
+            } catch (error) {
+
+                console.error(
+                    "Error loading entry:",
+                    error
+                );
+
+                showError(
+                    "There was an error loading this assessment."
+                );
+
+            }
+
+        }
+
+
+        /* =========================================================
+           RENDER ENTRY
+        ========================================================= */
+
+        function renderEntry(entry) {
+
+            const gene =
+                cleanValue(entry["Gene"]);
+
+            const disease =
+                cleanValue(entry["Disease"]);
+
+
+            /* -----------------------------------------
+               Page title
+            ----------------------------------------- */
+
+            document.title =
+                `${gene} - ${disease} | N1C Gene Registry`;
+
+
+            document.getElementById(
+                "page-title"
+            ).textContent =
+                disease ||
+                "Gene-Disease Assessment";
+
+
+            document.getElementById(
+                "page-subtitle"
+            ).textContent =
+                gene
+                    ? `Gene: ${gene}`
+                    : "";
+
+
+            /* -----------------------------------------
+               Eligibility summary
+            ----------------------------------------- */
+
+            document.getElementById(
+                "eligibility-summary-value"
+            ).textContent =
+                cleanValue(
+                    entry["Eligibility"]
+                ) ||
+                "Not reported";
+
+
+            /* =====================================================
+               GENE:DISEASE ASSESSMENT
+            ===================================================== */
+
+            const geneDiseaseGrid =
+                document.getElementById(
+                    "gene-disease-grid"
+                );
+
+
+            createField(
+                geneDiseaseGrid,
+                "ID",
+                entry["ID"]
+            );
+
+
+            createField(
+                geneDiseaseGrid,
+                "Gene",
+                entry["Gene"]
+            );
+
+
+            createField(
+                geneDiseaseGrid,
+                "HGNC",
+                entry["HGNC"]
+            );
+
+
+            createField(
+                geneDiseaseGrid,
+                "Disease",
+                entry["Disease"]
+            );
+
+
+            createField(
+                geneDiseaseGrid,
+                "MONDO",
+                entry["Mondo"],
+                { link: true }
+            );
+
+
+            createField(
+                geneDiseaseGrid,
+                "Gene-Disease Validity",
+                entry["Gene-Disease Validity"]
+            );
+
+
+            createField(
+                geneDiseaseGrid,
+                "ClinGen",
+                entry["ClinGen"],
+                { link: true }
+            );
+
+
+            /* -----------------------------------------
+               Genomic coordinates
+            ----------------------------------------- */
+
+            createField(
+                geneDiseaseGrid,
+                "Genome Build",
+                entry["Genome Build"]
+            );
+
+
+            createField(
+                geneDiseaseGrid,
+                "Chromosome",
+                entry["Chromosome"]
+            );
+
+
+            createField(
+                geneDiseaseGrid,
+                "Start",
+                entry["Start"]
+            );
+
+
+            createField(
+                geneDiseaseGrid,
+                "End",
+                entry["End"]
+            );
+
+
+            createField(
+                geneDiseaseGrid,
+                "Strand",
+                entry["Strand"]
+            );
+
+
+            /* =====================================================
+               MOLECULAR CONSIDERATIONS
+            ===================================================== */
+
+            const molecularGrid =
+                document.getElementById(
+                    "molecular-grid"
+                );
+
+
+            createField(
+                molecularGrid,
+                "Pathomechanism",
+                entry["Pathomechanism"]
+            );
+
+
+            createField(
+                molecularGrid,
+                "Penetrance",
+                entry["Penetrance"]
+            );
+
+
+            createField(
+                molecularGrid,
+                "Expressivity",
+                entry["Expressivity"]
+            );
+
+
+            createField(
+                molecularGrid,
+                "Prevalence",
+                entry["Prevalence"]
+            );
+
+
+            createField(
+                molecularGrid,
+                "Dosage sensitivity",
+                entry["Dosage sensitivity"],
+                { link: true }
+            );
+
+
+            /* =====================================================
+               CLINICAL CONSIDERATIONS
+            ===================================================== */
+
+            const clinicalGrid =
+                document.getElementById(
+                    "clinical-grid"
+                );
+
+
+            createField(
+                clinicalGrid,
+                "Target Tissue",
+                entry["Target Tissue"]
+            );
+
+
+            createField(
+                clinicalGrid,
+                "Natural History",
+                entry["Natural History"]
+            );
+
+
+            createField(
+                clinicalGrid,
+                "Phenotype Severity",
+                entry["Phenotype Severity"]
+            );
+
+
+            createField(
+                clinicalGrid,
+                "Therapeutic Window",
+                entry["Therapeutic Window"]
+            );
+
+
+            createField(
+                clinicalGrid,
+                "Quantifiable Outcome Measure",
+                entry["Quantifiable Outcome Measure"]
+            );
+
+
+            createField(
+                clinicalGrid,
+                "Current Management and Care",
+                entry["Current Management and Care"]
+            );
+
+
+            /* =====================================================
+               PRACTICAL / THERAPEUTIC CONSIDERATIONS
+            ===================================================== */
+
+            const practicalGrid =
+                document.getElementById(
+                    "practical-grid"
+                );
+
+
+            createField(
+                practicalGrid,
+                "Recommended Approach",
+                entry["Recommended Approach"]
+            );
+
+
+            createField(
+                practicalGrid,
+                "Therapeutic Modality",
+                entry["Therapeutic Modality"]
+            );
+
+
+            createField(
+                practicalGrid,
+                "Therapeutic Status",
+                entry["Therapeutic Status"]
+            );
+
+
+            createField(
+                practicalGrid,
+                "Therapy Publication",
+                entry["Therapy Publication"],
+                { link: true }
+            );
+
+
+            createField(
+                practicalGrid,
+                "Eligibility",
+                entry["Eligibility"],
+                { eligibility: true }
+            );
+
+
+            createField(
+                practicalGrid,
+                "Comment",
+                entry["Comment"],
+                { comment: true }
+            );
+
+
+            /* -----------------------------------------
+               Show completed content
+            ----------------------------------------- */
+
+            document.getElementById(
+                "loading"
+            ).style.display =
+                "none";
+
+
+            document.getElementById(
+                "assessment-content"
+            ).style.display =
+                "block";
+
+        }
+
+
+        /* =========================================================
+           ERROR
+        ========================================================= */
+
+        function showError(message) {
+
+            document.getElementById(
+                "loading"
+            ).style.display =
+                "none";
+
+
+            const errorElement =
+                document.getElementById(
+                    "error-message"
+                );
+
+
+            errorElement.textContent =
+                message;
+
+
+            errorElement.style.display =
+                "block";
+
+        }
+
+    </script>
+
+</head>
+
+
+<body onload="loadEntry()">
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="registry-header">
+
+    <div class="registry-header-inner">
+
+        <a
+            href="index.html"
+            class="registry-brand"
+        >
+
+            <img
+                src="N1C_logo.jpg"
+                alt="N1C Logo"
+                class="registry-brand-logo"
+            >
+
+            <span>
+                N1C Gene Registry
+            </span>
+
+        </a>
+
+
+        <button
+            class="menu-button"
+            id="menuButton"
+            aria-expanded="false"
+            aria-controls="registryMenu"
+        >
+            Menu
+        </button>
+
+    </div>
+
+
+    <nav
+        class="registry-menu"
+        id="registryMenu"
+    >
+
+        <div class="registry-menu-inner">
+
+            <a href="N1C_projects.html">
+                N-of-1 Projects
+            </a>
+
+            <a href="Marketed_drugs.html">
+                Marketed Genetic Therapies
+            </a>
+
+            <a href="assessed_variants.html">
+                Assessed Variants
+            </a>
+
+            <a href="published_genetic_therapies.html">
+                Published Genetic Therapies
+            </a>
+
+            <a
+                href="assessed_genes_diseases.html"
+                class="active"
+            >
+                Assessed Genes &amp; Diseases
+            </a>
+
+            <a href="automated_assessment_tools.html">
+                Automated Assessment Tools
+            </a>
+
+            <a
+                href="https://connections.n1collaborative.org/"
+                target="_blank"
+            >
+                N1C Connections
+            </a>
+
+            <a
+                href="https://www.n1collaborative.org/"
+                target="_blank"
+            >
+                N1C Website
+            </a>
+
+            <a href="info.html">
+                Info
+            </a>
+
+            <a
+                href="patients.html"
+                class="patient-link"
+            >
+                For Patients
+            </a>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+<!-- =========================================================
+     MAIN PAGE
+========================================================= -->
+
+<div class="gene-disease-page">
+
+
+    <div
+        id="loading"
+        class="loading-message"
+    >
+        Loading assessment...
+    </div>
+
+
+    <div
+        id="error-message"
+        class="error-message"
+        style="display:none;"
+    ></div>
+
+
+    <div
+        id="assessment-content"
+        style="display:none;"
+    >
+
+
+        <!-- Title -->
+
+        <h1
+            id="page-title"
+            class="gene-disease-title"
+        >
+            Gene-Disease Assessment
+        </h1>
+
+
+        <p
+            id="page-subtitle"
+            class="gene-disease-subtitle"
+        ></p>
+
+
+        <!-- Eligibility -->
+
+        <div class="eligibility-summary">
+
+            <div class="eligibility-summary-label">
+                Eligibility Status
+            </div>
+
+            <div
+                id="eligibility-summary-value"
+                class="eligibility-summary-value"
+            >
+                Not reported
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             GENE:DISEASE ASSESSMENT
+        ====================================================== -->
+
+        <section class="assessment-section">
+
+            <h2>
+                Gene:Disease Assessment
+            </h2>
+
+            <p class="assessment-section-description">
+                Overview of the gene-disease relationship,
+                genomic information, and validity of the association.
+            </p>
+
+            <div
+                id="gene-disease-grid"
+                class="assessment-grid"
+            ></div>
+
+        </section>
+
+
+        <!-- =====================================================
+             MOLECULAR CONSIDERATIONS
+        ====================================================== -->
+
+        <section class="assessment-section">
+
+            <h2>
+                Molecular Considerations
+            </h2>
+
+            <p class="assessment-section-description">
+                Molecular characteristics relevant to therapeutic
+                intervention, including pathomechanism, penetrance,
+                expressivity, prevalence, and dosage sensitivity.
+            </p>
+
+            <div
+                id="molecular-grid"
+                class="assessment-grid"
+            ></div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CLINICAL CONSIDERATIONS
+        ====================================================== -->
+
+        <section class="assessment-section">
+
+            <h2>
+                Clinical Considerations
+            </h2>
+
+            <p class="assessment-section-description">
+                Clinical characteristics relevant to therapeutic
+                development and assessment, including tissue,
+                natural history, severity, therapeutic window,
+                outcome measures, and current management.
+            </p>
+
+            <div
+                id="clinical-grid"
+                class="assessment-grid"
+            ></div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PRACTICAL / THERAPEUTIC CONSIDERATIONS
+        ====================================================== -->
+
+        <section class="assessment-section">
+
+            <h2>
+                Practical &amp; Therapeutic Considerations
+            </h2>
+
+            <p class="assessment-section-description">
+                Recommended therapeutic approaches, modalities,
+                development status, supporting publications,
+                and overall eligibility assessment.
+            </p>
+
+            <div
+                id="practical-grid"
+                class="assessment-grid"
+            ></div>
+
+        </section>
+
+
+        <!-- Back -->
+
+        <div class="back-link-wrapper">
+
+            <a
+                href="assessed_genes_diseases.html"
+                class="back-link"
+            >
+                ← Back to Assessed Genes &amp; Diseases
+            </a>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer
+    style="
+        text-align:center;
+        margin-top:40px;
+        font-size:0.9em;
+        color:#777;
+    "
+>
+
+    <p>
+        © N=1 Collaborative
+    </p>
+
+    <p id="last-updated">
+        Last updated: ...
+    </p>
+
+</footer>
+
+
+<script>
+
+    /* =========================================================
+       LAST UPDATED
+    ========================================================= */
+
+    const now = new Date();
+
+    document.getElementById(
+        "last-updated"
+    ).textContent =
+        "Last updated: " +
+        now.toLocaleString();
+
+
+    /* =========================================================
+       MENU
+    ========================================================= */
+
+    const menuButton =
+        document.getElementById(
+            "menuButton"
+        );
+
+
+    const registryMenu =
+        document.getElementById(
+            "registryMenu"
+        );
+
+
+    menuButton.addEventListener(
+        "click",
+        function () {
+
+            registryMenu.classList.toggle(
+                "open"
+            );
+
+        }
+    );
+
+
+    document.addEventListener(
+        "click",
+        function (e) {
+
+            if (
+                !registryMenu.contains(e.target) &&
+                e.target !== menuButton
+            ) {
+
+                registryMenu.classList.remove(
+                    "open"
+                );
+
+            }
+
+        }
+    );
+
+</script>
+
+
+</body>
+</html>
