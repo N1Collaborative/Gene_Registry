@@ -257,6 +257,27 @@
             }
         }
 
+
+        .full-assessment-view {
+            text-align: center;
+            margin: 40px 0 25px;
+        }
+        
+        .view-assessment-button {
+            display: inline-block;
+            background-color: #de3b38;
+            color: white;
+            font-weight: bold;
+            padding: 12px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+        
+        .view-assessment-button:hover {
+            background-color: #b9312c;
+        }
+        
+
     </style>
 
 
@@ -511,14 +532,39 @@
            RENDER ENTRY
         ========================================================= */
 
-        function renderEntry(entry) {
+       function renderEntry(entry) {
 
-            const gene =
-                cleanValue(entry["Gene"]);
+    const gene =
+        cleanValue(entry["Gene"]);
 
-            const disease =
-                cleanValue(entry["Disease"]);
+    const disease =
+        cleanValue(entry["Disease"]);
 
+
+    /* -----------------------------------------
+       Full assessment PDF
+    ----------------------------------------- */
+
+    const assessmentContainer =
+        document.getElementById("full-assessment-view");
+
+    if (gene) {
+
+       const assessmentFile =
+            `gene_disease_assessments/${encodeURIComponent(gene)}.pdf`;
+
+        assessmentContainer.innerHTML = `
+            <a
+                href="${assessmentFile}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="view-assessment-button"
+            >
+                View Full Assessment
+            </a>
+        `;
+
+    }
 
             /* -----------------------------------------
                Page title
@@ -1045,38 +1091,47 @@
              PRACTICAL / THERAPEUTIC CONSIDERATIONS
         ====================================================== -->
 
-        <section class="assessment-section">
+       <section class="assessment-section">
 
             <h2>
                 Practical &amp; Therapeutic Considerations
             </h2>
-
+        
             <p class="assessment-section-description">
                 Recommended therapeutic approaches, modalities,
                 development status, supporting publications,
                 and overall eligibility assessment.
             </p>
-
+        
             <div
                 id="practical-grid"
                 class="assessment-grid"
             ></div>
-
+        
         </section>
-
-
-        <!-- Back -->
-
+        
+        
+        <!-- Full assessment document -->
+        
+        <div
+            id="full-assessment-view"
+            class="full-assessment-view"
+        ></div>
+        
+        
+        <!-- Back to overview -->
+        
         <div class="back-link-wrapper">
-
+        
             <a
                 href="assessed_genes_diseases.html"
                 class="back-link"
             >
                 ← Back to Assessed Genes &amp; Diseases
             </a>
-
+        
         </div>
+    
 
 
     </div>
