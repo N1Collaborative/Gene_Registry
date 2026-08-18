@@ -58,7 +58,14 @@
 
             console.log("First row keys:", Object.keys(data[0]));
 
-            let headers = ["Disease", "Gene", "Therapeutic Approach", "Outcome"];
+            let headers = [
+                "Gene",
+                "Disease",
+                "Eligibility",
+                "Recommended Approach",
+                "Therapeutic Modality",
+                "Therapeutic Status"
+            ];
 
             console.log("Headers being used:", headers);
 
@@ -173,7 +180,6 @@
       <a href="published_genetic_therapies.html">Published Genetic Therapies</a>
       <a href="assessed_genes_diseases.html"class="active">Assessed Genes &amp; Diseases</a>
       <a href="automated_assessment_tools.html">Automated Assessment Tools</a>
-      <a href="patients.html" class="patient-link">For Patients</a>
         <a href="https://connections.n1collaborative.org/" target="_blank">
           N1C Connections
         </a>
@@ -199,12 +205,19 @@
     <div style="max-width: 900px; margin: 30px auto 20px; padding: 20px; background-color: white; border-radius: 8px; text-align: center;">
       <h2 style="color: #333;">About this Section</h2>
       <p style="font-size: 16px; color: #333;">
-        This part of the registry contains assessed genes and diseases that have been evaluated using a standardized framework. The overview table displays the disease name, gene, therapeutic approach, and outcome. Clicking on an entry will open a detailed assessment page.
+         This part of the registry contains assessed genes and diseases that have been evaluated using a standardized framework. 
+          The overview table is sorted alphabetically by gene and displays the disease, eligibility status, recommended therapeutic approach, 
+          therapeutic modality, and therapeutic status. The search function can be used to search across all fields, including disease names. 
+          Clicking on an entry will open a detailed assessment page.
       </p>
     </div>
 
     <div class="search-wrapper">
-      <input type="text" id="search" placeholder="Search..." />
+      <input
+            type="text"
+            id="search"
+            placeholder="Search by gene, disease, or assessment..."
+        />
       <button class="search-button" onclick="searchTable()">Search</button>
     </div>
 
