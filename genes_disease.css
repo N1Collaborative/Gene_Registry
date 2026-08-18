@@ -189,22 +189,32 @@ details td {
 /* Column widths for assessed genes & diseases */
 details th:nth-child(1),
 details td:nth-child(1) {
-  width: 28%;
+    width: 5%;   /* Gene */
 }
 
 details th:nth-child(2),
 details td:nth-child(2) {
-  width: 18%;
+    width: 22%;  /* Disease */
 }
 
 details th:nth-child(3),
 details td:nth-child(3) {
-  width: 27%;
+    width: 8%;  /* Eligibility */
 }
 
 details th:nth-child(4),
 details td:nth-child(4) {
-  width: 27%;
+    width: 24%;  /* Recommended Approach */
+}
+
+details th:nth-child(5),
+details td:nth-child(5) {
+    width: 21%;  /* Therapeutic Modality */
+}
+
+details th:nth-child(6),
+details td:nth-child(6) {
+    width: 20%;  /* Therapeutic Status */
 }
 
 /* Under construction note */
