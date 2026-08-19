@@ -242,3 +242,12 @@ details td:nth-child(6) {
 details summary {
     text-align: center;
 }
+
+/* Center loading message */
+#loading {
+  text-align: center;
+  color: white;
+  font-size: 18px;
+  margin: 40px auto;
+  width: 100%;
+}
