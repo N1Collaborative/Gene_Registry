@@ -185,15 +185,14 @@
         }
         
         .variant-assessment-header h3 {
-            margin: 0 0 4px;
+            margin: 0;
             color: #042c5c;
             font-size: 20px;
+            font-weight: bold;
         }
         
         .variant-assessment-header .submitter {
-            color: #de3b38;
-            font-size: 15px;
-            font-weight: bold;
+            display: none;
         }
 
         .variant-assessment-body {
@@ -207,27 +206,25 @@
            .assessment-eligibility {
                 display: flex;
                 align-items: center;
-                gap: 12px;
-                padding: 12px 18px;
+                gap: 10px;
+                padding: 10px 18px;
                 background-color: #fafafa;
                 border-bottom: 1px solid #ddd;
             }
             
             .assessment-eligibility-label {
-                color: #555;
-                font-size: 13px;
+                color: #333;
+                font-size: 15px;
                 font-weight: bold;
-                text-transform: uppercase;
-                letter-spacing: 0.04em;
                 margin: 0;
             }
             
             .assessment-eligibility-value {
                 display: inline-block;
-                font-size: 16px;
+                font-size: 15px;
                 font-weight: bold;
-                padding: 5px 11px;
-                border-radius: 6px;
+                padding: 4px 9px;
+                border-radius: 5px;
             }
             
             /* Eligible */
@@ -1373,19 +1370,14 @@
 
                     card.innerHTML = `
                         <div class="variant-assessment-header">
-                    
+
                             <h3>
-                                Assessment
-                            </h3>
-                    
-                            <div class="submitter">
-                                Submitter / Assessor:
-                                ${escapeHtml(
+                                Assessment: ${escapeHtml(
                                     submitter ||
-                                    "Not reported"
+                                    "Not available"
                                 )}
-                            </div>
-                    
+                            </h3>
+                        
                         </div>
                     
                         <div class="assessment-eligibility">
