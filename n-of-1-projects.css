@@ -34,11 +34,13 @@ details td:nth-child(6) {
   width: 10%;  /* Status */
 }
 
-#loading {
-  display: block;
+.loading-container {
   width: 100%;
   text-align: center;
+}
+
+#loading {
+  margin: 40px 0;
   color: white;
   font-size: 18px;
-  margin: 40px 0;
 }
