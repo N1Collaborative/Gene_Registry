@@ -243,11 +243,11 @@ details summary {
     text-align: center;
 }
 
-/* Center loading message */
 #loading {
+  display: block;
+  width: 100%;
   text-align: center;
   color: white;
   font-size: 18px;
-  margin: 40px auto;
-  width: 100%;
+  margin: 40px 0;
 }
