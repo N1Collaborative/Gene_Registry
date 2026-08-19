@@ -179,20 +179,21 @@
         }
 
         .variant-assessment-header {
-            background-color: #042c5c;
-            color: white;
+            background-color: #f3f6f9;
             padding: 14px 18px;
+            border-bottom: 1px solid #d9e0e6;
         }
-
+        
         .variant-assessment-header h3 {
-            margin: 0;
+            margin: 0 0 4px;
+            color: #042c5c;
             font-size: 20px;
         }
-
+        
         .variant-assessment-header .submitter {
-            margin-top: 4px;
-            color: rgba(255,255,255,0.82);
-            font-size: 14px;
+            color: #de3b38;
+            font-size: 15px;
+            font-weight: bold;
         }
 
         .variant-assessment-body {
@@ -203,26 +204,29 @@
                ELIGIBILITY HIGHLIGHT
             ========================================================= */
             
-            .assessment-eligibility {
-                padding: 14px 18px;
-                background-color: #f7f7f7;
+           .assessment-eligibility {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 12px 18px;
+                background-color: #fafafa;
                 border-bottom: 1px solid #ddd;
             }
             
             .assessment-eligibility-label {
                 color: #555;
-                font-size: 12px;
+                font-size: 13px;
                 font-weight: bold;
                 text-transform: uppercase;
-                letter-spacing: 0.05em;
-                margin-bottom: 5px;
+                letter-spacing: 0.04em;
+                margin: 0;
             }
             
             .assessment-eligibility-value {
                 display: inline-block;
-                font-size: 19px;
+                font-size: 16px;
                 font-weight: bold;
-                padding: 6px 13px;
+                padding: 5px 11px;
                 border-radius: 6px;
             }
             
@@ -657,7 +661,7 @@
 
                 return `
                     <span class="not-reported">
-                        Not reported
+                        Not available
                     </span>
                 `;
 
@@ -703,7 +707,7 @@
 
                 return `
                     <span class="not-reported">
-                        Not reported
+                        Not available
                     </span>
                 `;
 
@@ -1005,18 +1009,6 @@
                 "variant-summary-value"
             ).textContent =
                 displayVariant;
-
-
-           
-
-            /* -----------------------------------------
-               SUMMARY
-            ----------------------------------------- */
-
-            document.getElementById(
-                "variant-summary-value"
-            ).textContent =
-                variantLabel;
 
 
             /* =====================================================
@@ -1397,20 +1389,20 @@
                         </div>
                     
                         <div class="assessment-eligibility">
-                    
+
                             <div class="assessment-eligibility-label">
                                 Eligibility
                             </div>
-                    
+                        
                             <div class="assessment-eligibility-value ${eligibilityClass}">
                                 ${escapeHtml(
                                     eligibility ||
                                     "Unable to assess"
                                 )}
                             </div>
-                    
+                        
                         </div>
-                    
+                                            
                         <div class="variant-assessment-body">
 
                             <div class="assessment-grid">
@@ -1722,8 +1714,7 @@
             </h2>
 
             <p class="assessment-section-description">
-                Genomic, molecular, and clinical information
-                associated with the assessed variant.
+                Basic variant information.
             </p>
 
             <div
