@@ -399,7 +399,12 @@ async function searchBothRegistries() {
     const variantData = await variantRes.json();
     const geneDiseaseData = await geneDiseaseRes.json();
 
-    if (n1cData.length === 0 && drugData.length === 0 && variantData.length === 0) {
+    if (
+      n1cData.length === 0 &&
+      drugData.length === 0 &&
+      variantData.length === 0 &&
+      geneDiseaseData.length === 0
+    ) {
       resultsDiv.innerHTML = "<p style='color: white;'>No results found.</p>";
       return;
     }
