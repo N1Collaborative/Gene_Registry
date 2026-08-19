@@ -585,17 +585,33 @@
                 cleanValue(
                     entry["Gene"]
                 );
-
+            
+            const transcript =
+                cleanValue(
+                    entry["RefSeq Transcript"]
+                );
+            
+            const cdna =
+                cleanValue(
+                    entry["Coding DNA change (c.)"]
+                );
+            
             const indication =
                 cleanValue(
                     entry["Indication"]
                 );
-
+            
             const status =
                 cleanValue(
                     entry["Status"]
                 );
-
+            
+            const displayVariant =
+                transcript && gene && cdna
+                    ? `${transcript} (${gene}):${cdna}`
+                    : gene
+                        ? gene
+                        : "N-of-1 Project";
 
             /* -----------------------------------------
                PAGE TITLE
@@ -608,26 +624,9 @@
 
 
             document.getElementById(
-                "page-title"
-            ).textContent =
-                gene ||
-                "N-of-1 Project";
-
-
-            document.getElementById(
-                "page-subtitle"
-            ).textContent =
-                indication
-                    ? `Indication: ${indication}`
-                    : "";
-
-
-            document.getElementById(
                 "summary-value"
             ).textContent =
-                gene ||
-                "N-of-1 Project";
-
+                displayVariant;
 
             /* =====================================================
                VARIANT INFORMATION
@@ -742,13 +741,6 @@
                     "Cell Line or Animal Model Availability"
                 ]
             );
-
-            addField(
-                developmentGrid,
-                "Comment",
-                entry["Comment"]
-            );
-
 
             /* -----------------------------------------
                Status
@@ -986,24 +978,6 @@
 
 
         <!-- =====================================================
-             TITLE
-        ====================================================== -->
-
-        <h1
-            id="page-title"
-            class="project-entry-title"
-        >
-            N-of-1 Project
-        </h1>
-
-
-        <p
-            id="page-subtitle"
-            class="project-entry-subtitle"
-        ></p>
-
-
-        <!-- =====================================================
              SUMMARY
         ====================================================== -->
 
@@ -1093,7 +1067,7 @@
         <section class="project-section">
 
             <h2>
-                Development &amp; Regulatory Information
+                Additional Information
             </h2>
 
             <p class="project-section-description">
