@@ -203,28 +203,33 @@
                ELIGIBILITY HIGHLIGHT
             ========================================================= */
             
-           .assessment-eligibility {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                padding: 10px 18px;
-                background-color: #fafafa;
+         /* =========================================================
+   ELIGIBILITY ROW
+========================================================= */
+
+            .assessment-eligibility {
+                display: grid;
+                grid-template-columns: 240px minmax(0, 1fr);
                 border-bottom: 1px solid #ddd;
             }
             
             .assessment-eligibility-label {
+                padding: 12px 18px;
+                background-color: #f7f7f7;
+                border-right: 1px solid #ddd;
                 color: #333;
-                font-size: 15px;
+                font-size: 16px;
                 font-weight: bold;
-                margin: 0;
             }
             
             .assessment-eligibility-value {
-                display: inline-block;
-                font-size: 15px;
+                display: flex;
+                align-items: center;
+                padding: 12px 18px;
+                background-color: white;
+                color: #333;
+                font-size: 16px;
                 font-weight: bold;
-                padding: 4px 9px;
-                border-radius: 5px;
             }
             
             /* Eligible */
