@@ -33,3 +33,11 @@ details th:nth-child(6),
 details td:nth-child(6) {
   width: 10%;  /* Status */
 }
+
+#loading {
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    margin: 40px auto;
+    width: 100%;
+}
