@@ -85,43 +85,15 @@
     <div class="tools-grid">
       <div class="tool-tile" onclick="openModal('tool1Modal')">
         <div class="tool-icon"><i data-lucide="cpu"></i></div>
-        <h3>Tool A</h3>
-        <p>Automated prioritization tool for therapeutic eligibility assessment of rare genetic variants.</p>
+        <h3>AVEC: Accelerated Variant Eligibility Calculator</h3>
+        <p>Semi-automated variant eligibility assessment using the N1C v2.0 VARIANT guidelines.</p>
         <div class="tile-meta">
           <span class="badge badge-status-complete">Benchmark completed</span>
-          <span class="badge badge-score">84% accuracy</span>
+          <span class="badge badge-score">97% accuracy</span>
         </div>
       </div>
 
-      <div class="tool-tile" onclick="openModal('tool2Modal')">
-        <div class="tool-icon"><i data-lucide="workflow"></i></div>
-        <h3>Tool B</h3>
-        <p>Decision-support tool for comparing possible interventional genomic approaches across variants.</p>
-        <div class="tile-meta">
-          <span class="badge badge-status-review">Under review</span>
-          <span class="badge badge-score">Report pending</span>
-        </div>
-      </div>
-
-      <div class="tool-tile" onclick="openModal('tool3Modal')">
-        <div class="tool-icon"><i data-lucide="sparkles"></i></div>
-        <h3>Tool 3</h3>
-        <p>Automated prioritization tool for therapeutic eligibility assessment of rare genetic variants.</p>
-        <div class="tile-meta">
-          <span class="badge badge-status-complete">Benchmark completed</span>
-          <span class="badge badge-score">60% accuracy</span>
-        </div>
-      </div>
-
-      <div class="tool-tile" onclick="openModal('tool4Modal')">
-        <div class="tool-icon"><i data-lucide="flask-conical"></i></div>
-        <h3>Tool D</h3>
-        <p>Automated prioritization tool for therapeutic eligibility assessment of rare genetic variants</p>
-        <div class="tile-meta">
-          <span class="badge badge-status-soon">Coming soon</span>
-          <span class="badge badge-score">No report yet</span>
-        </div>
-      </div>
+     
     </div>
 
     <footer>
@@ -133,9 +105,8 @@
   <div id="tool1Modal" class="modal" onclick="closeModalOnOutside(event, 'tool1Modal')">
     <div class="modal-content">
       <button class="close-button" onclick="closeModal('tool1Modal')">&times;</button>
-      <h2>Tool A</h2>
-      <p>
-        Tool A is an automated tool designed to support therapeutic eligibility assessment for rare genetic variants by predicting suitable interventional genomic approaches based on variant and gene characteristics.
+      <h2>AVEC</h2>
+      <p>Semi-automated variant eligibility assessment using the N1C v2.0 VARIANT guidelines.
       </p>
 
       <div class="report-section">
@@ -144,27 +115,26 @@
         <div class="summary-grid">
           <div class="summary-box">
             <span class="label">Version tested</span>
-            <span class="value">v1.4</span>
+            <span class="value">v1.0</span>
           </div>
           <div class="summary-box">
             <span class="label">Date assessed</span>
-            <span class="value">April 2026</span>
+            <span class="value">August 2026</span>
           </div>
           <div class="summary-box">
             <span class="label">Benchmark dataset</span>
-            <span class="value">200 protected variants</span>
+            <span class="value">152 manually assessed variants from the GeneSteps dataset.</span>
           </div>
           <div class="summary-box">
             <span class="label">Accurcacy</span>
-            <span class="value">84%</span>
+            <span class="value">97%</span>
           </div>
         </div>
 
         <ul class="report-list">
-          <li>Strong performance on variants with clear therapeutic modality matches.</li>
-          <li>Reduced performance on edge cases requiring nuanced manual interpretation.</li>
-          <li>Good consistency across well-characterized genes.</li>
-          <li>Occasional overcalling of eligibility in more ambiguous scenarios.</li>
+          <li>Tool showed 97% concordance with manually assessed variant set.</li>
+          <li>Tool assists in the manual assessment but does not fully automate the assessment.</li>
+          <li>Tool is public available via: https://avec.uni-koeln.de/</li>
         </ul>
 
         <div class="report-note">
