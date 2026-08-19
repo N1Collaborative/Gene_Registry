@@ -948,19 +948,23 @@
                 getVariantLabelFromRows(
                     rows
                 );
-
-
-            const gene =
+            
+            const transcript =
                 firstNonEmpty(
                     overview,
-                    ["Gene"]
+                    ["RefSeq Transcript"]
                 );
-
-
-            const disease =
-                getDiseaseName(
-                    overview
+            
+            const cdna =
+                firstNonEmpty(
+                    overview,
+                    ["Coding DNA change (c.)"]
                 );
+            
+            const displayVariant =
+                transcript && cdna
+                    ? `${transcript}:${cdna}`
+                    : variantLabel;
 
 
             /* -----------------------------------------
@@ -972,41 +976,12 @@
 
 
             document.getElementById(
-                "page-title"
+                "variant-summary-value"
             ).textContent =
-                variantLabel;
+                displayVariant;
 
 
-            /* -----------------------------------------
-               SUBTITLE
-            ----------------------------------------- */
-
-            const subtitleParts = [];
-
-
-            if (gene) {
-
-                subtitleParts.push(
-                    `Gene: ${gene}`
-                );
-
-            }
-
-
-            if (disease) {
-
-                subtitleParts.push(
-                    `Disease: ${disease}`
-                );
-
-            }
-
-
-            document.getElementById(
-                "page-subtitle"
-            ).textContent =
-                subtitleParts.join(" · ");
-
+           
 
             /* -----------------------------------------
                SUMMARY
@@ -1691,40 +1666,22 @@
 
 
         <!-- =====================================================
-             TITLE
-        ====================================================== -->
-
-        <h1
-            id="page-title"
-            class="variant-entry-title"
-        >
-            Assessed Variant
-        </h1>
-
-
-        <p
-            id="page-subtitle"
-            class="variant-entry-subtitle"
-        ></p>
-
-
-        <!-- =====================================================
              VARIANT SUMMARY
         ====================================================== -->
 
-        <div class="variant-summary">
+      <div class="variant-summary">
 
             <div class="variant-summary-label">
                 Assessed Variant
             </div>
-
+        
             <div
                 id="variant-summary-value"
                 class="variant-summary-value"
             >
                 Not reported
             </div>
-
+        
         </div>
 
 
