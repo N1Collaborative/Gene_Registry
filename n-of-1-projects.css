@@ -2,6 +2,13 @@
    Page-specific overrides only.
    Most styling now lives in the shared style.css.
 */
+body {
+  text-align: center;
+}
+
+#loading {
+  text-align: center;
+}
 
 /* Keep the N-of-1 projects table column widths consistent */
 details th:nth-child(1),
@@ -39,8 +46,3 @@ details td:nth-child(6) {
   text-align: center;
 }
 
-#loading {
-  margin: 40px 0;
-  color: white;
-  font-size: 18px;
-}
