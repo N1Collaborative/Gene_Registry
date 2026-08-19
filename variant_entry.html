@@ -199,6 +199,68 @@
             padding: 0;
         }
 
+        /* =========================================================
+               ELIGIBILITY HIGHLIGHT
+            ========================================================= */
+            
+            .assessment-eligibility {
+                padding: 14px 18px;
+                background-color: #f7f7f7;
+                border-bottom: 1px solid #ddd;
+            }
+            
+            .assessment-eligibility-label {
+                color: #555;
+                font-size: 12px;
+                font-weight: bold;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                margin-bottom: 5px;
+            }
+            
+            .assessment-eligibility-value {
+                display: inline-block;
+                font-size: 19px;
+                font-weight: bold;
+                padding: 6px 13px;
+                border-radius: 6px;
+            }
+            
+            /* Eligible */
+            .eligibility-eligible {
+                background-color: #e5f4e8;
+                color: #216e35;
+                border: 1px solid #afd3b8;
+            }
+            
+            /* Likely eligible */
+            .eligibility-likely {
+                background-color: #e5f3f1;
+                color: #17665f;
+                border: 1px solid #a9d3ce;
+            }
+            
+            /* Unlikely eligible */
+            .eligibility-unlikely {
+                background-color: #fff3df;
+                color: #996300;
+                border: 1px solid #ecd19b;
+            }
+            
+            /* Not eligible */
+            .eligibility-not {
+                background-color: #fde9e8;
+                color: #a52f2b;
+                border: 1px solid #e8b5b2;
+            }
+            
+            /* Unable to assess */
+            .eligibility-unable {
+                background-color: #eeeeee;
+                color: #555;
+                border: 1px solid #d2d2d2;
+            }
+                    
 
         /* =========================================================
            ASSESSMENT TEXT
@@ -1305,14 +1367,24 @@
                     card.className =
                         "variant-assessment";
 
+                    const eligibility =
+                        firstNonEmpty(
+                            row,
+                            ["Eligibility"]
+                        );
+                    
+                    const eligibilityClass =
+                        getEligibilityClass(
+                            eligibility
+                        );
 
                     card.innerHTML = `
                         <div class="variant-assessment-header">
-
+                    
                             <h3>
                                 Assessment
                             </h3>
-
+                    
                             <div class="submitter">
                                 Submitter / Assessor:
                                 ${escapeHtml(
@@ -1320,9 +1392,24 @@
                                     "Not reported"
                                 )}
                             </div>
-
+                    
                         </div>
-
+                    
+                        <div class="assessment-eligibility">
+                    
+                            <div class="assessment-eligibility-label">
+                                Eligibility
+                            </div>
+                    
+                            <div class="assessment-eligibility-value ${eligibilityClass}">
+                                ${escapeHtml(
+                                    eligibility ||
+                                    "Unable to assess"
+                                )}
+                            </div>
+                    
+                        </div>
+                    
                         <div class="variant-assessment-body">
 
                             <div class="assessment-grid">
@@ -1353,22 +1440,6 @@
                                             row,
                                             [
                                                 "Approach"
-                                            ]
-                                        )
-                                    )}
-                                </div>
-
-
-                                <div class="assessment-label">
-                                    Eligibility
-                                </div>
-
-                                <div class="assessment-value">
-                                    ${formatValue(
-                                        firstNonEmpty(
-                                            row,
-                                            [
-                                                "Eligibility"
                                             ]
                                         )
                                     )}
