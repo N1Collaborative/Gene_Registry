@@ -763,6 +763,32 @@
 
         }
 
+        function getEligibilityClass(value) {
+
+            const text = cleanValue(value).toLowerCase();
+        
+            if (text === "eligible") {
+                return "eligibility-eligible";
+            }
+        
+            if (text === "likely eligible") {
+                return "eligibility-likely";
+            }
+        
+            if (text === "unlikely eligible") {
+                return "eligibility-unlikely";
+            }
+        
+            if (text === "not eligible") {
+                return "eligibility-not";
+            }
+        
+            if (text === "unable to assess") {
+                return "eligibility-unable";
+            }
+        
+            return "eligibility-unable";
+        }
 
         /* =========================================================
            LOAD ENTRY
