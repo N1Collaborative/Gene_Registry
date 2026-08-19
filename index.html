@@ -204,7 +204,12 @@
 function displayGroupedTable(data, source) {
   const container = document.createElement("div");
   const grouped = {};
-  const sortKey = (source === "N1C_projects" || source === "assessed_variants") ? "Gene" : "Marketed drug";
+  const sortKey =
+  (source === "N1C_projects" ||
+   source === "assessed_variants" ||
+   source === "assessed_genes_diseases")
+    ? "Gene"
+    : "Marketed drug";
 
   // ✅ Sort alphabetically, then by c. notation for Gene-based tables
   data.sort((a, b) => {
@@ -228,11 +233,13 @@ function displayGroupedTable(data, source) {
   });
 
   const headers = source === "N1C_projects"
-    ? ["Gene", "RefSeq Transcript", "Coding DNA change (c.)", "Predicted protein change (p.)", "Therapeutic Modality", "Status"]
-    : source === "marketed_drugs"
-    ? ["Marketed drug", "Condition/indication", "Gene", "Modality", "Mechanism", "Company", "DrugBank ID"]
-    : ["Gene", "RefSeq Transcript", "Coding DNA change (c.)", "Predicted protein change (p.)", "Therapeutic Modality", "Approach", "Eligibility"];
-
+      ? ["Gene", "RefSeq Transcript", "Coding DNA change (c.)", "Predicted protein change (p.)", "Therapeutic Modality", "Status"]
+      : source === "marketed_drugs"
+      ? ["Marketed drug", "Condition/indication", "Gene", "Modality", "Mechanism", "Company", "DrugBank ID"]
+      : source === "assessed_genes_diseases"
+      ? ["Gene", "Disease", "Eligibility", "Recommended Approach", "Therapeutic Modality", "Therapeutic Status"]
+      : ["Gene", "RefSeq Transcript", "Coding DNA change (c.)", "Predicted protein change (p.)", "Therapeutic Modality", "Approach", "Eligibility"];
+    
   Object.keys(grouped).sort().forEach(letter => {
     const details = document.createElement("details");
     details.open = true;
@@ -272,13 +279,15 @@ function displayGroupedTable(data, source) {
     let rowsHTML = grouped[letter].map(item => {
       const row = headers.map(h => `<td>${item[h] || "N/A"}</td>`).join("");
 
-      if (source === "N1C_projects") {
-        return `<tr onclick="window.location.href='entry.html?id=${item.ID}'" style="cursor:pointer;">${row}</tr>`;
-      } else if (source === "assessed_variants") {
-        return `<tr onclick="window.location.href='variant_entry.html?id=${item.ID}'" style="cursor:pointer;">${row}</tr>`;
-      } else {
-        return `<tr>${row}</tr>`;
-      }
+     if (source === "N1C_projects") {
+      return `<tr onclick="window.location.href='entry.html?id=${item.ID}'" style="cursor:pointer;">${row}</tr>`;
+    } else if (source === "assessed_variants") {
+      return `<tr onclick="window.location.href='variant_entry.html?id=${item.ID}'" style="cursor:pointer;">${row}</tr>`;
+    } else if (source === "assessed_genes_diseases") {
+      return `<tr onclick="window.location.href='gene_disease_entry.html?id=${item.ID}'" style="cursor:pointer;">${row}</tr>`;
+    } else {
+      return `<tr>${row}</tr>`;
+    }
     }).join("");
 
     table.innerHTML += headerHTML + rowsHTML;
@@ -378,15 +387,17 @@ async function searchBothRegistries() {
   }
 
   try {
-    const [n1cRes, drugRes, variantRes] = await Promise.all([
+    const [n1cRes, drugRes, variantRes, geneDiseaseRes] = await Promise.all([
       fetch("https://gene-registry.onrender.com/api/search?table=N1C_projects&q=" + encodeURIComponent(query)),
       fetch("https://gene-registry.onrender.com/api/search?table=marketed_drugs&q=" + encodeURIComponent(query)),
-      fetch("https://gene-registry.onrender.com/api/search?table=assessed_variants&q=" + encodeURIComponent(query))
+      fetch("https://gene-registry.onrender.com/api/search?table=assessed_variants&q=" + encodeURIComponent(query)),
+      fetch("https://gene-registry.onrender.com/api/search?table=assessed_genes_diseases&q=" + encodeURIComponent(query))
     ]);
 
     const n1cData = await n1cRes.json();
     const drugData = await drugRes.json();
     const variantData = await variantRes.json();
+    const geneDiseaseData = await geneDiseaseRes.json();
 
     if (n1cData.length === 0 && drugData.length === 0 && variantData.length === 0) {
       resultsDiv.innerHTML = "<p style='color: white;'>No results found.</p>";
@@ -415,6 +426,18 @@ async function searchBothRegistries() {
       variantHeader.style.color = "#D8443D";
       resultsDiv.appendChild(variantHeader);
       displayGroupedTable(variantData, "assessed_variants");
+    }
+
+    if (geneDiseaseData.length > 0) {
+      const geneDiseaseHeader = document.createElement("h2");
+      geneDiseaseHeader.textContent = "Assessed Genes & Diseases";
+      geneDiseaseHeader.style.color = "#D8443D";
+      resultsDiv.appendChild(geneDiseaseHeader);
+    
+      displayGroupedTable(
+        geneDiseaseData,
+        "assessed_genes_diseases"
+      );
     }
 
   } catch (err) {
