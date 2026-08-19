@@ -379,7 +379,14 @@ function displayTable(data, expandAll = false) {
 async function searchBothRegistries() {
   const query = document.getElementById("search").value.trim().toLowerCase();
   const resultsDiv = document.getElementById("search-results");
+  const searchButton = document.querySelector(".search-button");
+
   resultsDiv.innerHTML = "";
+
+  if (searchButton) {
+    searchButton.textContent = "Searching...";
+    searchButton.disabled = true;
+  }
 
   if (!query) {
     resultsDiv.innerHTML = "<p style='color: white;'>Please enter a search term.</p>";
@@ -448,6 +455,11 @@ async function searchBothRegistries() {
   } catch (err) {
     console.error("Error searching:", err);
     resultsDiv.innerHTML = "<p style='color: white;'>Error loading results.</p>";
+  }
+    
+    if (searchButton) {
+    searchButton.textContent = "Search";
+    searchButton.disabled = false;
   }
 }
 
