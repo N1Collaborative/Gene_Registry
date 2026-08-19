@@ -240,7 +240,10 @@ console.log("Grouped by gene letter:", grouped);
       <button class="submit-button" onclick="expandAll(false)">Collapse All</button>
     </div>
 
-    <p id="loading">Loading table...</p>
+    <div class="loading-container">
+        <p id="loading">Loading table...</p>
+    </div>
+    
     <table border="1" id="data-table"></table>
 
     <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="scroll-top">↑ Top</button>
