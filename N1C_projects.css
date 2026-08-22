@@ -49,3 +49,13 @@ details summary {
 details summary {
   text-align: center;
 }
+
+.registry-entry-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.registry-entry-link:hover {
+    color: #D8443D;
+    text-decoration: underline;
+}
