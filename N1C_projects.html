@@ -134,10 +134,10 @@ console.log("Grouped by gene letter:", grouped);
 
         // Data rows
         // Data rows
-        let bodyRows = "";
+       let bodyRows = "";
 
         grouped[letter].forEach((item) => {
-            let row = `<tr>`;
+            let row = `<tr onclick="viewEntry('${item["ID"]}')" style="cursor: pointer;">`;
         
             headers.forEach(header => {
                 const value = item[header] !== undefined ? item[header] : "N/A";
@@ -145,7 +145,11 @@ console.log("Grouped by gene letter:", grouped);
                 if (header === "Coding DNA change (c.)") {
                     row += `
                         <td>
-                            <a href="entry.html?id=${item["ID"]}" class="registry-entry-link">
+                            <a
+                                href="entry.html?id=${item["ID"]}"
+                                class="registry-entry-link"
+                                onclick="event.stopPropagation();"
+                            >
                                 ${value}
                             </a>
                         </td>
@@ -158,6 +162,8 @@ console.log("Grouped by gene letter:", grouped);
             row += "</tr>";
             bodyRows += row;
         });
+
+        
         tableElement.innerHTML = headerRow + bodyRows;
         section.appendChild(tableElement);
         table.appendChild(section);
