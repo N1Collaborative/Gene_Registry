@@ -626,6 +626,27 @@
                 entry["Disease"]
             );
 
+            createField(
+                geneDiseaseGrid,
+                "MONDO",
+                entry["Mondo"],
+                { link: true }
+            );
+
+            createField(
+                geneDiseaseGrid,
+                "Gene2Phenotype",
+                entry["G2P"],
+                { link: true }
+            );
+
+            createField(
+                geneDiseaseGrid,
+                "DisMech",
+                entry["DisMech"],
+                { link: true }
+            );
+
 
             createField(
                 geneDiseaseGrid,
@@ -640,7 +661,6 @@
                 entry["ClinGen"],
                 { link: true }
             );
-
 
    
             /* =====================================================
