@@ -160,6 +160,80 @@
 
 
         /* =========================================================
+           GENE-DISEASE VALIDITY
+        ========================================================= */
+        
+        .validity-subsection {
+            margin-top: 30px;
+        }
+        
+        .validity-subsection h3 {
+            color: #042c5c;
+            font-size: 21px;
+            margin: 0 0 12px;
+        }
+        
+        .validity-grid {
+            border-top: 1px solid #ddd;
+        }
+        
+        .validity-row {
+            display: grid;
+            grid-template-columns: 190px minmax(0, 1fr) 220px;
+        }
+        
+        .validity-cell {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            color: #333;
+            line-height: 1.55;
+        }
+        
+        .validity-source {
+            background-color: #f7f7f7;
+            border-right: 1px solid #ddd;
+            font-weight: bold;
+        }
+        
+        .validity-link {
+            border-right: 1px solid #ddd;
+            word-break: break-word;
+        }
+        
+        .validity-link a {
+            color: #D8443D;
+            font-weight: bold;
+        }
+        
+        .validity-link a:hover {
+            color: #b9312c;
+        }
+        
+        .validity-result {
+            font-weight: bold;
+        }
+        
+        @media (max-width: 700px) {
+            .validity-row {
+                grid-template-columns: 1fr;
+            }
+        
+            .validity-source,
+            .validity-link {
+                border-right: none;
+            }
+        
+            .validity-source {
+                border-bottom: none;
+            }
+        }
+
+
+
+
+        
+
+        /* =========================================================
            SPECIAL VALUES
         ========================================================= */
 
@@ -613,54 +687,87 @@
 
 
             createField(
-                geneDiseaseGrid,
-                "Gene",
-                entry["Gene"]
-            );
-
-
-
-            createField(
-                geneDiseaseGrid,
-                "Disease",
-                entry["Disease"]
-            );
-
-            createField(
-                geneDiseaseGrid,
-                "MONDO",
-                entry["Mondo"],
-                { link: true }
-            );
-
-            createField(
-                geneDiseaseGrid,
-                "Gene2Phenotype",
-                entry["G2P"],
-                { link: true }
-            );
-
-            createField(
-                geneDiseaseGrid,
-                "DisMech",
-                entry["DisMech"],
-                { link: true }
-            );
-
-
-            createField(
-                geneDiseaseGrid,
-                "Gene-Disease Validity",
-                entry["Gene-Disease Validity"]
-            );
-
-
-            createField(
-                geneDiseaseGrid,
-                "ClinGen",
-                entry["ClinGen"],
-                { link: true }
-            );
+                    geneDiseaseGrid,
+                    "Gene",
+                    entry["Gene"]
+                );
+                
+                createField(
+                    geneDiseaseGrid,
+                    "Disease",
+                    entry["Disease"]
+                );
+                
+                createField(
+                    geneDiseaseGrid,
+                    "MONDO",
+                    entry["Mondo"],
+                    { link: true }
+                );
+                
+                
+                /* -----------------------------------------
+                   Gene-Disease Validity
+                ----------------------------------------- */
+                
+                const validityGrid =
+                    document.getElementById("validity-grid");
+                
+                const clinGenLink =
+                    entry["ClinGen,"] ||
+                    entry["ClinGen"] ||
+                    "";
+                
+                const clinGenResult =
+                    entry["Gene-Disease Validity (ClinGen)"] ||
+                    "";
+                
+                const g2pLink =
+                    entry[", G2P"] ||
+                    entry["G2P"] ||
+                    "";
+                
+                const g2pResult =
+                    entry["Gene-Disease Validity (G2P)"] ||
+                    "";
+                
+                
+                validityGrid.innerHTML = `
+                
+                    <div class="validity-row">
+                
+                        <div class="validity-cell validity-source">
+                            ClinGen
+                        </div>
+                
+                        <div class="validity-cell validity-link">
+                            ${formatLink(clinGenLink)}
+                        </div>
+                
+                        <div class="validity-cell validity-result">
+                            ${formatValue(clinGenResult)}
+                        </div>
+                
+                    </div>
+                
+                
+                    <div class="validity-row">
+                
+                        <div class="validity-cell validity-source">
+                            Gene2Phenotype
+                        </div>
+                
+                        <div class="validity-cell validity-link">
+                            ${formatLink(g2pLink)}
+                        </div>
+                
+                        <div class="validity-cell validity-result">
+                            ${formatValue(g2pResult)}
+                        </div>
+                
+                    </div>
+                
+                `;
 
    
             /* =====================================================
@@ -1054,6 +1161,17 @@
                 id="gene-disease-grid"
                 class="assessment-grid"
             ></div>
+            
+            <div class="validity-subsection">
+            
+                <h3>Gene-Disease Validity</h3>
+            
+                <div
+                    id="validity-grid"
+                    class="validity-grid"
+                ></div>
+            
+            </div>
 
         </section>
 
