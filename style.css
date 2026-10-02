@@ -233,8 +233,7 @@ details td:nth-child(6) {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: #081D47;
-  backdrop-filter: blur(8px);
+  background-color: var(--n1c-blue);
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
@@ -291,7 +290,7 @@ details td:nth-child(6) {
   width: 420px;
   max-width: calc(100vw - 40px);
   background: white;
-  border: 1px solid rgba(4, 44, 92, 0.12);
+  border: 1px solid rgba(8, 29, 71, 0.12);
   border-radius: 16px;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
   z-index: 2000;
@@ -325,18 +324,18 @@ details td:nth-child(6) {
 
 .registry-menu-inner a:hover,
 .registry-menu-inner a.active {
-  background: rgba(4, 44, 92, 0.08);
+  background: rgba(8, 29, 71, 0.08);
   color: var(--n1c-red);
 }
 
 .registry-menu-inner a.patient-link {
   background: rgba(222, 59, 56, 0.12);
-  border: 1px solid rgba(222, 59, 56, 0.35);
+  border: 1px solid rgba(220, 74, 64, 0.35);
   color: var(--n1c-red);
 }
 
 .registry-menu-inner a.patient-link:hover {
-  background: rgba(222, 59, 56, 0.18);
+  background: rgba(220, 74, 64, 0.12);
   color: var(--n1c-red-dark);
 }
 
