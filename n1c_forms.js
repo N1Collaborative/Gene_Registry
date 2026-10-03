@@ -18,10 +18,10 @@ var N1C = window.N1C = {};
    SUBMITTER_EMAIL_ON: must match SEND_SUBMITTER_EMAIL in Code.gs;
         it only changes the wording of the thank-you panel here.
    ============================================================ */
-N1C.ENV = 'PROD';
+N1C.ENV = 'TEST';
 N1C.ENDPOINTS = {
   TEST: 'https://script.google.com/macros/s/AKfycbyjqqZqOTYQaifwqfeSbZeCyfcdL2jzwbiibSoaVzkZh9ipO-_xo_qp_kZqAANYz4Vj/exec',
-  PROD: 'https://script.google.com/macros/s/AKfycbz8UnBWmqoTQk8thi7iSjRG4OurFhLnr3x0QwSFoa3avH-tEylQmKK77CGeMLOwNTW1/exec'
+  PROD: 'PASTE_THE_N1C_WEB_APP_URL_HERE'
 };
 N1C.SUBMITTER_EMAIL_ON = false;
 N1C.MAX_BULK_ROWS = 500;
@@ -114,9 +114,40 @@ var NORM = N1C.NORM = {
     if (s === 'exoninclusion') return 'Exon inclusion';
     if (s === 'knockdownalleleselective') return 'Knockdown (allele-selective)';
     if (s === 'knockdown') return 'Knockdown';
+    if (s === 'wtupregulation') return 'WT upregulation';
+    if (s === 'baseediting') return 'Base editing';
+    if (s === 'primeediting') return 'Prime editing';
     if (s === 'genereplacement') return 'Gene replacement';
     if (s === 'na' || s === 'notapplicable' || s === 'none') return 'Not applicable';
     if (s === 'other') return 'Other';
+    return String(v).trim();
+  },
+  indication: function (v) {
+    var s = squash(v);
+    if (!s) return '';
+    if (s === 'brain' || s === 'spinalcord' || s === 'brainspinalcord') return 'Brain/Spinal cord';
+    if (s === 'eye') return 'Eye';
+    if (s === 'skin') return 'Skin';
+    if (s === 'muscular' || s === 'muscle') return 'Muscular';
+    if (s === 'liver') return 'Liver';
+    if (s === 'other') return 'Other';
+    return String(v).trim();
+  },
+  vector: function (v) {
+    var s = squash(v);
+    if (!s) return '';
+    if (s === 'aav') return 'AAV';
+    if (s === 'lentivirus' || s === 'lenti') return 'Lentivirus';
+    if (s === 'adenovirus' || s === 'adv') return 'Adenovirus';
+    if (s === 'nonviral') return 'Non-viral';
+    if (s === 'other') return 'Other';
+    return String(v).trim();
+  },
+  delivery: function (v) {
+    var s = squash(v);
+    if (!s) return '';
+    if (s === 'exvivo') return 'Ex vivo';
+    if (s === 'invivo') return 'In vivo';
     return String(v).trim();
   },
   pathomechanism: function (v) {
@@ -215,14 +246,16 @@ N1C.initSteps = function (cfg) {
     }
 
     for (var n in RADIOS) {
-      var rr = RADIOS[n], got = radio(n) !== '';
-      $(rr.fg).classList.toggle('bad', !got && !!forced[rr.step]);
+      var rr = RADIOS[n], rrFg = $(rr.fg), got = radio(n) !== '';
+      if (hidden(rrFg) && rrFg.dataset.optionalWhenHidden === 'yes') got = true;
+      rrFg.classList.toggle('bad', !got && !!forced[rr.step]);
       if (!got) { stepOk[rr.step] = false; if (rr.step === STEP) problems.push({ n: rr.name, t: rr.fg }); }
     }
 
     for (var id in SELECTS) {
-      var sl = SELECTS[id], got2 = val(id) !== '';
-      $(sl.fg).classList.toggle('bad', !got2 && !!forced[sl.step]);
+      var sl = SELECTS[id], slFg = $(sl.fg), got2 = val(id) !== '';
+      if (hidden(slFg) && slFg.dataset.optionalWhenHidden === 'yes') got2 = true;
+      slFg.classList.toggle('bad', !got2 && !!forced[sl.step]);
       if (!got2) { stepOk[sl.step] = false; if (sl.step === STEP) problems.push({ n: sl.name, t: id }); }
     }
 

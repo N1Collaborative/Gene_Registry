@@ -181,6 +181,83 @@
           </div>
           <input id="f-strat-other" placeholder="Please specify" style="margin-top:9px;display:none">
         </div>
+        <div class="fg" id="fg-approach-aso" data-optional-when-hidden="yes" style="display:none">
+          <label for="f-approach-aso">What is the approach for your ASO design? <span class="req">*</span><span class="vis pub">Public</span></label>
+          <select id="f-approach-aso">
+            <option value="">Choose&hellip;</option>
+            <option value="Knockdown">Knockdown</option>
+            <option value="Splice correction">Splice correction</option>
+            <option value="Exon inclusion">Exon inclusion</option>
+            <option value="Exon skipping">Exon skipping</option>
+            <option value="Knockdown (allele-selective)">Knockdown (allele-selective)</option>
+            <option value="WT upregulation">WT upregulation</option>
+            <option value="Other">Other</option>
+          </select>
+          <input id="f-approach-aso-other" placeholder="Please specify" style="margin-top:9px;display:none">
+        </div>
+        <div class="fg" id="fg-guidelines" style="display:none">
+          <label>Has the variant been assessed using the N1C variant guidelines? <span class="opt">&middot; optional</span><span class="vis priv">Not public</span></label>
+          <div class="radio inline">
+            <label data-g="guidelines"><input type="radio" name="guidelines" value="Yes"> Yes</label>
+            <label data-g="guidelines"><input type="radio" name="guidelines" value="No"> No</label>
+          </div>
+          <div class="hint">The goal of this registry is to document variants deemed likely eligible per our guidelines, but you can still submit while studies are pending.</div>
+        </div>
+        <div class="fg" id="fg-outcome" style="display:none">
+          <label for="f-outcome">What is the outcome of using the N1C variant guidelines? <span class="opt">&middot; optional</span><span class="vis priv">Not public</span></label>
+          <select id="f-outcome">
+            <option value="">Choose&hellip;</option>
+            <option value="Eligible">Eligible</option>
+            <option value="Likely eligible">Likely eligible</option>
+            <option value="Unlikely eligible">Unlikely eligible</option>
+            <option value="Not eligible">Not eligible</option>
+            <option value="Unable to assess">Unable to assess</option>
+          </select>
+        </div>
+        <div class="fg" id="fg-approach-crispr" data-optional-when-hidden="yes" style="display:none">
+          <label for="f-approach-crispr">What is your gene editing approach? <span class="req">*</span><span class="vis pub">Public</span></label>
+          <select id="f-approach-crispr">
+            <option value="">Choose&hellip;</option>
+            <option value="Base editing">Base editing</option>
+            <option value="Prime editing">Prime editing</option>
+            <option value="Other">Other</option>
+          </select>
+          <input id="f-approach-crispr-other" placeholder="Please specify" style="margin-top:9px;display:none">
+        </div>
+        <div class="g2" id="fg-replacement-group" style="display:none">
+          <div class="fg" id="fg-delivery">
+            <label>Delivery approach <span class="opt">&middot; optional</span><span class="vis priv">Not public</span></label>
+            <div class="radio inline">
+              <label data-g="delivery"><input type="radio" name="delivery" value="Ex vivo"> Ex vivo</label>
+              <label data-g="delivery"><input type="radio" name="delivery" value="In vivo"> In vivo</label>
+            </div>
+          </div>
+          <div class="fg" id="fg-vector">
+            <label for="f-vector">Vector system <span class="opt">&middot; optional</span><span class="vis priv">Not public</span></label>
+            <select id="f-vector">
+              <option value="">Choose&hellip;</option>
+              <option value="AAV">AAV</option>
+              <option value="Lentivirus">Lentivirus</option>
+              <option value="Adenovirus">Adenovirus</option>
+              <option value="Non-viral">Non-viral</option>
+              <option value="Other">Other</option>
+            </select>
+            <input id="f-vector-other" placeholder="Please specify" style="margin-top:9px;display:none">
+          </div>
+        </div>
+        <div class="fg" id="fg-indication">
+          <label for="f-indication">What tissue or organ does this address? <span class="req">*</span><span class="vis pub">Public</span></label>
+          <select id="f-indication">
+            <option value="">Choose&hellip;</option>
+            <option value="Brain/Spinal cord">Brain/Spinal cord</option>
+            <option value="Eye">Eye</option>
+            <option value="Skin">Skin</option>
+            <option value="Muscular">Muscular</option>
+            <option value="Liver">Liver</option>
+            <option value="Other">Other</option>
+          </select>
+          <input id="f-indication-other" placeholder="Please specify" style="margin-top:9px;display:none">
+        </div>
         <div class="fg" id="fg-status">
           <label for="f-status">What is the status of your project? <span class="req">*</span><span class="vis pub">Public</span></label>
           <select id="f-status">
@@ -260,6 +337,12 @@
         <div class="rev">
           <div class="rh">Therapy and project <button type="button" onclick="N1C.goStep(2)">Edit</button></div>
           <div class="kv"><div class="k">Strategy</div><div class="v" id="r-strat"></div></div>
+          <div class="kv"><div class="k">Approach</div><div class="v" id="r-approach"></div></div>
+          <div class="kv"><div class="k">Delivery</div><div class="v" id="r-delivery"></div></div>
+          <div class="kv"><div class="k">Vector system</div><div class="v" id="r-vector"></div></div>
+          <div class="kv"><div class="k">N1C guidelines assessed</div><div class="v" id="r-guidelines"></div></div>
+          <div class="kv"><div class="k">N1C guidelines outcome</div><div class="v" id="r-outcome"></div></div>
+          <div class="kv"><div class="k">Target tissue</div><div class="v" id="r-indication"></div></div>
           <div class="kv"><div class="k">Status</div><div class="v" id="r-status"></div></div>
           <div class="kv"><div class="k">Applicable to others</div><div class="v" id="r-otherpt"></div></div>
           <div class="kv"><div class="k">Disease model</div><div class="v" id="r-model"></div></div>
@@ -400,6 +483,29 @@
     return (s === 'Other') ? (val('f-strat-other').trim() || 'Other') : s;
   }
 
+  function approachValue() {
+    var s = radio('strat');
+    if (s === 'Antisense oligonucleotide') {
+      var v = val('f-approach-aso');
+      return (v === 'Other') ? (val('f-approach-aso-other').trim() || 'Other') : v;
+    }
+    if (s === 'Gene editing') {
+      var v2 = val('f-approach-crispr');
+      return (v2 === 'Other') ? (val('f-approach-crispr-other').trim() || 'Other') : v2;
+    }
+    return '';
+  }
+
+  function indicationValue() {
+    var v = val('f-indication');
+    return (v === 'Other') ? (val('f-indication-other').trim() || 'Other') : v;
+  }
+
+  function vectorValue() {
+    var v = val('f-vector');
+    return (v === 'Other') ? (val('f-vector-other').trim() || 'Other') : v;
+  }
+
   /* ---------- step-by-step path ---------- */
   N1C.initSteps({
     kind: 'project',
@@ -431,10 +537,21 @@
       model:   { fg: 'fg-model',    step: 2, name: 'Disease model available' }
     },
     selects: {
-      'f-status': { fg: 'fg-status', step: 2, name: 'Project status' }
+      'f-status': { fg: 'fg-status', step: 2, name: 'Project status' },
+      'f-approach-aso': { fg: 'fg-approach-aso', step: 2, name: 'ASO design approach' },
+      'f-approach-crispr': { fg: 'fg-approach-crispr', step: 2, name: 'Gene editing approach' },
+      'f-indication': { fg: 'fg-indication', step: 2, name: 'Target tissue' }
     },
     onRadio: function (group) {
-      if (group === 'strat') $('f-strat-other').style.display = (radio('strat') === 'Other') ? 'block' : 'none';
+      if (group === 'strat') {
+        var s = radio('strat');
+        $('f-strat-other').style.display = (s === 'Other') ? 'block' : 'none';
+        $('fg-approach-aso').style.display = (s === 'Antisense oligonucleotide') ? '' : 'none';
+        $('fg-guidelines').style.display = (s === 'Antisense oligonucleotide') ? '' : 'none';
+        $('fg-outcome').style.display = (s === 'Antisense oligonucleotide') ? '' : 'none';
+        $('fg-approach-crispr').style.display = (s === 'Gene editing') ? '' : 'none';
+        $('fg-replacement-group').style.display = (s === 'Gene replacement') ? '' : 'none';
+      }
     },
     afterCheck: function () {
       var st = val('f-status');
@@ -451,6 +568,11 @@
         $('hgvs-v').textContent = val('f-tx').trim() + ':' + val('f-cvar').trim() + (pv ? ' (' + pv + ')' : '');
         hg.style.display = 'block';
       } else { hg.style.display = 'none'; }
+
+      $('f-approach-aso-other').style.display = (val('f-approach-aso') === 'Other') ? 'block' : 'none';
+      $('f-approach-crispr-other').style.display = (val('f-approach-crispr') === 'Other') ? 'block' : 'none';
+      $('f-indication-other').style.display = (val('f-indication') === 'Other') ? 'block' : 'none';
+      $('f-vector-other').style.display = (val('f-vector') === 'Other') ? 'block' : 'none';
     },
     fillReview: function () {
       put('r-consent', radio('consent') === 'Yes' ? 'Yes, share on the public registry' :
@@ -459,7 +581,15 @@
       put('r-gene', val('f-gene')); put('r-tx', val('f-tx'));
       put('r-cvar', val('f-cvar')); put('r-pvar', val('f-pvar'));
       put('r-pubd', radio('pubd')); put('r-link', val('f-link'));
-      put('r-strat', strategy()); put('r-status', val('f-status'));
+      put('r-strat', strategy());
+      var s2 = radio('strat');
+      put('r-approach', (s2 === 'Antisense oligonucleotide' || s2 === 'Gene editing') ? approachValue() : 'Not applicable');
+      put('r-delivery', s2 === 'Gene replacement' ? (radio('delivery') || '\u2014') : 'Not applicable');
+      put('r-vector', s2 === 'Gene replacement' ? (vectorValue() || '\u2014') : 'Not applicable');
+      put('r-guidelines', s2 === 'Antisense oligonucleotide' ? (radio('guidelines') || '\u2014') : 'Not applicable');
+      put('r-outcome', s2 === 'Antisense oligonucleotide' ? (val('f-outcome') || '\u2014') : 'Not applicable');
+      put('r-indication', indicationValue());
+      put('r-status', val('f-status'));
       put('r-otherpt', radio('otherpt')); put('r-model', radio('model'));
       put('r-pcontact', radio('consent') === 'No' ? 'Not needed (not displayed)' : val('f-pcontact'));
     },
@@ -476,6 +606,12 @@
         codingChange:     val('f-cvar').trim(),
         proteinChange:    val('f-pvar').trim(),
         modality:         strategy(),
+        approach:         approachValue(),
+        indication:       indicationValue(),
+        n1cGuidelines:    radio('guidelines'),
+        n1cOutcome:       val('f-outcome'),
+        deliveryApproach: radio('delivery'),
+        vectorSystem:     vectorValue(),
         status:           val('f-status'),
         confirmedChange:  val('f-conf').trim(),
         published:        radio('pubd'),
@@ -516,7 +652,10 @@
       { key: 'modality', label: 'Therapeutic strategy', aliases: ['what is your therapeutic strategy*', 'therapeutic modality', 'therapeutic strategy'], required: true, norm: NORM.modality },
       { key: 'n1cGuidelines', label: 'Assessed with N1C guidelines?', aliases: ['has the variant been assessed*', 'assessed with n1c guidelines?'] , norm: NORM.yesNo },
       { key: 'n1cOutcome', label: 'N1C guidelines outcome', aliases: ['what is the outcome*', 'n1c guidelines outcome'] },
-      { key: 'asoApproach', label: 'ASO design approach', aliases: ['what is the approach for your aso*', 'aso design approach', 'approach'] },
+      { key: 'approach', label: 'Approach', aliases: ['what is the approach for your aso*', 'aso design approach', 'asoapproach', 'approach', 'what is your gene editing approach*', 'gene editing approach', 'what is your approach*'], norm: NORM.approach },
+      { key: 'indication', label: 'Target tissue', aliases: ['what tissue or organ does this address*', 'indication', 'indication / target tissue', 'target tissue'], norm: NORM.indication },
+      { key: 'deliveryApproach', label: 'Delivery approach', aliases: ['delivery approach*'], norm: NORM.delivery },
+      { key: 'vectorSystem', label: 'Vector system', aliases: ['vector system*'], norm: NORM.vector },
       { key: 'status', label: 'Project status', aliases: ['what is the status of your project*', 'status'], required: true, norm: NORM.status },
       { key: 'otherPatients', label: 'Applicable to other patients', aliases: ['could this therapy be applied*', 'applicable to other patients'], norm: NORM.yesNo },
       { key: 'diseaseModel', label: 'Disease model available', aliases: ['is there a disease model*', 'disease model available'], norm: NORM.yesNo },
