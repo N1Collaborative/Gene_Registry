@@ -59,3 +59,13 @@ details summary {
     color: #D8443D;
     text-decoration: underline;
 }
+
+/* Center the "Loading table..." message while data is fetched */
+.loading-container {
+  width: 100%;
+  text-align: center;
+}
+
+#loading {
+  text-align: center;
+}

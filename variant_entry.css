@@ -1,5 +1,5 @@
 body {
-  background-color: #042c5c;
+  background-color: #081D47;
   color: white;
   margin: 0;
   padding: 0;
@@ -27,7 +27,7 @@ body {
 }
 
 body {
-  background-color: #042c5c;
+  background-color: #081D47;
   color: white;
   margin: 0;
   padding: 0;
@@ -57,7 +57,7 @@ body {
 .variant-section-box,
 .assessment-section-box {
   background-color: white;
-  color: #042c5c;
+  color: #081D47;
   max-width: 900px;
   margin: 24px auto;
   padding: 30px;
@@ -71,13 +71,13 @@ body {
 }
 
 .assessment-section-box {
-  border-top: 4px solid #de3b38;
+  border-top: 4px solid #DC4A40;
 }
 
 .variant-section,
 .assessment-section {
   background: transparent;
-  color: #042c5c;
+  color: #081D47;
   margin: 0;
   padding: 0;
   max-width: none;
@@ -123,7 +123,7 @@ body {
   border: 1px solid #ddd;
   border-radius: 10px;
   background: #fafafa;
-  color: #042c5c;
+  color: #081D47;
 }
 
 .assessment-card h4 {
@@ -141,7 +141,7 @@ body {
   display: block;
   width: fit-content;
   margin: 36px auto 0;
-  background-color: #de3b38;
+  background-color: #DC4A40;
   color: white;
   padding: 12px 20px;
   text-decoration: none;
@@ -168,7 +168,7 @@ body {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background-color: #de3b38;
+  background-color: #DC4A40;
   color: white;
   font-size: 12px;
   font-weight: bold;

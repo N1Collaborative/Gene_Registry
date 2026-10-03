@@ -2,7 +2,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #042c5c;
+  background-color: #081D47;
   color: white;
   text-align: center;
   margin: 0;
@@ -41,7 +41,7 @@ h1 {
   height: 42px;
   padding: 0 16px;
   font-size: 16px;
-  background-color: #de3b38;
+  background-color: #DC4A40;
   color: white;
   border: none;
   border-top-right-radius: 4px;
@@ -74,7 +74,7 @@ table {
 }
 
 th {
-  background-color: #de3b38;
+  background-color: #DC4A40;
   color: white;
   font-weight: bold;
   position: sticky;
@@ -103,7 +103,7 @@ tr:hover {
 
 button,
 .submit-button {
-  background-color: #de3b38;
+  background-color: #DC4A40;
   color: white;
   border: none;
   padding: 8px 16px;
@@ -123,7 +123,7 @@ button:hover,
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #de3b38;
+  background-color: #DC4A40;
   color: white;
   border: none;
   padding: 10px 14px;
@@ -161,7 +161,7 @@ footer p {
   position: fixed;
   top: 20px;
   right: 10px;
-  background-color: #de3b38;
+  background-color: #DC4A40;
   color: white;
   padding: 6px 8px;
   border-radius: 6px;
@@ -180,7 +180,7 @@ footer p {
 }
 
 p a {
-  color: #de3b38;
+  color: #DC4A40;
   font-weight: bold;
 }
 

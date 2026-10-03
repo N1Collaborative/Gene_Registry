@@ -12,7 +12,7 @@
 
 .entry-box {
   background-color: white;
-  color: #042c5c;
+  color: #081D47;
 
   max-width: 800px;
   margin: 24px auto;
@@ -26,7 +26,7 @@
 }
 
 .entry-box h2 {
-  color: #de3b38;
+  color: #DC4A40;
   margin-top: 0;
 }
 
@@ -47,7 +47,7 @@
 
   margin: 30px auto 0;
 
-  background-color: #de3b38;
+  background-color: #DC4A40;
   color: white;
 
   padding: 10px 18px;
