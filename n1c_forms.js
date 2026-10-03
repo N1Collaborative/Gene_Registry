@@ -21,7 +21,7 @@ var N1C = window.N1C = {};
 N1C.ENV = 'PROD';
 N1C.ENDPOINTS = {
   TEST: 'https://script.google.com/macros/s/AKfycbyjqqZqOTYQaifwqfeSbZeCyfcdL2jzwbiibSoaVzkZh9ipO-_xo_qp_kZqAANYz4Vj/exec',
-  PROD: 'https://script.google.com/macros/s/AKfycbx6oaa1NPJ9ufl1RUljwKCv4v4mdVtIMOKZfuIr6EqdBq4eXjX1N4Y3dNFgRHnt1oDb/exec'
+  PROD: 'https://script.google.com/macros/s/AKfycbxESNYXmJpitfLP5Ut7Y44ZheVdcNZMiG2b4WxwH3Ed11yvLp_Tx8tlZMjFQgfkyiFL/exec'
 };
 N1C.SUBMITTER_EMAIL_ON = false;
 N1C.MAX_BULK_ROWS = 500;
