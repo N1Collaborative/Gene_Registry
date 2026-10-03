@@ -15,6 +15,14 @@ TABLE_FILES = {
     "assessed_genes_diseases": "assessed_genes_diseases.xlsx",
 }
 
+# In-memory cache so we don't re-read and re-parse an Excel file (slow with
+# openpyxl) on every single page view. Each entry is keyed by table name and
+# holds the file's modification time plus the parsed DataFrame. If nobody has
+# touched the spreadsheet since the last request, we reuse the parsed copy
+# instead of reading the file again; if the file's mtime has changed (the
+# spreadsheet was edited/replaced) we re-read it automatically.
+_cache = {}
+
 
 def file_path_for(table_name: str):
     rel = TABLE_FILES.get(table_name)
@@ -26,6 +34,18 @@ def file_path_for(table_name: str):
         os.path.dirname(__file__),
         rel
     )
+
+
+def load_dataframe(table_name: str, path: str):
+    mtime = os.path.getmtime(path)
+    cached = _cache.get(table_name)
+
+    if cached and cached[0] == mtime:
+        return cached[1]
+
+    df = pd.read_excel(path, engine="openpyxl")
+    _cache[table_name] = (mtime, df)
+    return df
 
 
 @app.get("/health")
@@ -50,10 +70,7 @@ def api_data():
 
     try:
 
-        df = pd.read_excel(
-            path,
-            engine="openpyxl"
-        )
+        df = load_dataframe(table, path)
 
         print(
             f"[DEBUG] table={table} "
@@ -105,13 +122,7 @@ def api_search():
 
     try:
 
-        df = (
-            pd.read_excel(
-                path,
-                engine="openpyxl"
-            )
-            .fillna("")
-        )
+        df = load_dataframe(table, path).fillna("")
 
         if not query:
             return jsonify([])

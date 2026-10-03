@@ -255,3 +255,8 @@ table {
 footer {
   text-align: center;
 }
+
+/* Center the "Loading table..." message while data is fetched */
+#loading {
+  text-align: center;
+}
