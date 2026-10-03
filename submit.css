@@ -64,6 +64,8 @@ button,input,select,textarea{font-family:inherit}
 .page-head h1{font-size:32px;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.12;margin:8px 0 10px}
 .page-head p{font-size:16px;color:var(--on-navy-2);line-height:1.55;max-width:840px}
 .page-head p a{color:#fff;border-bottom:1px solid var(--n1c-white-border-2)}
+.back-link{display:inline-block;margin-bottom:10px;font-size:13px;font-weight:600;color:var(--on-navy-2);text-decoration:none}
+.back-link:hover{color:#fff}
 
 /* ---------- stepper ---------- */
 .steps{display:flex;max-width:840px;margin:26px auto 18px;border:1px solid var(--n1c-white-border);
