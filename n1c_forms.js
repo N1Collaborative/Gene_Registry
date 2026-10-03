@@ -18,10 +18,10 @@ var N1C = window.N1C = {};
    SUBMITTER_EMAIL_ON: must match SEND_SUBMITTER_EMAIL in Code.gs;
         it only changes the wording of the thank-you panel here.
    ============================================================ */
-N1C.ENV = 'TEST';
+N1C.ENV = 'PROD';
 N1C.ENDPOINTS = {
   TEST: 'https://script.google.com/macros/s/AKfycbyjqqZqOTYQaifwqfeSbZeCyfcdL2jzwbiibSoaVzkZh9ipO-_xo_qp_kZqAANYz4Vj/exec',
-  PROD: 'PASTE_THE_N1C_WEB_APP_URL_HERE'
+  PROD: 'https://script.google.com/macros/s/AKfycbz8UnBWmqoTQk8thi7iSjRG4OurFhLnr3x0QwSFoa3avH-tEylQmKK77CGeMLOwNTW1/exec'
 };
 N1C.SUBMITTER_EMAIL_ON = false;
 N1C.MAX_BULK_ROWS = 500;
